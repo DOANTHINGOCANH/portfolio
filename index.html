@@ -47,8 +47,6 @@
       /* Safelist: đảm bảo các class động được Tailwind CDN tạo ra */
       safelist: [
         'md:col-span-2',
-        'border-blue-500', 'border-blue-400',
-        'border-emerald-400', 'border-orange-400',
       ],
     };
   </script>
@@ -84,6 +82,21 @@
 
     .fade-in {
       animation: fadeInUp 0.35s ease-out forwards;
+    }
+
+    @keyframes wave {
+      0%   { transform: rotate(0deg); }
+      15%  { transform: rotate(12deg); }
+      30%  { transform: rotate(-10deg); }
+      45%  { transform: rotate(10deg); }
+      60%  { transform: rotate(-6deg); }
+      75%  { transform: rotate(6deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .wave-emoji {
+      display: inline-block;
+      transform-origin: 70% 70%;
+      animation: wave 2s ease-in-out infinite;
     }
 
     /* --- Custom scrollbar (Chrome/Edge/Safari) --- */
@@ -248,7 +261,6 @@
                 className="flex items-center gap-x-4 cursor-pointer"
                 title="Switch language"
               >
-                <i className="bi bi-globe text-[18px] text-[#14213D]"></i>
                 <span className="text-[17px] font-semibold flex items-center gap-x-1">
                   <span className={lang === 'vi' ? 'text-[#14213D]' : 'text-gray-400'}>VI</span>
                   <span className="text-gray-300">|</span>
@@ -272,29 +284,35 @@
 
           {/* Cột trái: 7/12 */}
           <div className="lg:col-span-7">
-            <p className="text-sm font-semibold text-gray-400 tracking-widest mb-4 uppercase">
-              {data.tagline}
-            </p>
-            <h1 className="text-[72px] font-bold text-[#14213D] leading-[1.1] mb-4 whitespace-nowrap">
+            <div className="inline-flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-full pl-5 pr-1.5 py-1.5 mb-2">
+              <span className="text-sm font-semibold text-[#2563eb] tracking-widest uppercase">
+                {data.tagline}
+              </span>
+              <span className="flex items-center justify-center w-8 h-8 bg-white rounded-full shadow-sm text-base leading-none">
+                <span className="wave-emoji">👋</span>
+              </span>
+            </div>
+            <h1 className="text-[72px] font-bold text-[#14213D] leading-[1.1] mb-1 whitespace-nowrap">
               {data.name}
             </h1>
-            <p className="text-[42px] font-bold text-[#285ECC] mb-6 whitespace-nowrap">
+            <p className="text-[42px] font-bold text-[#2563eb] mb-6 whitespace-nowrap">
               {data.title}
             </p>
-            <p className="max-w-[600px] text-[18px] text-[#475569] leading-relaxed mb-12">
+            <p className="max-w-[680px] text-[18px] text-[#475569] leading-relaxed mb-12 text-justify">
               {data.description}
             </p>
             <div className="flex flex-wrap gap-5 mt-6">
-              <a href="https://drive.google.com/file/d/11iTsr9m-antbwETv82f-nS2XJD6CRZZX/view?usp=sharing"
+              <a href={data.cvLink}
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="flex items-center gap-2 bg-[#285ECC] hover:bg-blue-700 text-white text-[18px] font-medium px-8 py-2.5 rounded-[0.3rem] transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                 download
+                 className="flex items-center gap-2 bg-[#2563eb] hover:bg-blue-700 text-white text-[18px] font-medium px-8 py-2.5 rounded-[0.3rem] transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 <i className="bi bi-download"></i>
                 {data.btnCV}
               </a>
               <button
                 onClick={onContactClick}
-                className="flex items-center gap-2 bg-transparent text-[#14213D] border border-gray-300 hover:bg-gray-50 text-[18px] font-medium px-8 py-2.5 rounded-[0.3rem] transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                className="flex items-center gap-2 bg-transparent text-[#2563eb] border border-[#2563eb] hover:bg-blue-50 text-[18px] font-medium px-8 py-2.5 rounded-[0.3rem] transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 <i className="bi bi-send"></i>
                 {data.btnContact}
               </button>
@@ -303,21 +321,23 @@
 
           {/* Cột phải: 5/12 */}
           <div className="lg:col-span-5 flex justify-end">
-            <div className="w-full max-w-[380px] aspect-[3/4] bg-white rounded-3xl border-4 border-[#E6F0FF] overflow-hidden mx-auto lg:mx-0"
-                 style={{ boxShadow: '0 15px 40px rgb(0,0,0,0.06)' }}>
-                <img
-                  src="./av.png"
-                  alt={data.name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.parentElement.classList.add('bg-blue-100', 'flex', 'items-center', 'justify-center');
-                    const placeholder = document.createElement('span');
-                    placeholder.className = 'text-6xl font-bold text-blue-400';
-                    placeholder.textContent = 'ĐA';
-                    e.target.parentElement.appendChild(placeholder);
-                  }}
-                />
+            <div className="w-[400px] max-w-full h-[480px] bg-white rounded-3xl border-4 border-white mx-auto lg:mx-0 p-[4px]"
+                 style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.12), 0 6px 18px rgba(0,0,0,0.06)' }}>
+                <div className="w-full h-full rounded-[20px] overflow-hidden bg-white p-3">
+                  <img
+                    src="./anhthe.png"
+                    alt="Đoàn Thị Ngọc Ánh - Business Analyst"
+                    className="w-full h-full object-cover rounded-[12px]"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentElement.classList.add('bg-blue-100', 'flex', 'items-center', 'justify-center');
+                      const placeholder = document.createElement('span');
+                      placeholder.className = 'text-6xl font-bold text-blue-400';
+                      placeholder.textContent = 'ĐA';
+                      e.target.parentElement.appendChild(placeholder);
+                    }}
+                  />
+                </div>
             </div>
           </div>
 
@@ -331,26 +351,27 @@
     const AboutSection = ({ data }) => (
       <section id="about" className="min-h-[calc(100vh-80px)] bg-white flex items-center scroll-mt-[80px]">
         <div className="max-w-[1300px] w-full px-6 mx-auto py-12">
-          <div className="flex flex-col lg:flex-row justify-between gap-8">
+          <div className="flex flex-col lg:flex-row justify-between gap-8 lg:items-stretch">
 
             {/* Cột trái: ~45% */}
-            <div className="lg:w-[45%] h-full flex flex-col justify-between">
+            <div className="lg:w-[45%] flex flex-col">
               <div>
                 <h2 className="text-3xl font-semibold uppercase tracking-wider">
                   <span className="text-gray-900">{data.title1} </span>
                   <span className="text-[#2563EB]">{data.title2}</span>
                 </h2>
-                <div className="w-12 h-[3px] bg-[#2563EB] mt-2 mb-6"></div>
+                <div className="w-12 h-[3px] bg-[#2563EB] mt-2 mb-8"></div>
                 <div className="space-y-4">
                   {data.intro.map((para, i) => (
-                    <p key={i} className="text-base text-[#475569] leading-relaxed text-justify max-w-[460px]">{para}</p>
+                    <p key={i} className="text-base text-[#475569] leading-relaxed text-justify max-w-[540px]">{para}</p>
                   ))}
                 </div>
               </div>
-              <div className="mt-6">
-                <a href="https://drive.google.com/file/d/11iTsr9m-antbwETv82f-nS2XJD6CRZZX/view?usp=sharing"
+              <div className="mt-auto pt-6">
+                <a href={data.cvLink}
                    target="_blank"
                    rel="noopener noreferrer"
+                   download
                    className="flex items-center gap-2 w-fit bg-[#2563EB] hover:bg-blue-700 text-white text-sm font-medium px-5 py-2 rounded-[0.3rem] transition-colors duration-200">
                   <i className="bi bi-download"></i>
                   {data.btnCV}
@@ -364,9 +385,9 @@
                 {data.fieldTitle}
               </h2>
               <div className="w-12 h-[3px] bg-[#2563EB] mt-2 mb-6"></div>
-              <div>
+              <div className="w-[540px] max-w-full">
                 {data.fields.map((field, i) => (
-                  <div key={i} className="flex items-center justify-between border border-gray-100 shadow-sm rounded-lg py-3 px-4 mb-3">
+                  <div key={i} className={`w-full h-[52px] flex items-center justify-between border border-gray-100 shadow-sm rounded-lg px-4 ${i < data.fields.length - 1 ? 'mb-[15px]' : ''}`}>
                     <div className="flex items-center">
                       <i className="bi bi-check-circle-fill text-[#2563EB] mr-3 text-sm"></i>
                       <span className="text-base font-semibold uppercase tracking-wide" style={{ color: '#475569' }}>{field}</span>
@@ -387,8 +408,9 @@
     /* ============================================================
        BƯỚC 6 — SkillCard + SkillsSection
     ============================================================ */
-    const SkillCard = ({ skill, onDetail }) => {
+    const SkillCard = ({ skill, onDetail, lang }) => {
       const IconComponent = SKILL_ICON_MAP[skill.iconType];
+      const ui = window.DETAIL_CONTENT[lang].ui;
 
       const renderIcon = () => {
         if (!skill.icon) return IconComponent ? <IconComponent /> : null;
@@ -400,7 +422,8 @@
       };
 
       return (
-        <div className={`bg-white rounded-xl shadow-lg border-l-8 ${skill.borderColor} flex items-center`}>
+        <div className="bg-white rounded-xl shadow-lg border-l-8 flex items-center"
+             style={{ borderLeftColor: skill.borderColor }}>
           {/* Phần trái: Icon */}
           <div className="bg-[#E7EFFD] border-4 border-white shadow-[0_8px_24px_rgba(37,99,235,0.15)] flex items-center justify-center shrink-0 w-24 h-24 rounded-2xl mx-6">
             {renderIcon()}
@@ -409,21 +432,23 @@
           <div className="border-r border-gray-200 h-[80%] my-auto shrink-0"></div>
           {/* Phần phải: Nội dung */}
           <div className="flex flex-col gap-6 p-6 flex-1">
-            <h3 className="text-xl font-bold uppercase text-gray-900">{skill.title}</h3>
-            {skill.tags && skill.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {skill.tags.map(tag => (
-                  <span key={tag} className="bg-blue-100 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+            <div className="flex flex-col gap-2">
+              <h3 className="text-xl font-bold uppercase text-gray-900">{skill.title}</h3>
+              {skill.tags && skill.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {skill.tags.map(tag => (
+                    <span key={tag} className="bg-blue-100 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
             <p className="text-gray-500 leading-relaxed text-justify">{skill.description}</p>
             {skill.hasButton && (
               <button onClick={() => onDetail && onDetail(skill)}
                 className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-[0.3rem] w-fit hover:bg-blue-700 font-medium transition-colors duration-200">
-                Xem chi tiết <i className="bi bi-arrow-right"></i>
+                {ui.viewDetail} <i className="bi bi-arrow-right"></i>
               </button>
             )}
           </div>
@@ -431,7 +456,7 @@
       );
     };
 
-    const SkillsSection = ({ data, onDetail }) => (
+    const SkillsSection = ({ data, onDetail, lang }) => (
       <section id="skills" className="py-20 scroll-mt-[80px]"
         style={{ backgroundImage: "url('./skill_nen.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
         <div className="max-w-[1440px] w-full px-4 xl:px-[100px] mx-auto">
@@ -443,7 +468,7 @@
           </div>
           <div className="grid grid-cols-1 gap-6">
             {data.items.map(skill => (
-              <SkillCard key={skill.id} skill={skill} onDetail={onDetail} />
+              <SkillCard key={skill.id} skill={skill} onDetail={onDetail} lang={lang} />
             ))}
           </div>
         </div>
@@ -453,26 +478,60 @@
     /* ============================================================
        BƯỚC 6B — ProjectCard + SkillDetail
     ============================================================ */
-    const ProjectCard = ({ project }) => {
-      const colonIdx = project.scope ? project.scope.indexOf(': ') : -1;
-      const scopeLabel = colonIdx > -1 ? project.scope.slice(0, colonIdx + 2) : '';
-      const scopeValue = colonIdx > -1 ? project.scope.slice(colonIdx + 2) : project.scope;
+    const SortDropdown = ({ lang }) => {
+      const opts = window.DETAIL_CONTENT[lang].ui.sortOptions;
+      const [open, setOpen] = React.useState(false);
+      const [selectedIdx, setSelectedIdx] = React.useState(0);
+      const ref = React.useRef(null);
+      React.useEffect(() => {
+        const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+        document.addEventListener('mousedown', handler);
+        return () => document.removeEventListener('mousedown', handler);
+      }, []);
       return (
-        <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow duration-300">
+        <div className="relative" ref={ref}>
+          <button
+            onClick={() => setOpen(o => !o)}
+            className="flex items-center gap-2 border border-[#2563eb] rounded-lg px-4 py-2 text-sm text-[#2563eb] bg-white cursor-pointer hover:bg-blue-50 transition-colors duration-150 focus:outline-none">
+            {opts[selectedIdx]}
+            <i className={`bi bi-chevron-down text-xs transition-transform duration-200 ${open ? 'rotate-180' : ''}`}></i>
+          </button>
+          {open && (
+            <div className="absolute right-0 mt-1.5 bg-white rounded-xl shadow-xl z-50 min-w-[130px] overflow-hidden">
+              {opts.map((opt, i) => (
+                <div key={opt} onClick={() => { setSelectedIdx(i); setOpen(false); }}
+                  className={`px-4 py-2.5 text-sm cursor-pointer transition-colors duration-150 ${
+                    selectedIdx === i ? 'bg-blue-50 text-[#2563eb] font-medium' : 'text-gray-600 hover:bg-blue-50 hover:text-[#2563eb]'
+                  }`}>
+                  {opt}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    const ProjectCard = ({ project, lang }) => {
+      const ui = window.DETAIL_CONTENT[lang].ui;
+      return (
+        <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6 flex flex-col gap-3 hover:shadow-lg transition-shadow duration-300">
           {/* Header: logo + meta */}
           <div className="flex items-center gap-4">
             <div className="w-20 h-20 shrink-0 border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
               <img src={project.logo} alt={project.name}
-                   className={`w-full h-full ${project.name === 'THƯƠNG HIỆU THỜI TRANG THE SHEA' ? 'object-cover' : 'object-contain p-2'}`}
+                   className="w-full h-full object-contain p-2"
                    onError={e => { e.target.style.display='none'; }} />
             </div>
             <div className="flex flex-col gap-1 min-w-0">
               <h3 className="font-bold text-[#14213D] text-base leading-tight">{project.name}</h3>
-              <p className="text-gray-600 text-sm">{project.system}</p>
-              <p className="flex items-center gap-1 text-sm">
-                <i className="bi bi-folder-fill text-xs text-gray-600"></i>
-                {scopeLabel && <span className="text-gray-600">{scopeLabel}</span>}
-                <span className="text-[#2563EB]">{scopeValue}</span>
+              <p className="text-sm">
+                {(() => {
+                  const parts = project.system ? project.system.split(': ') : [];
+                  return parts.length >= 2
+                    ? <><span className="text-slate-500">{parts[0]}:</span>{' '}<span className="text-blue-500 font-medium">{parts.slice(1).join(': ')}</span></>
+                    : <span className="text-blue-500 font-medium">{project.system}</span>;
+                })()}
               </p>
             </div>
           </div>
@@ -491,25 +550,48 @@
           )}
           {/* Footer */}
           <div className="flex justify-end mt-auto pt-2 border-t border-gray-100">
-            <a href={
-                 project.href ? project.href :
-                 project.name.includes('WONDERWOOD')       ? '#wonderwood-detail' :
-                 project.name.includes('NAM VIỆT PHƯƠNG')  ? '#namvietphuong-detail' :
-                 project.name.includes('YUMMY')            ? '#yummy-detail' :
-                 project.name.includes('THE SHEA')         ? '#theshea-detail' : '#'
-               }
-               className="text-[#2563EB] text-sm font-medium hover:underline flex items-center gap-1">
-              Xem chi tiết <i className="bi bi-arrow-right"></i>
-            </a>
+            <button
+              onClick={() => {
+                const id = project.href ? project.href.replace('#', '') : null;
+                if (!id) return;
+                const el = document.getElementById(id);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-[#2563EB] text-sm font-medium hover:underline flex items-center gap-1">
+              {ui.viewDetail} <i className="bi bi-arrow-right"></i>
+            </button>
           </div>
         </div>
       );
     };
 
-    const SkillDetail = ({ skill, onBack, navItems }) => {
+    /* Helper: render text node có thể có highlight */
+    const renderScopeItem = (item) => {
+      if (item.text !== undefined) return item.text;
+      return (
+        <React.Fragment>
+          {item.pre}
+          <span className="text-blue-600 font-semibold">{item.highlight}</span>
+          {item.post}
+        </React.Fragment>
+      );
+    };
+
+    /* Helper: render description 3-part (trước, highlight, sau) */
+    const DescCard = ({ parts }) => (
+      <p className="text-gray-700 leading-relaxed text-justify">
+        {parts[0]}
+        <span className="text-blue-600 font-semibold">{parts[1]}</span>
+        {parts[2]}
+      </p>
+    );
+
+    const SkillDetail = ({ skill, onBack, navItems, lang }) => {
       const projects = skill.projects || [];
       const homeLabel   = navItems ? navItems[0] : 'Trang chủ';
       const skillsLabel = navItems ? navItems[2] : 'Kỹ năng';
+      const ui = window.DETAIL_CONTENT[lang].ui;
+      const dc = window.DETAIL_CONTENT[lang];
       return (
         <div className="min-h-screen bg-[#F6F8FD]">
           <div className="max-w-[1400px] mx-auto w-full px-6 py-10">
@@ -518,7 +600,7 @@
               <button onClick={onBack}
                 className="flex items-center gap-2 text-[#2563EB] hover:text-blue-800 font-medium transition-colors">
                 <i className="bi bi-arrow-left"></i>
-                <span>Quay lại</span>
+                <span>{ui.backBtn}</span>
               </button>
               <span className="text-gray-300 mx-1">/</span>
               <span onClick={onBack} className="text-gray-500 hover:text-[#2563EB] cursor-pointer">{homeLabel}</span>
@@ -532,7 +614,7 @@
             <div className="mb-10 text-center">
               <div className="flex items-center justify-center gap-4 mb-3">
                 <div className="h-px bg-[#2563EB]/30 w-20"></div>
-                <span className="text-[#2563EB] font-semibold tracking-widest text-sm uppercase">KỸ NĂNG</span>
+                <span className="text-[#2563EB] font-semibold tracking-widest text-sm uppercase">{ui.skillLabel}</span>
                 <div className="h-px bg-[#2563EB]/30 w-20"></div>
               </div>
               <h1 className="text-4xl font-bold text-[#14213D] uppercase tracking-tight">{skill.title}</h1>
@@ -541,436 +623,246 @@
             {/* Toolbar */}
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-base font-bold text-[#14213D] uppercase tracking-wide">
-                Dự án đã thực hiện <span className="text-[#2563EB]">({projects.length})</span>
+                {ui.projectsDone} <span className="text-[#2563EB]">({projects.length})</span>
               </h2>
-              <div className="relative">
-                <select className="appearance-none border border-gray-200 rounded-lg px-4 py-2 pr-8 text-sm text-gray-600 bg-white cursor-pointer focus:outline-none focus:border-[#2563EB]">
-                  <option>Mới nhất</option>
-                  <option>Cũ nhất</option>
-                </select>
-                <i className="bi bi-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
-              </div>
+              <SortDropdown lang={lang} />
             </div>
 
             {/* Grid dự án */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {projects.map((project, i) => (
-                <ProjectCard key={i} project={project} />
+                <ProjectCard key={i} project={project} lang={lang} />
               ))}
             </div>
           </div>
 
           {skill.iconType === 'analysis' && (<>
-          {/* Chi tiết dự án Wonderwood */}
-          <div id="wonderwood-detail" className="w-full mt-16 scroll-mt-24">
-            {/* Banner */}
+          {[
+            { id: 'wonderwood-detail', d: dc.analysis.wonderwood },
+            { id: 'namvietphuong-detail', d: dc.analysis.namVietPhuong },
+            { id: 'yummy-detail', d: dc.analysis.yummy },
+            { id: 'theshea-detail', d: dc.analysis.theShea },
+          ].map(({ id, d }) => (
+          <div key={id} id={id} className="w-full mt-16 scroll-mt-24">
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                  style={{ backgroundImage: "url('./nen.png')" }}>
-              <h2 className="text-3xl font-bold mb-6 text-center px-4">
-                HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD
-              </h2>
-              <p className="text-lg tracking-wider uppercase">PHẠM VI: TOÀN BỘ HỆ THỐNG</p>
-            </div>
-
-            {/* Nội dung */}
-            <div className="max-w-[1400px] mx-auto px-4 py-16">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
-              <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Ô trái: Giới thiệu */}
-                <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                  <p className="text-gray-700 leading-relaxed text-justify">
-                    Hệ thống được xây dựng nhằm{' '}
-                    <span className="text-blue-600 font-semibold">
-                      quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng
-                    </span>
-                    , hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp.
-                  </p>
-                </div>
-                {/* Ô phải: Phạm vi công việc */}
-                <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
-                  <div className="flex flex-col gap-5">
-                    <div className="flex items-start gap-3">
-                      <i className="bi bi-check-circle-fill text-blue-600 mt-1"></i>
-                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">Khơi gợi và làm rõ yêu cầu với chủ doanh nghiệp.</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <i className="bi bi-check-circle-fill text-blue-600 mt-1"></i>
-                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">Thiết kế prototype giao diện cho phân hệ quản lý sản xuất bằng Figma nhằm trực quan hóa quy trình thao tác và tối ưu trải nghiệm người dùng trong hệ thống ERP.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* User Stories */}
-            <div className="max-w-[1400px] mx-auto px-4 py-8">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">USER STORIES</h2>
-              <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
-              <div className="flex flex-col gap-8">
-                <img src="./story 1.png" alt="User story 1"
-                     className="w-full object-contain border border-gray-200" />
-                <img src="./story 2.png" alt="User story 2"
-                     className="w-full object-contain border border-gray-200" />
-              </div>
-              <p className="text-center italic text-[#14213D] mt-6">
-                Hình ảnh: Bảng User Stories theo vai trò người dùng
-              </p>
-            </div>
-          </div>
-
-          {/* Chi tiết dự án Nam Việt Phương */}
-          <div id="namvietphuong-detail" className="w-full mt-16 scroll-mt-24">
-            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                 style={{ backgroundImage: "url('./nen.png')" }}>
-              <h2 className="text-3xl font-bold mb-6 text-center px-4">
-                HỆ THỐNG ERP - CÔNG TY TNHH NAM VIỆT PHƯƠNG
-              </h2>
-              <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ BÁN HÀNG & NHÂN SỰ</p>
+              <h2 className="text-3xl font-bold mb-6 text-center px-4">{d.bannerTitle}</h2>
+              <p className="text-lg tracking-wider uppercase">{d.bannerScope}</p>
             </div>
             <div className="max-w-[1400px] mx-auto px-4 py-16">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
               <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                   <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                  <p className="text-gray-700 leading-relaxed text-justify">
-                    Hệ thống được xây dựng nhằm{' '}
-                    <span className="text-blue-600 font-semibold">
-                      quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng
-                    </span>
-                    , hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp.
-                  </p>
+                  <DescCard parts={d.descParts} />
                 </div>
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                  <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                   <div className="flex flex-col gap-5">
-                    <div className="flex items-start gap-3">
-                      <i className="bi bi-check-circle-fill text-blue-600 mt-1"></i>
-                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">
-                        Chuẩn bị danh sách câu hỏi khảo sát nhằm khơi gợi, thu thập và làm rõ yêu cầu nghiệp vụ cho{' '}
-                        <span className="text-blue-600 font-semibold">phân hệ bán hàng và nhân sự</span>
-                        {' '}với chủ doanh nghiệp.
-                      </p>
-                    </div>
+                    {d.scopeItems.map((item, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <i className="bi bi-check-circle-fill text-blue-600 mt-1"></i>
+                        <p className="text-gray-700 leading-relaxed flex-1 text-justify">{renderScopeItem(item)}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          ))}
+          </>)}
 
-          {/* Chi tiết dự án Yummy */}
-          <div id="yummy-detail" className="w-full mt-16 scroll-mt-24">
+          {/* ── Chi tiết kỹ năng: Vibe Coding ── */}
+          {skill.iconType === 'vibe' && (<>
+          {(() => { const v = dc.vibe.wonderwood; return (
+          <div id="wonderwood-vibe" className="w-full mt-16 scroll-mt-24">
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                  style={{ backgroundImage: "url('./nen.png')" }}>
-              <h2 className="text-3xl font-bold mb-6 text-center px-4">
-                HỆ THỐNG ERP - THƯƠNG HIỆU TÀU HỦ SINGAPORE YUMMY
-              </h2>
-              <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ TÀI CHÍNH</p>
+              <h2 className="text-3xl font-bold mb-6 text-center px-4">{v.bannerTitle}</h2>
+              <p className="text-lg tracking-wider uppercase">{v.bannerScope}</p>
             </div>
             <div className="max-w-[1400px] mx-auto px-4 py-16">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
               <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                   <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                  <p className="text-gray-700 leading-relaxed text-justify">
-                    Hệ thống được xây dựng nhằm{' '}
-                    <span className="text-blue-600 font-semibold">
-                      quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng
-                    </span>
-                    , hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp.
-                  </p>
+                  <DescCard parts={v.descParts} />
                 </div>
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                  <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                   <div className="flex flex-col gap-5">
                     <div className="flex items-start gap-3">
-                      <i className="bi bi-check-circle-fill text-blue-600 mt-1"></i>
-                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">
-                        Chuẩn bị danh sách câu hỏi khảo sát nhằm khơi gợi, thu thập và làm rõ yêu cầu nghiệp vụ cho{' '}
-                        <span className="text-blue-600 font-semibold">phân hệ tài chính</span>
-                        {' '}với chủ doanh nghiệp.
-                      </p>
+                      <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
+                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">{v.scopeItem}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Chi tiết dự án The Shea */}
-          <div id="theshea-detail" className="w-full mt-16 scroll-mt-24">
-            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                 style={{ backgroundImage: "url('./nen.png')" }}>
-              <h2 className="text-3xl font-bold mb-6 text-center px-4">
-                HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA
-              </h2>
-              <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ KHO VÀ HÀNG HÓA</p>
-            </div>
-            <div className="max-w-[1400px] mx-auto px-4 py-16">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
-              <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                  <p className="text-gray-700 leading-relaxed text-justify">
-                    Hệ thống được xây dựng nhằm hỗ trợ theo dõi,{' '}
-                    <span className="text-blue-600 font-semibold">
-                      quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho
-                    </span>
-                    {' '}theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea.
-                  </p>
-                </div>
-                <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
-                  <div className="flex flex-col gap-5">
-                    <div className="flex items-start gap-3">
-                      <i className="bi bi-check-circle-fill text-blue-600 mt-1"></i>
-                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">
-                        Khơi gợi và làm rõ yêu cầu nghiệp vụ quản lý kho và hàng hóa với chủ cửa hàng thời trang.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
+              <div>
+                <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.demoVibe}</h3>
+                <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
               </div>
+              <video src="./vibe demo.mp4" controls
+                     className="w-full rounded-lg border border-gray-200 shadow-sm bg-black" />
+              <p className="text-center italic text-[#14213D] text-sm mt-6">{v.videoCaption}</p>
             </div>
           </div>
+          ); })()}
           </>)}
 
           {/* ── Chi tiết kỹ năng: Mô hình hóa hệ thống ── */}
           {skill.iconType === 'modeling' && (<>
 
             {/* ── Section chi tiết: WONDERWOOD ── */}
+            {(() => { const m = dc.modeling.wonderwood; return (
             <div id="wonderwood-detail" className="w-full mt-16 scroll-mt-24">
-
-              {/* Banner */}
               <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                    style={{ backgroundImage: "url('./nen.png')" }}>
-                <h2 className="text-3xl font-bold mb-6 text-center px-4">
-                  HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD
-                </h2>
-                <p className="text-lg tracking-wider uppercase">PHẠM VI: TOÀN BỘ HỆ THỐNG</p>
+                <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
+                <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
               </div>
-
-              {/* Nội dung chính */}
               <div className="max-w-[1400px] mx-auto px-4 py-16">
-                <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+                <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
                 <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                  {/* Ô trái: Mô tả dự án */}
                   <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                     <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                    <p className="text-gray-700 leading-relaxed text-justify">
-                      Hệ thống được xây dựng nhằm{' '}
-                      <span className="text-blue-600 font-semibold">
-                        quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng
-                      </span>
-                      , hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp.
-                    </p>
+                    <DescCard parts={m.descParts} />
                   </div>
-
-                  {/* Ô phải: Phạm vi công việc + Tags */}
                   <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                    <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                    <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                     <div className="flex items-start gap-3 mb-6">
                       <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
-                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">
-                        Mô hình hóa quy trình nghiệp vụ và hệ thống ERP thông qua việc sử dụng các công cụ.
-                      </p>
+                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">{m.scopeItem}</p>
                     </div>
                     <div className="flex flex-wrap gap-3">
-                      {["BPMN", "UC", "UCS", "SD", "DFD", "ERD"].map(tag => (
-                        <span key={tag} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">
-                          {tag}
-                        </span>
+                      {["BPMN", "User Stories", "UC", "UCS", "SD", "DFD", "ERD"].map(tag => (
+                        <span key={tag} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">{tag}</span>
                       ))}
                     </div>
                   </div>
-
                 </div>
               </div>
-
-              {/* Phần sơ đồ BPMN */}
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-16">
-
-                {/* BPMN AS-IS */}
                 <div>
-                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">BPMN THỰC TRẠNG HIỆN TẠI (AS-IS)</h3>
+                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.bpmnAsIs}</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
-                  <img src="./bpmn as-is.png" alt="BPMN As-Is"
-                       className="w-full object-contain border border-gray-200 shadow-sm bg-white" />
-                  <p className="text-center italic text-[#14213D] mt-6">
-                    Hình ảnh: Sơ đồ BPMN thực trạng hiện tại (As-Is) - Phân hệ Quản lý sản xuất
-                  </p>
+                  <img src="./bpmn as-is.png" alt="BPMN As-Is" className="w-full object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-center italic text-[#14213D] mt-6">{m.captions.bpmnAsIs}</p>
                 </div>
-
-                {/* BPMN TO-BE */}
                 <div>
-                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">BPMN QUY TRÌNH ĐỀ XUẤT (TO-BE)</h3>
+                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.bpmnToBe}</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
-                  <img src="./bpmn to-be.png" alt="BPMN To-Be"
-                       className="w-full object-contain border border-gray-200 shadow-sm bg-white" />
-                  <p className="text-center italic text-[#14213D] mt-6">
-                    Hình ảnh: Sơ đồ BPMN quy trình đề xuất (To-Be) - Phân hệ Quản lý sản xuất
-                  </p>
+                  <img src="./bpmn to-be.png" alt="BPMN To-Be" className="w-full object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-center italic text-[#14213D] mt-6">{m.captions.bpmnToBe}</p>
                 </div>
-
               </div>
-
-              {/* Phần sơ đồ Use Case */}
+              <div className="max-w-[1400px] mx-auto px-4 py-8">
+                <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">USER STORIES</h2>
+                <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <img src="./story 1.png" alt="User story 1" className="w-full object-contain border border-gray-200 shadow-md rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  <img src="./story 2.png" alt="User story 2" className="w-full object-contain border border-gray-200 shadow-md rounded-xl transition-all duration-300 hover:shadow-xl" />
+                </div>
+                <p className="text-center italic text-[#14213D] mt-6">{m.captions.userStories}</p>
+              </div>
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-12">
-
-                {/* Tiêu đề khu vực */}
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">USE CASE</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
-
-                  {/* UC tổng quan - full width */}
-                  <img src="./uc tổng quan.png" alt="Sơ đồ UC tổng quan"
-                       className="w-[60%] mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg" />
-                  <p className="text-center italic text-[#14213D] mt-6">
-                    Hình ảnh: Sơ đồ Use Case tổng quan
-                  </p>
+                  <img src="./uc tổng quan.png" alt="UC overview"
+                       className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-center italic text-[#14213D] mt-6">{m.captions.ucOverview}</p>
                 </div>
-
-                {/* UC chi tiết - lưới 3 cột */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
-                  <div className="flex flex-col h-full">
-                    <img src="./uc cấp 1.png" alt="Sơ đồ UC cấp 1"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                    <p className="text-center italic text-[#14213D] mt-4">
-                      Hình ảnh: Sơ đồ Use Case cấp 1
-                    </p>
-                  </div>
-                  <div className="flex flex-col h-full">
-                    <img src="./uc cấp 2.png" alt="Sơ đồ UC cấp 2"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                    <p className="text-center italic text-[#14213D] mt-4">
-                      Hình ảnh: Sơ đồ Use Case cấp 2
-                    </p>
-                  </div>
-                  <div className="flex flex-col h-full">
-                    <img src="./uc cấp 3.png" alt="Sơ đồ UC cấp 3"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                    <p className="text-center italic text-[#14213D] mt-4">
-                      Hình ảnh: Sơ đồ Use Case cấp 3
-                    </p>
-                  </div>
+                  {["./uc cấp 1.png","./uc cấp 2.png","./uc cấp 3.png"].map((src, i) => (
+                    <div key={i} className="flex flex-col h-full">
+                      <img src={src} alt={m.captions.ucAlt[i]}
+                           className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                      <p className="text-center italic text-[#14213D] mt-4">{m.captions.ucDetails[i]}</p>
+                    </div>
+                  ))}
                 </div>
-
               </div>
-
-              {/* Phần Use Case Specification */}
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">USE CASE SPECIFICATION</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-1 mb-4"></div>
                 </div>
-                <img src="./ucs.png" alt="Bảng đặc tả UCS"
-                     className="w-full object-contain border border-gray-200 shadow-sm bg-white" />
-                <p className="text-center italic text-[#14213D] mt-2">
-                  Hình ảnh: Bảng đặc tả UCS - Tính năng thêm mới đơn hàng
-                </p>
+                <img src="./ucs.png" alt="UCS table" className="w-full max-w-4xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                <p className="text-center italic text-[#14213D] mt-2">{m.captions.ucs}</p>
               </div>
-
-              {/* Phần Sequence Diagram */}
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">SEQUENCE DIAGRAM</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-1 mb-4"></div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="flex flex-col h-full">
-                    <img src="./sd 1.png" alt="Sơ đồ SD 1"
-                         className="w-[60%] h-full mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                    <p className="text-center italic text-[#14213D] mt-6">
-                      Hình ảnh: Sơ đồ SD - Tính năng thêm mới đơn hàng
-                    </p>
-                  </div>
-                  <div className="flex flex-col h-full">
-                    <img src="./sd 2.png" alt="Sơ đồ SD 2"
-                         className="w-[60%] h-full mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                    <p className="text-center italic text-[#14213D] mt-6">
-                      Hình ảnh: Sơ đồ SD - Tính năng thêm tài khoản
-                    </p>
-                  </div>
+                  {["./sd 1.png","./sd 2.png"].map((src, i) => (
+                    <div key={i} className="flex flex-col h-full">
+                      <img src={src} alt={`SD ${i+1}`}
+                           className="w-[60%] h-full mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                      <p className="text-center italic text-[#14213D] mt-6">{m.captions.sd[i]}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-
-              {/* Phần Data Flow Diagram */}
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-12">
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">DATA FLOW DIAGRAM</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-1 mb-8"></div>
                 </div>
                 <div className="flex flex-col">
-                  <img src="./dfd ngữ cảnh.png" alt="Sơ đồ DFD ngữ cảnh"
-                       className="w-[50%] mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                  <p className="text-center italic text-[#14213D] mt-6">
-                    Hình ảnh: Sơ đồ DFD ngữ cảnh
-                  </p>
+                  <img src="./dfd ngữ cảnh.png" alt="DFD context"
+                       className="w-[50%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-center italic text-[#14213D] mt-6">{m.captions.dfdContext}</p>
                 </div>
                 <div className="flex flex-col">
-                  <img src="./dfd cấp 0.png" alt="Sơ đồ DFD cấp 0"
-                       className="w-[70%] mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                  <p className="text-center italic text-[#14213D] mt-6">
-                    Hình ảnh: Sơ đồ DFD cấp 0
-                  </p>
+                  <img src="./dfd cấp 0.png" alt="DFD level 0"
+                       className="w-[70%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-center italic text-[#14213D] mt-6">{m.captions.dfdLevel0}</p>
                 </div>
               </div>
-
-              {/* Phần Entity Relationship Diagram */}
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">ENTITY RELATIONSHIP DIAGRAM</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-1 mb-8"></div>
                 </div>
                 <div className="flex flex-col">
-                  <img src="./erd.png" alt="Sơ đồ ERD"
-                       className="w-[60%] mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                  <p className="text-center italic text-[#14213D] mt-6">
-                    Hình ảnh: Sơ đồ ERD - Phân hệ Quản lý bán hàng
-                  </p>
+                  <img src="./erd.png" alt="ERD"
+                       className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-center italic text-[#14213D] mt-6">{m.captions.erd}</p>
                 </div>
               </div>
-
             </div>
+            ); })()}
 
             {/* ===== Nam Việt Phương - Modeling Detail ===== */}
+            {(() => { const m = dc.modeling.namVietPhuong; return (
             <div id="namvietphuong-detail" className="w-full mt-24 scroll-mt-24">
-
-              {/* Banner */}
               <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                    style={{ backgroundImage: "url('./nen.png')" }}>
-                <h2 className="text-3xl font-bold mb-6 text-center px-4">HỆ THỐNG ERP - CÔNG TY TNHH NAM VIỆT PHƯƠNG</h2>
-                <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ BÁN HÀNG &amp; NHÂN SỰ</p>
+                <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
+                <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
               </div>
-
-              {/* Mô tả dự án */}
               <div className="max-w-[1400px] mx-auto px-4 py-16">
-                <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+                <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
                 <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Ô trái: quote */}
                   <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                     <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                    <p className="text-gray-700 leading-relaxed text-justify">
-                      Hệ thống được xây dựng nhằm{' '}
-                      <span className="text-blue-600 font-semibold">quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng</span>
-                      , hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp.
-                    </p>
+                    <DescCard parts={m.descParts} />
                   </div>
-                  {/* Ô phải: phạm vi */}
                   <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                    <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                    <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                     <div className="flex items-start gap-3 mb-6">
                       <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
-                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">Mô hình hóa quy trình nghiệp vụ cho phân hệ quản lý bán hàng và nhân sự thông qua việc sử dụng sơ đồ tương tác trực tiếp với hệ thống.</p>
+                      <p className="text-gray-700 leading-relaxed flex-1 text-justify" dangerouslySetInnerHTML={{ __html: m.scopeItem }} />
                     </div>
                     <div className="flex flex-wrap gap-3">
                       {["UC"].map(tag => (
@@ -987,74 +879,55 @@
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">USE CASE</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
                 </div>
-
-                {/* Phần 1: Phân hệ Bán hàng */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                  <div className="flex flex-col h-full">
-                    <img src="./yến uc sale 1.png" alt="UC Sale 1"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                  </div>
-                  <div className="flex flex-col h-full">
-                    <img src="./yến uc sale 2.png" alt="UC Sale 2"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                  </div>
-                  <div className="flex flex-col h-full">
-                    <img src="./yến uc sale 3.png" alt="UC Sale 3"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                  </div>
+                  {["./yến uc sale 1.png","./yến uc sale 2.png","./yến uc sale 3.png"].map((src,i) => (
+                    <div key={i} className="flex flex-col h-full">
+                      <img src={src} alt={`UC Sale ${i+1}`}
+                           className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                    </div>
+                  ))}
                 </div>
-                <p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Sơ đồ Use Case - Phân hệ Quản lý bán hàng</p>
-
-                {/* Phần 2: Phân hệ Nhân sự */}
-                <img src="./yến uc ns 1.png" alt="UC NS Tổng quan"
-                     className="w-[60%] mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2 mt-16" />
+                <p className="text-center italic text-[#14213D] mt-6">{m.captions.ucSales}</p>
+                <img src="./yến uc ns 1.png" alt="UC NS overview"
+                     className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl mt-16" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-[1000px] mx-auto">
                   <div className="flex flex-col h-full">
                     <img src="./yến uc ns 2.png" alt="UC NS 2"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
+                         className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   </div>
                   <div className="flex flex-col gap-6 h-full">
                     <img src="./yến uc ns 3.png" alt="UC NS 3"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
+                         className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                     <img src="./yến uc ns 4.png" alt="UC NS 4"
-                         className="w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
+                         className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   </div>
                 </div>
-                <p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Sơ đồ Use Case - Phân hệ Quản lý nhân sự</p>
+                <p className="text-center italic text-[#14213D] mt-6">{m.captions.ucHR}</p>
               </div>
-
             </div>
+            ); })()}
 
             {/* ===== The Shea - Modeling Detail ===== */}
+            {(() => { const m = dc.modeling.theShea; return (
             <div id="theshea-detail" className="w-full mt-24 scroll-mt-24">
-
-              {/* Banner */}
               <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                    style={{ backgroundImage: "url('./nen.png')" }}>
-                <h2 className="text-3xl font-bold mb-6 text-center px-4">HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA</h2>
-                <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ KHO VÀ HÀNG HÓA</p>
+                <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
+                <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
               </div>
-
-              {/* Mô tả dự án */}
               <div className="max-w-[1400px] mx-auto px-4 py-16">
-                <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+                <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
                 <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Ô trái: quote */}
                   <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                     <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                    <p className="text-gray-700 leading-relaxed text-justify">
-                      Hệ thống được xây dựng nhằm hỗ trợ theo dõi,{' '}
-                      <span className="text-blue-600 font-semibold">quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho</span>
-                      {' '}theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea.
-                    </p>
+                    <DescCard parts={m.descParts} />
                   </div>
-                  {/* Ô phải: phạm vi */}
                   <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                    <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                    <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                     <div className="flex items-start gap-3 mb-6">
                       <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
-                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">Mô hình hóa quy trình nghiệp vụ cho hệ thống quản lý vị trí hàng hóa thông qua việc sử dụng các công cụ.</p>
+                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">{m.scopeItem}</p>
                     </div>
                     <div className="flex flex-wrap gap-3">
                       {["UC", "UCS", "AD"].map(tag => (
@@ -1064,8 +937,6 @@
                   </div>
                 </div>
               </div>
-
-              {/* USE CASE */}
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">USE CASE</h3>
@@ -1073,42 +944,147 @@
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                   <div className="flex flex-col gap-6">
-                    <img src="./shea uc 1.png" alt="Shea UC 1"
-                         className="w-[50%] mx-auto block h-auto object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
-                    <img src="./shea uc 2.png" alt="Shea UC 2"
-                         className="w-[50%] mx-auto block h-auto object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
+                    <img src="./shea uc 1.png" alt="Shea UC 1" className="w-[50%] mx-auto block h-auto object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./shea uc 2.png" alt="Shea UC 2" className="w-[50%] mx-auto block h-auto object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   </div>
                   <div className="flex flex-col h-full">
-                    <img src="./shea uc 3.png" alt="Shea UC 3"
-                         className="w-[50%] mx-auto block h-auto object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2" />
+                    <img src="./shea uc 3.png" alt="Shea UC 3" className="w-[50%] mx-auto block h-auto object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   </div>
                 </div>
-                <p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Sơ đồ Use Case</p>
+                <p className="text-center italic text-[#14213D] mt-6">{m.captions.uc}</p>
               </div>
-
-              {/* USE CASE SPECIFICATION */}
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">USE CASE SPECIFICATION</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
                 </div>
-                <img src="./shea ucs.png" alt="UCS The Shea"
-                     className="w-[85%] mx-auto block object-contain border border-gray-200 shadow-sm bg-white mt-8" />
-                <p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Bảng đặc tả UCS - Tính năng thêm mới giá kệ</p>
+                <img src="./shea ucs.png" alt="UCS The Shea" className="w-[85%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl mt-8 transition-all duration-300 hover:shadow-xl" />
+                <p className="text-center italic text-[#14213D] mt-6">{m.captions.ucs}</p>
               </div>
-
-              {/* ACTIVITY DIAGRAM */}
               <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">ACTIVITY DIAGRAM</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
                 </div>
-                <img src="./shea ad.png" alt="AD The Shea"
-                     className="w-[25%] mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2 mt-8" />
-                <p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Sơ đồ AD - Tính năng Lọc vị trí hàng hóa theo màu và theo size</p>
+                <img src="./shea ad.png" alt="AD The Shea" className="w-[25%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl mt-8" />
+                <p className="text-center italic text-[#14213D] mt-6">{m.captions.ad}</p>
               </div>
-
             </div>
+            ); })()}
+
+            {/* ── Section chi tiết: AI ── */}
+            {(() => { const m = dc.modeling.ai; return (
+            <div id="ai-detail" className="w-full mt-24 scroll-mt-24">
+              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
+                   style={{ backgroundImage: "url('./nen.png')" }}>
+                <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
+                <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
+              </div>
+              <div className="max-w-[1400px] mx-auto px-4 py-16">
+                <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
+                <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
+                    <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
+                    <DescCard parts={m.descParts} />
+                  </div>
+                  <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
+                    <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
+                    <div className="flex items-start gap-3 mb-6">
+                      <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
+                      <p className="text-gray-700 leading-relaxed flex-1 text-justify">{m.scopeItem}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                      {["BPMN", "UC", "UCS", "AD", "DFD"].map(tag => (
+                        <span key={tag} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-16">
+                <div>
+                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.bpmnToBe}</h3>
+                  <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
+                </div>
+                {["./bpmn_ai 1.png","./bpmn_ai 2.png","./bpmn_ai 3.png"].map((src,i) => (
+                  <div key={i}>
+                    <a href={src} target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
+                      <img src={src} alt={`BPMN AI ${i+1}`}
+                           className="w-full object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                    </a>
+                    <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.bpmn[i]}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-12">
+                <div>
+                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">USE CASE</h3>
+                  <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
+                </div>
+                <div>
+                  <a href="./uc ai 1.png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
+                    <img src="./uc ai 1.png" alt="UC AI overview"
+                         className="w-[55%] max-h-[400px] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.ucOverview}</p>
+                </div>
+                <div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {["./uc ai 2.png","./uc ai 3.png","./uc ai 4.png"].map((src,i) => (
+                      <a key={i} href={src} target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
+                        <img src={src} alt={`UC AI level 2 - ${i+1}`}
+                             className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                      </a>
+                    ))}
+                  </div>
+                  <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.ucLevel2}</p>
+                </div>
+              </div>
+              <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
+                <div>
+                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">USE CASE SPECIFICATION</h3>
+                  <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
+                </div>
+                <a href="./ucs_ai.png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
+                  <img src="./ucs_ai.png" alt="UCS AI"
+                       className="w-full max-w-5xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                </a>
+                <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.ucs}</p>
+              </div>
+              <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
+                <div>
+                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">ACTIVITY DIAGRAM</h3>
+                  <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
+                </div>
+                <a href="./ad 1.png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
+                  <img src="./ad 1.png" alt="AD AI"
+                       className="max-w-[420px] w-full mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                </a>
+                <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.ad}</p>
+              </div>
+              <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-12">
+                <div>
+                  <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">DATA FLOW DIAGRAM</h3>
+                  <div className="w-16 h-1 bg-blue-600 mt-1 mb-8"></div>
+                </div>
+                <div className="flex flex-col">
+                  <a href="./dfd ai (2).png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
+                    <img src="./dfd ai (2).png" alt="DFD context AI"
+                         className="w-full max-w-2xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.dfdContext}</p>
+                </div>
+                <div className="flex flex-col">
+                  <a href="./dfd ai (1).png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
+                    <img src="./dfd ai (1).png" alt="DFD level 0 AI"
+                         className="w-full max-w-2xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.dfdLevel0}</p>
+                </div>
+              </div>
+            </div>
+            ); })()}
           </>)}
         </div>
       );
@@ -1117,126 +1093,70 @@
     /* ============================================================
        BƯỚC 6C — FigmaDetail
     ============================================================ */
-    const FigmaDetail = ({ skill, onBack, navItems }) => {
-      const homeLabel   = navItems ? navItems[0] : 'Trang chủ';
-      const skillsLabel = navItems ? navItems[2] : 'Kỹ năng';
-      const projects = [
-        {
-          name: 'CÔNG TY TNHH WONDERWOOD',
-          system: 'Hệ thống ERP',
-          scope: 'Phạm vi: Quản lý sản xuất',
-          description: 'Thiết kế prototype giao diện bằng Figma cho phân hệ quản lý sản xuất trong hệ thống ERP nhằm mô phỏng quy trình thao tác, trực quan hóa luồng nghiệp vụ và tối ưu trải nghiệm người dùng trong quá trình vận hành hệ thống.',
-          tags: ['Figma'],
-          logo: './go_logo.png',
-          href: '#wonderwood-figma',
-        },
-        {
-          name: 'CÔNG TY TNHH NAM VIỆT PHƯƠNG',
-          system: 'Hệ thống ERP',
-          scope: 'Phạm vi: Quản lý bán hàng & nhân sự',
-          description: 'Thiết kế prototype giao diện bằng Figma cho phân hệ quản lý bán hàng và nhân sự trong hệ thống ERP nhằm mô phỏng quy trình thao tác, trực quan hóa luồng nghiệp vụ và tối ưu trải nghiệm người dùng trong quá trình vận hành hệ thống.',
-          tags: ['Figma'],
-          logo: './yen_logo.png',
-          href: '#namvietphuong-figma',
-        },
-        {
-          name: 'THƯƠNG HIỆU TÀU HỦ SINGAPORE YUMMY',
-          system: 'Hệ thống ERP',
-          scope: 'Phạm vi: Quản lý tài chính',
-          description: 'Thiết kế prototype giao diện cho phân hệ quản lý tài chính bằng Figma nhằm trực quan hóa quy trình thao tác và tối ưu trải nghiệm người dùng trong hệ thống ERP.',
-          tags: ['Figma'],
-          logo: './yummy_logo.jpg',
-          href: '#yummy-figma',
-        },
-        {
-          name: 'THƯƠNG HIỆU THỜI TRANG THE SHEA',
-          system: 'Hệ thống quản lý vị trí hàng hóa',
-          scope: 'Phạm vi: Quản lý kho & hàng hóa',
-          description: 'Thiết kế prototype bằng Figma cho hệ thống quản lý vị trí hàng hóa của The Shea nhằm mô phỏng giao diện và luồng thao tác quản lý kho, hàng hóa.',
-          tags: ['Figma'],
-          logo: './shea_logo.jpg',
-          href: '#theshea-figma',
-        },
-      ];
+    const FigmaDetail = ({ skill, onBack, navItems, lang }) => {
+      const ui       = window.DETAIL_CONTENT[lang].ui;
+      const dc       = window.DETAIL_CONTENT[lang];
+      const homeLabel   = navItems ? navItems[0] : (lang === 'vi' ? 'Trang chủ' : 'Home');
+      const skillsLabel = navItems ? navItems[2] : (lang === 'vi' ? 'Kỹ năng' : 'Skills');
+      const projects = dc.figma.projects;
       return (
         <div className="min-h-screen bg-[#F6F8FD]">
           <div className="max-w-[1400px] mx-auto w-full px-6 py-10">
-
-            {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm mb-8 flex-wrap">
               <button onClick={onBack}
                 className="flex items-center gap-2 text-[#2563EB] hover:text-blue-800 font-medium transition-colors">
                 <i className="bi bi-arrow-left"></i>
-                <span>Quay lại</span>
+                <span>{ui.backBtn}</span>
               </button>
               <span className="text-gray-300 mx-1">/</span>
               <span onClick={onBack} className="text-gray-500 hover:text-[#2563EB] cursor-pointer">{homeLabel}</span>
               <span className="text-gray-300">›</span>
               <span onClick={onBack} className="text-gray-500 hover:text-[#2563EB] cursor-pointer">{skillsLabel}</span>
               <span className="text-gray-300">›</span>
-              <span className="text-gray-900 font-medium">THIẾT KẾ UX/UI</span>
+              <span className="text-gray-900 font-medium">{dc.figma.breadcrumbTitle}</span>
             </div>
-
-            {/* Tiêu đề */}
             <div className="mb-10 text-center">
               <div className="flex items-center justify-center gap-4 mb-3">
                 <div className="h-px bg-[#2563EB]/30 w-20"></div>
-                <span className="text-[#2563EB] font-semibold tracking-widest text-sm uppercase">KỸ NĂNG</span>
+                <span className="text-[#2563EB] font-semibold tracking-widest text-sm uppercase">{ui.skillLabel}</span>
                 <div className="h-px bg-[#2563EB]/30 w-20"></div>
               </div>
-              <h1 className="text-4xl font-bold text-[#14213D] uppercase tracking-tight">THIẾT KẾ UX/UI</h1>
+              <h1 className="text-4xl font-bold text-[#14213D] uppercase tracking-tight">{dc.figma.breadcrumbTitle}</h1>
             </div>
-
-            {/* Toolbar */}
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-base font-bold text-[#14213D] uppercase tracking-wide">
-                Dự án đã thực hiện <span className="text-[#2563EB]">({projects.length})</span>
+                {ui.projectsDone} <span className="text-[#2563EB]">({projects.length})</span>
               </h2>
-              <div className="relative">
-                <select className="appearance-none border border-gray-200 rounded-lg px-4 py-2 pr-8 text-sm text-gray-600 bg-white cursor-pointer focus:outline-none focus:border-[#2563EB]">
-                  <option>Mới nhất</option>
-                  <option>Cũ nhất</option>
-                </select>
-                <i className="bi bi-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
-              </div>
+              <SortDropdown lang={lang} />
             </div>
-
-            {/* Grid dự án */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {projects.map((project, i) => (
-                <ProjectCard key={i} project={project} />
+                <ProjectCard key={i} project={project} lang={lang} />
               ))}
             </div>
           </div>
 
-          {/* ── Chi tiết: WONDERWOOD Figma ── */}
+          {/* ── Wonderwood Figma ── */}
+          {(() => { const f = dc.figma.wonderwood; return (
           <div id="wonderwood-figma" className="w-full mt-16 scroll-mt-24">
-
-            {/* Banner */}
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                  style={{ backgroundImage: "url('./nen.png')" }}>
-              <h2 className="text-3xl font-bold mb-6 text-center px-4">HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD</h2>
-              <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ SẢN XUẤT</p>
+              <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
+              <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
             </div>
-
-            {/* Mô tả dự án */}
             <div className="max-w-[1400px] mx-auto px-4 py-16">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
               <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                   <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                  <p className="text-gray-700 leading-relaxed text-justify">
-                    Hệ thống được xây dựng nhằm{' '}
-                    <span className="text-blue-600 font-semibold">quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng</span>
-                    , hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp.
-                  </p>
+                  <DescCard parts={f.descParts} />
                 </div>
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                  <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                   <div className="flex items-start gap-3 mb-6">
                     <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
-                    <p className="text-gray-700 leading-relaxed flex-1 text-justify">Thiết kế UX/UI cho phân hệ quản lý sản xuất thuộc hệ thống ERP thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.</p>
+                    <p className="text-gray-700 leading-relaxed flex-1 text-justify" dangerouslySetInnerHTML={{ __html: f.scopeItem }} />
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">Figma</span>
@@ -1244,8 +1164,6 @@
                 </div>
               </div>
             </div>
-
-            {/* Figma Prototype */}
             <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
               <div>
                 <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">FIGMA PROTOTYPE</h3>
@@ -1253,54 +1171,60 @@
               </div>
               <div className="grid grid-cols-2 gap-6 mt-8">
                 <div className="flex flex-col items-center w-full">
-                  <img src="./go figma 1.png" alt="Figma prototype 1"
-                       className="w-full border border-gray-200 rounded-lg shadow-sm p-2" />
-                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">Hình ảnh: Giao diện trang danh sách - Tính năng quản lý kế hoạch sản xuất</p>
+                  <a href="./figma go dn (1).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
+                    <img src="./figma go dn (1).png" alt={f.captions[0]}
+                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[0]}</p>
                 </div>
                 <div className="flex flex-col items-center w-full">
-                  <img src="./go figma 2.png" alt="Figma prototype 2"
-                       className="w-full border border-gray-200 rounded-lg shadow-sm p-2" />
-                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">Hình ảnh: Giao diện trang thêm mới - Tính năng quản lý kế hoạch sản xuất</p>
+                  <a href="./figma go dn (2).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
+                    <img src="./figma go dn (2).png" alt={f.captions[1]}
+                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[1]}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-6 mt-8">
+                <div className="flex flex-col items-center w-full">
+                  <img src="./go figma 1.png" alt={f.captions[2]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[2]}</p>
+                </div>
+                <div className="flex flex-col items-center w-full">
+                  <img src="./go figma 2.png" alt={f.captions[3]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[3]}</p>
                 </div>
               </div>
               <a href="https://www.figma.com/proto/2HehjZbfGb7sVbxCL5WLJI/-WonderWood--H%E1%BB%87-Th%E1%BB%91ng-ERP_2025-12-27?node-id=2162-80395&p=f&t=5OYpheNrcjsWPzs5-1&scaling=contain&content-scaling=fixed&page-id=828%3A25683&starting-point-node-id=2162%3A80395&show-proto-sidebar=1"
-                 target="_blank"
-                 rel="noopener noreferrer"
+                 target="_blank" rel="noopener noreferrer"
                  className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
-                <i className="bi bi-figma mr-2"></i> Chi tiết prototype <i className="bi bi-arrow-right ml-2"></i>
+                <i className="bi bi-figma mr-2"></i> {ui.viewPrototype} <i className="bi bi-arrow-right ml-2"></i>
               </a>
             </div>
-
           </div>
+          ); })()}
 
-          {/* ── Chi tiết: NAM VIỆT PHƯƠNG Figma ── */}
+          {/* ── NamVietPhuong Figma ── */}
+          {(() => { const f = dc.figma.namVietPhuong; return (
           <div id="namvietphuong-figma" className="w-full mt-16 scroll-mt-24">
-
-            {/* Banner */}
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                  style={{ backgroundImage: "url('./nen.png')" }}>
-              <h2 className="text-3xl font-bold mb-6 text-center px-4">HỆ THỐNG ERP - CÔNG TY TNHH NAM VIỆT PHƯƠNG</h2>
-              <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ BÁN HÀNG &amp; NHÂN SỰ</p>
+              <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
+              <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
             </div>
-
-            {/* Mô tả dự án */}
             <div className="max-w-[1400px] mx-auto px-4 py-16">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
               <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                   <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                  <p className="text-gray-700 leading-relaxed text-justify">
-                    Hệ thống được xây dựng nhằm{' '}
-                    <span className="text-blue-600 font-semibold">quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng</span>
-                    , hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp.
-                  </p>
+                  <DescCard parts={f.descParts} />
                 </div>
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                  <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                   <div className="flex items-start gap-3 mb-6">
                     <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
-                    <p className="text-gray-700 leading-relaxed flex-1 text-justify">Thiết kế UX/UI cho phân hệ quản lý bán hàng và nhân sự thuộc hệ thống ERP thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.</p>
+                    <p className="text-gray-700 leading-relaxed flex-1 text-justify" dangerouslySetInnerHTML={{ __html: f.scopeItem }} />
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">Figma</span>
@@ -1308,8 +1232,6 @@
                 </div>
               </div>
             </div>
-
-            {/* Figma Prototype */}
             <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
               <div>
                 <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">FIGMA PROTOTYPE</h3>
@@ -1317,54 +1239,60 @@
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col items-center w-full">
-                  <img src="./yen figma.png" alt="Nam Việt Phương Figma 1"
-                       className="w-full border border-gray-200 rounded-lg shadow-sm p-2" />
-                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">Hình ảnh: Giao diện trang danh sách - Tính năng quản lý chấm công</p>
+                  <img src="./yen figma.png" alt={f.captions[0]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[0]}</p>
                 </div>
                 <div className="flex flex-col items-center w-full">
-                  <img src="./yen figma 2.png" alt="Nam Việt Phương Figma 2"
-                       className="w-full border border-gray-200 rounded-lg shadow-sm p-2" />
-                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">Hình ảnh: Giao diện trang chỉnh sửa thông tin - Tính năng quản lý chấm công</p>
+                  <img src="./yen figma 2.png" alt={f.captions[1]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[1]}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex flex-col items-center w-full">
+                  <a href="./fig yen (2).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
+                    <img src="./fig yen (2).png" alt={f.captions[2]}
+                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[2]}</p>
+                </div>
+                <div className="flex flex-col items-center w-full">
+                  <a href="./fig yen (1).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
+                    <img src="./fig yen (1).png" alt={f.captions[3]}
+                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[3]}</p>
                 </div>
               </div>
               <a href="https://www.figma.com/proto/R44g7BLQorQI2ONqhzb08X/-Nam-An---Figma---Nh%C3%A2n-s%E1%BB%B1---B%C3%A1n-h%C3%A0ng-?node-id=750-63391&p=f&t=RzmRllZCzO1GJfLq-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=750%3A63391&show-proto-sidebar=1"
-                 target="_blank"
-                 rel="noopener noreferrer"
+                 target="_blank" rel="noopener noreferrer"
                  className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
-                <i className="bi bi-figma mr-2"></i> Chi tiết prototype <i className="bi bi-arrow-right ml-2"></i>
+                <i className="bi bi-figma mr-2"></i> {ui.viewPrototype} <i className="bi bi-arrow-right ml-2"></i>
               </a>
             </div>
-
           </div>
+          ); })()}
 
-          {/* ── Chi tiết: YUMMY Figma ── */}
+          {/* ── Yummy Figma ── */}
+          {(() => { const f = dc.figma.yummy; return (
           <div id="yummy-figma" className="w-full mt-16 scroll-mt-24">
-
-            {/* Banner */}
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                  style={{ backgroundImage: "url('./nen.png')" }}>
-              <h2 className="text-3xl font-bold mb-6 text-center px-4">HỆ THỐNG ERP - THƯƠNG HIỆU TÀU HỦ SINGAPORE YUMMY</h2>
-              <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ TÀI CHÍNH</p>
+              <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
+              <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
             </div>
-
-            {/* Mô tả dự án */}
             <div className="max-w-[1400px] mx-auto px-4 py-16">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
               <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                   <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                  <p className="text-gray-700 leading-relaxed text-justify">
-                    Hệ thống được xây dựng nhằm{' '}
-                    <span className="text-blue-600 font-semibold">quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng</span>
-                    , hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp.
-                  </p>
+                  <DescCard parts={f.descParts} />
                 </div>
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                  <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                   <div className="flex items-start gap-3 mb-6">
                     <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
-                    <p className="text-gray-700 leading-relaxed flex-1 text-justify">Thiết kế UX/UI cho phân hệ quản lý tài chính thuộc hệ thống ERP thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.</p>
+                    <p className="text-gray-700 leading-relaxed flex-1 text-justify" dangerouslySetInnerHTML={{ __html: f.scopeItem }} />
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">Figma</span>
@@ -1372,8 +1300,6 @@
                 </div>
               </div>
             </div>
-
-            {/* Figma Prototype */}
             <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
               <div>
                 <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">FIGMA PROTOTYPE</h3>
@@ -1381,54 +1307,60 @@
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col items-center w-full">
-                  <img src="./yummy figma 1.png" alt="Yummy Figma 1"
-                       className="w-full border border-gray-200 rounded-lg shadow-sm p-2" />
-                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">Hình ảnh: Giao diện trang danh sách - Tính năng quản lý công nợ nhà cung cấp</p>
+                  <a href="./yummy fig (1).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
+                    <img src="./yummy fig (1).png" alt={f.captions[0]}
+                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[0]}</p>
                 </div>
                 <div className="flex flex-col items-center w-full">
-                  <img src="./yummy figma 2.png" alt="Yummy Figma 2"
-                       className="w-full border border-gray-200 rounded-lg shadow-sm p-2" />
-                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">Hình ảnh: Giao diện trang thêm mới - Tính năng quản lý phiếu thu</p>
+                  <a href="./yummy fig (2).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
+                    <img src="./yummy fig (2).png" alt={f.captions[1]}
+                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  </a>
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[1]}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex flex-col items-center w-full">
+                  <img src="./yummy figma 1.png" alt={f.captions[2]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[2]}</p>
+                </div>
+                <div className="flex flex-col items-center w-full">
+                  <img src="./yummy figma 2.png" alt={f.captions[3]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[3]}</p>
                 </div>
               </div>
               <a href="https://www.figma.com/proto/ODufypUl7HYHOFZy93iOJW/YUMMY?node-id=2-158&p=f&t=WSuQG9GCg7y8x4qg-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&show-proto-sidebar=1&starting-point-node-id=2%3A158"
-                 target="_blank"
-                 rel="noopener noreferrer"
+                 target="_blank" rel="noopener noreferrer"
                  className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
-                <i className="bi bi-figma mr-2"></i> Chi tiết prototype <i className="bi bi-arrow-right ml-2"></i>
+                <i className="bi bi-figma mr-2"></i> {ui.viewPrototype} <i className="bi bi-arrow-right ml-2"></i>
               </a>
             </div>
-
           </div>
+          ); })()}
 
-          {/* ── Chi tiết: THE SHEA Figma ── */}
+          {/* ── The Shea Figma ── */}
+          {(() => { const f = dc.figma.theShea; return (
           <div id="theshea-figma" className="w-full mt-16 scroll-mt-24">
-
-            {/* Banner */}
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
                  style={{ backgroundImage: "url('./nen.png')" }}>
-              <h2 className="text-3xl font-bold mb-6 text-center px-4">HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA</h2>
-              <p className="text-lg tracking-wider uppercase">PHẠM VI: QUẢN LÝ KHO VÀ HÀNG HÓA</p>
+              <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
+              <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
             </div>
-
-            {/* Mô tả dự án */}
             <div className="max-w-[1400px] mx-auto px-4 py-16">
-              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">MÔ TẢ DỰ ÁN</h2>
+              <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
               <div className="w-16 h-1 bg-blue-600 mt-3 mb-10"></div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                   <img src="./note.png" alt="quote" className="w-12 h-12 mb-4 object-contain" />
-                  <p className="text-gray-700 leading-relaxed text-justify">
-                    Hệ thống được xây dựng nhằm hỗ trợ theo dõi,{' '}
-                    <span className="text-blue-600 font-semibold">quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho</span>
-                    {' '}theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea.
-                  </p>
+                  <DescCard parts={f.descParts} />
                 </div>
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                  <h3 className="text-xl font-bold mb-8 text-gray-900">Phạm vi công việc</h3>
+                  <h3 className="text-xl font-bold mb-8 text-gray-900">{ui.workScope}</h3>
                   <div className="flex items-start gap-3 mb-6">
                     <i className="bi bi-check-circle-fill text-blue-600 mt-1 shrink-0"></i>
-                    <p className="text-gray-700 leading-relaxed flex-1 text-justify">Thiết kế UX/UI cho hệ thống quản lý vị trí hàng hóa của The Shea thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.</p>
+                    <p className="text-gray-700 leading-relaxed flex-1 text-justify" dangerouslySetInnerHTML={{ __html: f.scopeItem }} />
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">Figma</span>
@@ -1436,41 +1368,28 @@
                 </div>
               </div>
             </div>
-
-            {/* Figma Prototype */}
             <div className="max-w-[1400px] mx-auto px-4 py-12 flex flex-col gap-8">
               <div>
                 <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">FIGMA PROTOTYPE</h3>
                 <div className="w-16 h-1 bg-blue-600 mt-1 mb-8"></div>
               </div>
               <div className="grid grid-cols-4 gap-4 mt-8">
-                <div className="flex flex-col items-center w-full">
-                  <img src="./shea figma 1.png" alt="The Shea Figma 1"
-                       className="w-full aspect-[9/16] object-cover border border-gray-200 rounded-lg shadow-sm p-2" />
-                </div>
-                <div className="flex flex-col items-center w-full">
-                  <img src="./shea figma 2.png" alt="The Shea Figma 2"
-                       className="w-full aspect-[9/16] object-cover border border-gray-200 rounded-lg shadow-sm p-2" />
-                </div>
-                <div className="flex flex-col items-center w-full">
-                  <img src="./shea figma 3.png" alt="The Shea Figma 3"
-                       className="w-full aspect-[9/16] object-cover border border-gray-200 rounded-lg shadow-sm p-2" />
-                </div>
-                <div className="flex flex-col items-center w-full">
-                  <img src="./shea figma 4.png" alt="The Shea Figma 4"
-                       className="w-full aspect-[9/16] object-cover border border-gray-200 rounded-lg shadow-sm p-2" />
-                </div>
+                {["./shea figma 1.png","./shea figma 2.png","./shea figma 3.png","./shea figma 4.png"].map((src,i) => (
+                  <div key={i} className="flex flex-col items-center w-full">
+                    <img src={src} alt={`The Shea Figma ${i+1}`}
+                         className="w-full aspect-[9/16] object-cover border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                  </div>
+                ))}
               </div>
-              <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">Hình ảnh: Giao diện hệ thống quản lý vị trí hàng hóa</p>
+              <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.caption}</p>
               <a href="https://www.figma.com/proto/LajTE5MnoIi5j5aii8qaSg/-NgocAnh---ViTriSanPham--figma_2025-02-14?node-id=1-2&p=f&t=zlTWGFxbOd852qWG-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2&show-proto-sidebar=1"
-                 target="_blank"
-                 rel="noopener noreferrer"
+                 target="_blank" rel="noopener noreferrer"
                  className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
-                <i className="bi bi-figma mr-2"></i> Chi tiết prototype <i className="bi bi-arrow-right ml-2"></i>
+                <i className="bi bi-figma mr-2"></i> {ui.viewPrototype} <i className="bi bi-arrow-right ml-2"></i>
               </a>
             </div>
-
           </div>
+          ); })()}
 
         </div>
       );
@@ -1515,12 +1434,54 @@
     /* ============================================================
        BƯỚC 8 — App hoàn chỉnh (tất cả 4 tabs)
     ============================================================ */
-    const App = () => {
-      const [activeTab, setActiveTab]       = useState('home');
-      const [lang, setLang]                 = useState('vi');
-      const [selectedSkill, setSelectedSkill] = useState(null);
+    const BackToTop = () => {
+      const [visible, setVisible] = React.useState(false);
+      React.useEffect(() => {
+        const onScroll = () => setVisible(window.scrollY > 300);
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+      }, []);
+      if (!visible) return null;
+      return (
+        <button
+          onClick={() => window.scrollTo(0, 0)}
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-[#2563eb] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
+          aria-label="Trở lại đầu trang">
+          <i className="bi bi-arrow-up text-lg"></i>
+        </button>
+      );
+    };
 
-      const currentData = window.PORTFOLIO_DATA[lang];
+    /* Fallback helper: nếu giá trị EN bị thiếu hoặc rỗng, tự động lấy giá trị VI tương ứng */
+    const deepFallback = (en, vi) => {
+      if (en == null || en === '') return vi;
+      if (typeof vi !== 'object' || vi == null) return en;
+      if (Array.isArray(vi)) {
+        if (!Array.isArray(en) || en.length !== vi.length) return en;
+        return en.map((item, i) => deepFallback(item, vi[i]));
+      }
+      const result = Object.assign({}, vi);
+      Object.keys(en).forEach(key => {
+        result[key] = deepFallback(en[key], vi[key]);
+      });
+      return result;
+    };
+
+    const App = () => {
+      const [activeTab, setActiveTab]             = useState('home');
+      const [lang, setLang]                       = useState('vi');
+      const [selectedSkillId, setSelectedSkillId] = useState(null);
+
+      const viBase      = window.PORTFOLIO_DATA.vi;
+      const currentData = lang === 'vi'
+        ? viBase
+        : deepFallback(window.PORTFOLIO_DATA.en, viBase);
+
+      /* Re-derive skill từ currentData mỗi khi lang thay đổi — luôn đúng ngôn ngữ */
+      const selectedSkill = selectedSkillId != null
+        ? (currentData.skills.items.find(s => s.id === selectedSkillId) ?? null)
+        : null;
+
       const toggleLanguage = () => setLang(l => l === 'vi' ? 'en' : 'vi');
 
       const scrollToSection = (sectionId) => {
@@ -1530,21 +1491,22 @@
       };
 
       const handleDetail = (skill) => {
-        setSelectedSkill(skill);
+        setSelectedSkillId(skill.id);
         setActiveTab('skills');
         window.scrollTo({ top: 0, behavior: 'auto' });
       };
 
       const handleBack = () => {
-        setSelectedSkill(null);
+        setSelectedSkillId(null);
         setTimeout(() => scrollToSection('skills'), 50);
       };
 
       return (
         <div>
+          <BackToTop />
           <Navigation
             activeTab={activeTab}
-            onTabChange={(key) => { setSelectedSkill(null); scrollToSection(key); }}
+            onTabChange={(key) => { setSelectedSkillId(null); scrollToSection(key); }}
             navItems={currentData.nav}
             lang={lang}
             toggleLanguage={toggleLanguage}
@@ -1552,13 +1514,13 @@
           <main>
             {selectedSkill ? (
               selectedSkill.iconType === 'design'
-                ? <FigmaDetail skill={selectedSkill} onBack={handleBack} navItems={currentData.nav} />
-                : <SkillDetail skill={selectedSkill} onBack={handleBack} navItems={currentData.nav} />
+                ? <FigmaDetail skill={selectedSkill} onBack={handleBack} navItems={currentData.nav} lang={lang} />
+                : <SkillDetail skill={selectedSkill} onBack={handleBack} navItems={currentData.nav} lang={lang} />
             ) : (
               <>
                 <HomeSection data={currentData.hero} onContactClick={() => scrollToSection('contact')} />
                 <AboutSection data={currentData.about} />
-                <SkillsSection data={currentData.skills} onDetail={handleDetail} />
+                <SkillsSection data={currentData.skills} onDetail={handleDetail} lang={lang} />
                 <ContactSection data={currentData.contact} />
               </>
             )}
