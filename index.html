@@ -555,7 +555,7 @@
                 const id = project.href ? project.href.replace('#', '') : null;
                 if (!id) return;
                 const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                if (el) el.scrollIntoView({ behavior: 'instant' });
               }}
               className="text-[#2563EB] text-sm font-medium hover:underline flex items-center gap-1">
               {ui.viewDetail} <i className="bi bi-arrow-right"></i>
