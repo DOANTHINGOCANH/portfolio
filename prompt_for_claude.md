@@ -1239,3 +1239,491 @@ Hãy thêm phần chi tiết cho dự án "Nam Việt Phương" vào component `
      + Chú thích nằm dưới cùng: `<p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Sơ đồ Use Case - Phân hệ Quản lý nhân sự</p>`
 
 Vui lòng đảm bảo sao chép chính xác tên các file hình ảnh và chỉ bổ sung khối mã này, không sửa các phần khác. Báo lại cho tôi khi hoàn tất.
+
+# the shea model
+Hãy bổ sung phần chi tiết cho dự án thứ 3 là "THE SHEA" vào component `<SkillDetail>` (file `index.html`). Đặt toàn bộ khối mã này ngay bên dưới thẻ đóng của dự án Nam Việt Phương (`#namvietphuong-detail`), đảm bảo vẫn nằm trong thẻ Fragment `<>` bao bọc tổng thể. Vui lòng xây dựng theo cấu trúc HTML và Tailwind CSS sau:
+
+1. Khối bao bọc và Banner:
+   - Thẻ bọc ngoài: `<div id="theshea-detail" className="w-full mt-24 scroll-mt-24">`
+   - Banner: Sử dụng nền `./nen.png`. Tiêu đề chính: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA". Tiêu đề phụ: "PHẠM VI: QUẢN LÝ KHO VÀ HÀNG HÓA".
+
+2. Khối MÔ TẢ DỰ ÁN:
+   - Bố cục 2 cột (max-w-[1400px] mx-auto, gap-8).
+   - Ô Trái (Trích dẫn): "Hệ thống được xây dựng nhằm hỗ trợ theo dõi, <span className='text-blue-600 font-semibold'>quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho</span> theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea."
+   - Ô Phải (Phạm vi công việc): Icon check màu xanh. Nội dung: "Mô hình hóa quy trình nghiệp vụ cho hệ thống quản lý vị trí hàng hóa thông qua việc sử dụng các công cụ." Ngay bên dưới là 3 thẻ tags: ["UC", "UCS", "AD"].
+
+3. Khối USE CASE:
+   - Tiêu đề "USE CASE" và đường line xanh trang trí bên dưới.
+   - Lưới 2 cột (grid-cols-1 md:grid-cols-2 gap-8 mt-8):
+     + Cột Trái: `<div className="flex flex-col gap-6">`. Chứa 2 thẻ `<img>` lần lượt là `./shea uc 1.png` và `./shea uc 2.png`. Class cho cả 2 ảnh: `w-full h-auto object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2`.
+     + Cột Phải: `<div className="flex flex-col h-full">`. Chứa 1 thẻ `<img>` là `./shea uc 3.png`. Class: `w-full h-full object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2`.
+   - Chú thích: `<p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Sơ đồ Use Case</p>`
+
+4. Khối USE CASE SPECIFICATION:
+   - Tiêu đề "USE CASE SPECIFICATION" và đường line xanh trang trí.
+   - Hình ảnh UCS: `<img src="./shea ucs.png" alt="UCS The Shea" className="w-[85%] mx-auto block object-contain border border-gray-200 shadow-sm bg-white mt-8" />`
+   - Chú thích: `<p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Bảng đặc tả UCS - Tính năng thêm mới giá kệ</p>`
+
+5. Khối ACTIVITY DIAGRAM:
+   - Tiêu đề "ACTIVITY DIAGRAM" và đường line xanh trang trí.
+   - Hình ảnh AD: `<img src="./shea ad.png" alt="AD The Shea" className="w-[50%] mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2 mt-8" />`
+   - Chú thích: `<p className="text-center italic text-[#14213D] mt-6">Hình ảnh: Sơ đồ AD - Tính năng Lọc vị trí hàng hóa theo màu và theo size</p>`
+
+Vui lòng sao chép chính xác tên file ảnh và cấu trúc Tailwind CSS. Báo lại cho tôi khi đã lưu file thành công.
+
+# the shea chỉnh kích thước nhỏ lại
+Tôi cần điều chỉnh kích thước cho các sơ đồ Use Case (UC) và Activity Diagram (AD) của dự án "THE SHEA" tại component `<SkillDetail>` (file `index.html`) nhỏ lại còn một nửa. Hãy thực hiện các thay đổi CSS chính xác như sau:
+
+1. Khối USE CASE:
+   - Tìm 3 thẻ `<img>` chứa các hình ảnh: `./shea uc 1.png`, `./shea uc 2.png`, và `./shea uc 3.png`.
+   - Cập nhật class chiều rộng của cả 3 thẻ này từ `w-full` thành `w-[50%]`.
+   - Bổ sung thêm class căn giữa. Cấu trúc class tổng thể cho 3 thẻ này sẽ là: 
+     `w-[50%] mx-auto block h-auto object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2`
+   (Lưu ý: riêng ảnh `shea uc 3` nếu đang dùng `h-full` thì đổi thành `h-auto` để không bị méo khi thu nhỏ).
+
+2. Khối ACTIVITY DIAGRAM:
+   - Tìm thẻ `<img>` chứa hình ảnh `./shea ad.png`.
+   - Cập nhật class chiều rộng của thẻ này từ `w-[50%]` thành `w-[25%]`.
+   - Cấu trúc class tổng thể sẽ là:
+     `w-[25%] mx-auto block object-contain border border-gray-300 shadow-sm bg-white rounded-lg p-2 mt-8`
+
+Vui lòng chỉ cập nhật các class CSS này, tuyệt đối giữ nguyên cấu trúc HTML, lưới grid và các dòng chú thích phía dưới. Hãy báo lại cho tôi khi bạn đã lưu file thành công.
+
+# figma 1
+Hãy giúp tôi tạo một component mới có tên là `<FigmaDetail>` trong file `index.html` để hiển thị trang chi tiết cho kỹ năng Thiết kế UX/UI. Component này cần tuân thủ thiết kế và cấu trúc Tailwind CSS sau:
+
+1. Khối Header & Breadcrumb (max-w-[1200px] mx-auto px-6 pt-8):
+   - Breadcrumb: `<div className="flex items-center gap-2 text-sm text-blue-600 mb-8 cursor-pointer"><i className="bi bi-arrow-left"></i><span>Trang chủ</span> <i className="bi bi-chevron-right text-gray-400 text-xs"></i> <span className="text-gray-500">Kỹ năng</span> <i className="bi bi-chevron-right text-gray-400 text-xs"></i> <span className="text-gray-500">Thiết kế UX/UI</span></div>`
+   - Tiêu đề: "<h2 className='text-center text-blue-600 font-semibold tracking-widest uppercase mb-2'>— Kỹ năng —</h2> <h1 className='text-center text-4xl font-bold text-[#14213D] uppercase'>Thiết kế UX/UI</h1>"
+
+2. Khối Danh sách Dự án (max-w-[1200px] mx-auto px-6 mt-16):
+   - Thanh tiêu đề phụ: `<div className="flex justify-between items-center mb-6"><h3 className="text-lg font-bold text-[#14213D] uppercase">Dự án đã thực hiện (4)</h3> <button className="border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-600">Mới nhất <i className="bi bi-chevron-down ml-2"></i></button></div>`
+   - Lưới 4 thẻ dự án (grid grid-cols-1 md:grid-cols-2 gap-8). Mỗi thẻ có cấu trúc: `border border-gray-200 rounded-2xl p-8 bg-white shadow-sm`.
+   - Vui lòng tạo cấu trúc mẫu cho 1 thẻ (VD: Wonderwood) với logo, tên dự án, icon folder + "Phạm vi: Quản lý sản xuất", đoạn mô tả ngắn, tag "Figma" (nền xanh nhạt, chữ xanh đậm), và link "Xem chi tiết ->" căn phải. 
+
+3. Khối Chi tiết Wonder Wood:
+   - Banner: `<div className="w-full bg-[#14213D] mt-20 py-16"><h2 className="text-center text-3xl font-bold text-white uppercase">Hệ thống ERP - Công ty TNHH Wonderwood</h2><p className="text-center text-gray-300 uppercase tracking-widest mt-4">Phạm vi: Quản lý sản xuất</p></div>`
+   - Khối Mô tả (max-w-[1200px] mx-auto px-6 mt-16 grid grid-cols-1 md:grid-cols-2 gap-12):
+     + Cột trái: `<div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100"><i className="bi bi-quote text-4xl text-blue-200"></i><p className="mt-4 text-gray-600 leading-relaxed">Hệ thống được xây dựng nhằm <span className="text-blue-600 font-semibold">quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng</span>...</p></div>`
+     + Cột phải: Khối "Phạm vi công việc" với icon check màu xanh, tương tự các component trước.
+
+4. Khối Figma Prototype (max-w-[1200px] mx-auto px-6 mt-16 pb-24):
+   - Tiêu đề: `<h3 className="text-2xl font-bold uppercase text-[#14213D] mb-8 border-b-4 border-blue-600 inline-block pb-2">Figma Prototype</h3>`
+   - Hình 1: `<img src="./go figma 1.png" className="w-[85%] mx-auto block border border-gray-200 rounded-xl shadow-sm" /><p className="text-center italic text-gray-600 mt-6 mb-16">Hình ảnh: Giao diện trang danh sách - Tính năng quản lý kế hoạch sản xuất</p>`
+   - Hình 2: `<img src="./go figma 2.png" className="w-[85%] mx-auto block border border-gray-200 rounded-xl shadow-sm" /><p className="text-center italic text-gray-600 mt-6 mb-12">Hình ảnh: Giao diện trang thêm mới - Tính năng quản lý kế hoạch sản xuất</p>`
+   - Nút bấm xem chi tiết: `<a href="https://www.figma.com/proto/2HehjZbfGb7sVbxCL5WLJI/-WonderWood--H%E1%BB%87-Th%E1%BB%91ng-ERP_2025-12-27?node-id=2162-80395&p=f&t=5OYpheNrcjsWPzs5-1&scaling=contain&content-scaling=fixed&page-id=828%3A25683&starting-point-node-id=2162%3A80395&show-proto-sidebar=1" target="_blank" className="bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex items-center w-fit"><i className="bi bi-figma mr-2"></i> Chi tiết prototype <i className="bi bi-arrow-right ml-2"></i></a>`
+
+Sau khi tạo xong component `<FigmaDetail>`, hãy hướng dẫn tôi cách gắn nó vào luồng chuyển trang (state activeTab) trong component `<App>` chính để khi nhấn vào kỹ năng "Thiết kế UX/UI" ở trang chủ, màn hình này sẽ hiện ra.
+
+
+# sửa figma 1
+Hãy cập nhật lại khối "Danh sách Dự án" trong component `<FigmaDetail>` (file `index.html`) để hiển thị đầy đủ 4 dự án theo cấu trúc lưới 2 cột. Vui lòng thay thế phần lưới dự án hiện tại bằng đoạn mã HTML và Tailwind CSS chính xác dưới đây:
+
+Tìm thẻ `<div>` ngay bên dưới thanh tiêu đề "DỰ ÁN ĐÃ THỰC HIỆN (4)" và thay thế toàn bộ thẻ đó bằng khối grid sau:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  
+  {/* Dự án 1: Wonderwood */}
+  <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col h-full">
+    <div className="flex items-start gap-4 mb-4">
+      <div className="w-16 h-16 rounded-xl border border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+        <img src="./logo_wonderwood.png" alt="Wonderwood" className="w-full h-full object-cover" />
+      </div>
+      <div>
+        <h4 className="font-bold text-[#14213D] text-lg leading-tight uppercase">Công ty TNHH Wonderwood</h4>
+        <p className="text-gray-500 text-sm mt-1">Hệ thống ERP</p>
+        <p className="text-sm text-gray-600 mt-1"><i className="bi bi-folder2 text-gray-400 mr-1"></i> Phạm vi: <span className="text-blue-600">Quản lý sản xuất</span></p>
+      </div>
+    </div>
+    <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+      Thiết kế prototype giao diện bằng Figma cho phân hệ quản lý sản xuất trong hệ thống ERP nhằm mô phỏng quy trình thao tác, trực quan hóa luồng nghiệp vụ và tối ưu trải nghiệm người dùng trong quá trình vận hành hệ thống.
+    </p>
+    <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-50">
+      <span className="bg-blue-50 text-blue-600 text-xs px-3 py-1.5 rounded-md font-medium">Figma</span>
+      <a href="#wonderwood-detail" className="text-blue-600 text-sm font-medium hover:underline flex items-center">Xem chi tiết <i className="bi bi-arrow-right ml-1"></i></a>
+    </div>
+  </div>
+
+  {/* Dự án 2: Nam Việt Phương */}
+  <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col h-full">
+    <div className="flex items-start gap-4 mb-4">
+      <div className="w-16 h-16 rounded-xl border border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+        <img src="./logo_namvietphuong.png" alt="Nam Việt Phương" className="w-full h-full object-cover" />
+      </div>
+      <div>
+        <h4 className="font-bold text-[#14213D] text-lg leading-tight uppercase">Công ty TNHH Nam Việt Phương</h4>
+        <p className="text-gray-500 text-sm mt-1">Hệ thống ERP</p>
+        <p className="text-sm text-gray-600 mt-1"><i className="bi bi-folder2 text-gray-400 mr-1"></i> Phạm vi: <span className="text-blue-600">Quản lý bán hàng & nhân sự</span></p>
+      </div>
+    </div>
+    <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+      Thiết kế prototype giao diện bằng Figma cho phân hệ quản lý bán hàng và nhân sự trong hệ thống ERP nhằm mô phỏng quy trình thao tác, trực quan hóa luồng nghiệp vụ và tối ưu trải nghiệm người dùng trong quá trình vận hành hệ thống.
+    </p>
+    <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-50">
+      <span className="bg-blue-50 text-blue-600 text-xs px-3 py-1.5 rounded-md font-medium">Figma</span>
+      <a href="#namvietphuong-detail" className="text-blue-600 text-sm font-medium hover:underline flex items-center">Xem chi tiết <i className="bi bi-arrow-right ml-1"></i></a>
+    </div>
+  </div>
+
+  {/* Dự án 3: Yummy */}
+  <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col h-full">
+    <div className="flex items-start gap-4 mb-4">
+      <div className="w-16 h-16 rounded-xl border border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+        <img src="./logo_yummy.png" alt="Yummy" className="w-full h-full object-cover" />
+      </div>
+      <div>
+        <h4 className="font-bold text-[#14213D] text-lg leading-tight uppercase">Thương hiệu Tàu Hủ Singapore Yummy</h4>
+        <p className="text-gray-500 text-sm mt-1">Hệ thống ERP</p>
+        <p className="text-sm text-gray-600 mt-1"><i className="bi bi-folder2 text-gray-400 mr-1"></i> Phạm vi: <span className="text-blue-600">Quản lý tài chính</span></p>
+      </div>
+    </div>
+    <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+      Thiết kế prototype giao diện cho phân hệ quản lý tài chính bằng Figma nhằm trực quan hóa quy trình thao tác và tối ưu trải nghiệm người dùng trong hệ thống ERP.
+    </p>
+    <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-50">
+      <span className="bg-blue-50 text-blue-600 text-xs px-3 py-1.5 rounded-md font-medium">Figma</span>
+      <a href="#" className="text-blue-600 text-sm font-medium hover:underline flex items-center">Xem chi tiết <i className="bi bi-arrow-right ml-1"></i></a>
+    </div>
+  </div>
+
+  {/* Dự án 4: The Shea */}
+  <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col h-full">
+    <div className="flex items-start gap-4 mb-4">
+      <div className="w-16 h-16 rounded-xl border border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+        <img src="./logo_theshea.png" alt="The Shea" className="w-full h-full object-cover" />
+      </div>
+      <div>
+        <h4 className="font-bold text-[#14213D] text-lg leading-tight uppercase">Thương hiệu Thời trang The Shea</h4>
+        <p className="text-gray-500 text-sm mt-1">Hệ thống quản lý vị trí hàng hóa</p>
+        <p className="text-sm text-gray-600 mt-1"><i className="bi bi-folder2 text-gray-400 mr-1"></i> Phạm vi: <span className="text-blue-600">Quản lý kho & hàng hóa</span></p>
+      </div>
+    </div>
+    <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+      Thiết kế prototype bằng Figma cho hệ thống quản lý vị trí hàng hóa của The Shea nhằm mô phỏng giao diện và luồng thao tác quản lý kho, hàng hóa.
+    </p>
+    <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-50">
+      <span className="bg-blue-50 text-blue-600 text-xs px-3 py-1.5 rounded-md font-medium">Figma</span>
+      <a href="#theshea-detail" className="text-blue-600 text-sm font-medium hover:underline flex items-center">Xem chi tiết <i className="bi bi-arrow-right ml-1"></i></a>
+    </div>
+  </div>
+
+</div>
+
+Vui lòng chỉ thay thế khối mã hiển thị 4 dự án này, tuyệt đối giữ nguyên các phần Header, Mô tả chi tiết Wonderwood và phần Figma Prototype bên dưới. Báo lại khi lưu file thành công.
+# sửa thiết kế
+Hãy bỏ qua các cấu trúc của component `<FigmaDetail>` trước đó vì đang bị lỗi hiển thị. Bây giờ, tôi muốn trang Thiết kế UX/UI (component `<FigmaDetail>`) phải **kế thừa toàn bộ cấu trúc mã HTML và Tailwind CSS** từ component `<SkillDetail>` (trang Phân tích nghiệp vụ).
+
+Hãy thực hiện theo các bước sau:
+
+1. Sao chép bộ khung: 
+   - Copy y hệt cấu trúc thẻ bọc, layout, nút quay lại (Breadcrumb), cách thiết lập tiêu đề, và cấu trúc lưới (Grid) từ `<SkillDetail>` sang `<FigmaDetail>`.
+
+2. Cập nhật Nội dung chung:
+   - Thay đổi tiêu đề chính thành: "THIẾT KẾ UX/UI".
+   - Ở phần Lưới Dự Án: Vẫn sử dụng nguyên cấu trúc thẻ (card) của trang Phân tích nghiệp vụ, nhưng hãy render ra 4 thẻ dự án (Wonder Wood, Nam Việt Phương, Yummy, The Shea). Thay nội dung mô tả của các thẻ thành công việc "Thiết kế prototype giao diện bằng Figma...". Đổi các tag hiển thị thành "Figma".
+
+3. Cập nhật chi tiết dự án Wonder Wood:
+   - Giữ nguyên cấu trúc Banner tối màu và khối Mô tả 2 cột của Wonder Wood giống hệt trang Phân tích nghiệp vụ.
+   - Thay thế các phần "USE CASE", "SEQUENCE DIAGRAM" bằng một phần duy nhất có tiêu đề: "FIGMA PROTOTYPE" (sử dụng cùng class tiêu đề và đường line trang trí như cũ).
+   - Bên trong phần "FIGMA PROTOTYPE", sử dụng cấu trúc hiển thị ảnh y hệt như cách hiển thị sơ đồ bên trang BA. Đưa vào 2 ảnh: `./go figma 1.png` và `./go figma 2.png`. Đảm bảo ảnh có class viền, bo góc và bóng đổ y hệt các sơ đồ BA.
+   - Ở dưới cùng phần này, thêm một nút bấm dẫn ra ngoài: `<a href="https://www.figma.com/proto/2HehjZbfGb7sVbxCL5WLJI/-WonderWood--H%E1%BB%87-Th%E1%BB%91ng-ERP_2025-12-27?node-id=2162-80395&p=f&t=5OYpheNrcjsWPzs5-1&scaling=contain&content-scaling=fixed&page-id=828%3A25683&starting-point-node-id=2162%3A80395&show-proto-sidebar=1" target="_blank" className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex items-center w-fit mx-auto"><i className="bi bi-figma mr-2"></i> Chi tiết prototype <i className="bi bi-arrow-right ml-2"></i></a>`
+
+Vui lòng dựa vào mã nguồn thực tế của `<SkillDetail>` hiện tại trong file `index.html` để nhân bản chính xác layout. Chỉ thay đổi phần nội dung và hình ảnh như tôi đã yêu cầu. Báo lại khi lưu file thành công.
+
+# giảm kích thước ảnh figma
+Tôi cần điều chỉnh kích thước hiển thị của 2 ảnh Figma prototype trong trang Thiết kế UX/UI (component `<FigmaDetail>`) tại file `index.html`. Hãy thực hiện thay đổi sau:
+
+1. Tìm 2 thẻ `<img>` chứa hình ảnh `./go figma 1.png` và `./go figma 2.png`.
+2. Cập nhật class chiều rộng của chúng từ `w-[85%]` thành `w-[60%]`.
+3. Đảm bảo cấu trúc class đầy đủ của 2 thẻ này là: 
+   `w-[60%] mx-auto block border border-gray-200 rounded-xl shadow-sm`
+
+Vui lòng chỉ cập nhật các class CSS liên quan đến chiều rộng, giữ nguyên mọi phần mã khác. Hãy báo lại cho tôi khi bạn đã lưu file thành công.
+
+# phần còn lại
+Hãy cập nhật các phần "FIGMA PROTOTYPE" cho 3 dự án Nam Việt Phương, Yummy và The Shea trong file index.html. Mỗi section cần được thêm ngay sau phần mô tả của từng dự án tương ứng:
+
+1. Dự án Nam Việt Phương:
+   - Thêm tiêu đề "FIGMA PROTOTYPE" (giống style các phần trước).
+   - Thêm 2 ảnh: `./yen figma.png` và `./yen figma 2.png` (dùng lưới grid-cols-2).
+   - Nút "Chi tiết prototype" trỏ tới link: https://www.figma.com/proto/R44g7BLQorQI2ONqhzb08X/-Nam-An---Figma---Nh%C3%A2n-s%E1%BB%B1---B%C3%A1n-h%C3%A0ng-?node-id=750-63391&p=f&t=RzmRllZCzO1GJfLq-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=750%3A63391&show-proto-sidebar=1
+
+2. Dự án Yummy:
+   - Thêm tiêu đề "FIGMA PROTOTYPE".
+   - Thêm 2 ảnh: `./yummy figma 1.png` và `./yummy figma 2.png`.
+   - Nút "Chi tiết prototype" trỏ tới link: https://www.figma.com/proto/ODufypUl7HYHOFZy93iOJW/YUMMY?node-id=2-158&p=f&t=WSuQG9GCg7y8x4qg-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&show-proto-sidebar=1&starting-point-node-id=2%3A158
+
+3. Dự án The Shea (Hiển thị 4 hình theo dạng lưới):
+   - Thêm tiêu đề "FIGMA PROTOTYPE".
+   - Thêm 4 ảnh: `./shea figma 1.png`, `./shea figma 2.png`, `./shea figma 3.png`, `./shea figma 4.png` (sử dụng lưới grid-cols-1 md:grid-cols-2 gap-6).
+   - Nút "Chi tiết prototype" trỏ tới link: https://www.figma.com/proto/LajTE5MnoIi5j5aii8qaSg/-NgocAnh---ViTriSanPham--figma_2025-02-14?node-id=1-2&p=f&t=zlTWGFxbOd852qWG-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2&show-proto-sidebar=1
+
+Lưu ý: Tất cả các hình ảnh phải được thêm class `w-full border border-gray-200 rounded-lg shadow-sm p-2` để đảm bảo đồng bộ thiết kế. Hãy giữ nguyên bố cục tổng thể của trang và chỉ thêm phần prototype. Báo lại khi hoàn tất.
+
+# sửa header
+Hãy cập nhật component <Navigation> trong file index.html với các yêu cầu sau:
+
+1. Thay đổi container chính từ max-w-[1200px] thành max-w-[1300px].
+2. Cập nhật các menu tab (Trang chủ, Giới thiệu, Kỹ năng, Liên hệ):
+   - Thay đổi font-weight từ medium sang font-semibold.
+   - Tăng kích thước chữ lên một chút (ví dụ text-[17px]).
+   - Tăng khoảng cách (gap) giữa các menu lên gap-10.
+3. Cập nhật cụm ngôn ngữ (VI | EN):
+   - Xóa bỏ dấu gạch đứng (divider) nằm bên trái icon hình cầu (cụm <div className="h-6 w-[1px] bg-gray-300 mx-6"></div>).
+   - Thiết lập font-size text-[17px] và font-semibold để đồng bộ với menu.
+   - Đảm bảo "VI" và "EN" có độ đậm và kích thước bằng với menu.
+   - Giãn cách các thành phần trong cụm ngôn ngữ ra một chút (dùng gap-x-4).
+
+Hãy đảm bảo thanh Header vẫn giữ nguyên vị trí sticky và căn chỉnh hài hòa trên container 1300px mới.
+
+# sửa home
+Hãy cập nhật component <HomeSection> trong file index.html để tinh chỉnh phần text và nút bấm (buttons) như sau:
+
+1. Điều chỉnh kích thước chữ (giữ nguyên trên 1 dòng):
+   - Tên "Đoàn Thị Ngọc Ánh": Cập nhật class thành `text-[72px] font-bold text-[#14213D] leading-[1.1] mb-4 whitespace-nowrap`.
+   - Chức danh "Business Analyst": Cập nhật class thành `text-[42px] font-bold text-[#285ECC] mb-6 whitespace-nowrap`.
+
+2. Thêm hiệu ứng hover cho 2 nút CTA:
+   - Thêm các class sau vào cả 2 thẻ <button> (hoặc <a>): `transition-all duration-300 hover:scale-105 hover:shadow-lg`.
+   - Đối với nút "Tải xuống CV": Đảm bảo giữ màu nền xanh và chữ trắng.
+   - Đối với nút "Liên hệ": Đảm bảo giữ màu nền trắng, viền xám.
+
+Hãy kiểm tra kỹ để đảm bảo trên màn hình desktop, tên và chức danh vẫn nằm gọn trên một dòng và không bị vỡ bố cục. Báo lại khi bạn đã lưu file thành công.
+
+# trang giới thiệu khoảng cách tiêu đề
+Hãy giúp tôi tăng khoảng cách giữa tất cả các tiêu đề (tiêu đề section và tiêu đề phụ) với nội dung bên dưới chúng trong file index.html.
+
+Cụ thể:
+1. Tìm tất cả các thẻ tiêu đề (h2, h3).
+2. Tăng giá trị margin-bottom (mb-...) hiện tại thêm một mức (ví dụ: nếu đang là mb-4 thì tăng thành mb-6 hoặc mb-8).
+3. Đảm bảo sự đồng bộ trên tất cả các section như Wonder Wood, Nam Việt Phương, The Shea.
+
+Hãy thực hiện thay đổi này trên toàn bộ file để tạo không gian thoáng đãng hơn cho trang web. Báo lại khi bạn đã lưu file thành công.
+
+# cập nhật trang kỹ nẵng
+Hãy cập nhật component <SkillsSection> và <SkillCard> trong file index.html với các yêu cầu sau:
+
+1. Tiêu đề "KỸ NĂNG": 
+   - Tìm thẻ tiêu đề "KỸ NĂNG" và cập nhật class thành: `text-[40px] font-bold text-white uppercase text-center mb-16`.
+
+2. Thêm đường kẻ dọc trong SkillCard:
+   - Trong cấu trúc của mỗi `SkillCard`, hãy thêm một đường kẻ dọc (`border-r border-gray-200`) nằm giữa phần bọc Icon (cột trái) và phần bọc nội dung văn bản (cột phải).
+   - Hãy chắc chắn phần đường kẻ này có chiều cao phù hợp để ngăn cách rõ ràng 2 khu vực.
+
+3. Sửa từ vựng:
+   - Tìm và thay thế tất cả các chữ "User Story" thành "User Stories" trong toàn bộ file index.html (đặc biệt trong các tag hoặc đoạn văn mô tả).
+
+Hãy đảm bảo rằng các đường kẻ này chỉ xuất hiện bên trong các ô thẻ kỹ năng và không làm vỡ layout của lưới. Báo lại khi bạn đã lưu file thành công.
+
+# sửa line
+Hãy cập nhật component <SkillsSection> và <SkillCard> trong file index.html như sau để đạt giao diện chuyên nghiệp:
+
+1. Tiêu đề "KỸ NĂNG":
+   - Thay thế thẻ tiêu đề hiện tại bằng cấu trúc này để tạo 2 đường line 2 bên:
+     <div className="flex items-center justify-center gap-8 mb-16">
+       <div className="flex-1 border-t border-gray-600 max-w-[200px]"></div>
+       <h2 className="text-[40px] font-bold text-white uppercase">KỸ NĂNG</h2>
+       <div className="flex-1 border-t border-gray-600 max-w-[200px]"></div>
+     </div>
+
+2. Đường kẻ dọc trong mỗi ô SkillCard:
+   - Trong cấu trúc của SkillCard, phần bọc Icon (cột trái) và phần bọc nội dung (cột phải) cần được căn chỉnh lại.
+   - Để đường kẻ chỉ dài bằng nội dung, hãy đặt thẻ chứa nội dung vào một `flex` container và đặt `border-l` (hoặc border-r) lên thẻ chứa đó với class `self-center`.
+   - Cụ thể: Bọc phần Icon vào một thẻ div, sau đó đến thẻ div chứa nội dung. Hãy đảm bảo phần đường kẻ có class `border-r border-gray-200 h-[80%] my-auto` (để đường kẻ tự căn giữa theo chiều dọc và không kéo dài hết chiều cao của ô nếu ô quá cao).
+
+3. Đảm bảo từ ngữ:
+   - Kiểm tra lại và đảm bảo tất cả các chỗ "User Story" đã được đổi thành "User Stories".
+
+Báo lại cho tôi khi bạn đã thực hiện xong các thay đổi này.
+
+# tải xuống cv
+Hãy cập nhật tính năng tải xuống cho các nút "Tải xuống CV" trong file `index.html`. Thay đổi này cần được áp dụng ở cả component `<HomeSection>` (Trang chủ) và `<AboutSection>` (Giới thiệu).
+
+Thực hiện các bước sau:
+1. Tìm phần tử giao diện đang chứa chữ "Tải xuống CV".
+2. Thay đổi thẻ bọc ngoài thành thẻ `<a>` (nếu hiện tại đang là `<button>`).
+3. Bổ sung thêm thuộc tính `href="./CV_DoanThiNgocAnh.pdf"`.
+4. Bổ sung thêm thuộc tính `download="CV_DoanThiNgocAnh.pdf"`.
+5. Tuyệt đối giữ nguyên toàn bộ các class Tailwind CSS (như bg-[#285ECC], text-white, px-8, py-3.5, rounded-xl, hover:..., v.v.) và các icon bên trong để không làm vỡ giao diện đã thiết kế.
+
+Hãy báo lại cho tôi khi bạn đã thực hiện cập nhật và lưu file thành công.
+
+# tải cv qua link
+Hãy cập nhật liên kết cho các nút "Tải xuống CV" trong component `<HomeSection>` và `<AboutSection>` tại file `index.html`. 
+
+Vui lòng thực hiện chính xác các thao tác sau:
+1. Tìm phần tử chứa chữ "Tải xuống CV" ở cả 2 component trên.
+2. Đảm bảo phần tử bọc ngoài là thẻ `<a>` (nếu đang là `<button>`, hãy đổi thành `<a>`).
+3. Cập nhật hoặc thêm thuộc tính `href` thành: `https://drive.google.com/file/d/11iTsr9m-antbwETv82f-nS2XJD6CRZZX/view?usp=sharing`
+4. Bổ sung thêm các thuộc tính: `target="_blank"` và `rel="noopener noreferrer"` (để mở link ở tab mới an toàn).
+5. Nếu trong thẻ đang có thuộc tính `download` (ví dụ: `download="CV_DoanThiNgocAnh.pdf"`), hãy xóa thuộc tính đó đi.
+6. Tuyệt đối giữ nguyên toàn bộ các class CSS và cấu trúc icon bên trong nút bấm.
+
+Hãy báo lại cho tôi khi bạn đã lưu file thành công.
+
+# liên kết email và linkedin
+Hãy cập nhật các đường dẫn liên kết (href) trong phần "Thông tin liên hệ" (thuộc component `<ContactSection>` hoặc file `data.js` tùy thuộc vào nơi đang lưu trữ dữ liệu liên kết) để đảm bảo các nút bấm hoạt động chính xác:
+
+1. Đối với mục Email:
+   - Cập nhật liên kết thành: `mailto:doana838@gmail.com`
+   - Điều này sẽ giúp tự động mở ứng dụng gửi thư khi người dùng click vào.
+
+2. Đối với mục LinkedIn:
+   - Cập nhật liên kết (href) chính xác thành: `https://www.linkedin.com/in/ánh-đoàn-76251b2b6/`
+   - Đảm bảo thẻ `<a>` của LinkedIn có thêm các thuộc tính: `target="_blank"` và `rel="noopener noreferrer"` để mở sang tab mới an toàn.
+
+Vui lòng rà soát lại cấu trúc mã để không làm thay đổi giao diện, định dạng thẻ (card) hay các icon hiện có. Báo lại cho tôi khi bạn đã thực hiện và lưu file thành công.
+
+
+# 
+Đẩy toàn bộ thư mục này lên github giùm tôi
+…or create a new repository on the command line
+echo "# portfolio" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/DOANTHINGOCANH/portfolio.git
+git push -u origin main
+…or push an existing repository from the command line
+git remote add origin https://github.com/DOANTHINGOCANH/portfolio.git
+git branch -M main
+git push -u origin main
+
+
+# đổi ảnh thẻ
+Hãy tìm tệp giao diện Trang chủ (Hero section) trong mã nguồn dự án này và cập nhật lại thẻ ảnh đại diện (avatar) của tôi. 
+
+Yêu cầu chi tiết:
+1. Thay đổi đường dẫn ảnh cũ (src) thành đường dẫn ảnh mới: "./anhthe.png" (tệp anhthe.png nằm trong thư mục gốc của dự án).
+2. Giữ nguyên toàn bộ cấu trúc CSS/Tailwind CSS hiện tại (khung bo góc border-radius, kích thước và phần nền trang trí phía sau hình ảnh) để giao diện không bị lệch.
+3. Đổi thuộc tính alt của thẻ ảnh thành "Đoàn Thị Ngọc Ánh - Business Analyst".
+
+Sau khi sửa xong mã nguồn, hãy giải thích giúp tôi bạn đã chỉnh sửa ở tệp tin nào nhé!
+
+# sửa ảnh
+Hãy tìm và cập nhật lại style (CSS/Tailwind) cho khung chứa ảnh đại diện (avatar) của tôi tại trang chủ với các yêu cầu sau:
+
+1. Điều chỉnh độ rộng (width) của khung chứa ảnh và thẻ ảnh rộng ra một chút, đặt cố định là 400px.
+2. Thêm viền (border) màu trắng bao quanh ảnh với độ dày vừa phải (khoảng 3px - 4px) để làm nổi bật bức ảnh trên nền màu phía sau.
+3. Thêm hiệu ứng đổ bóng (box-shadow) dạng đổ bóng nhẹ, mềm mại (soft shadow) để tạo chiều sâu cho khung ảnh.
+4. Đảm bảo thuộc tính bo góc (border-radius) hiện tại và các hiệu ứng chấm nền trang trí xung quanh không bị mất hoặc bị lệch vị trí.
+
+Sau khi sửa mã xong, hãy chạy ứng dụng hoặc hiển thị đoạn mã đã thay đổi để tôi kiểm tra nhé!
+
+
+# Sửa trang giới thiệu
+Hãy tìm tệp giao diện thuộc trang "Giới thiệu" (About section) trong mã nguồn và thực hiện cập nhật lại nội dung văn bản theo các yêu cầu sau:
+
+1. Tìm đoạn văn giới thiệu cũ và thay thế toàn bộ bằng đoạn văn bản mới sau:
+"Tôi là người chủ động, có tư duy phân tích và tinh thần học hỏi cao, yêu thích việc tìm hiểu nhu cầu nghiệp vụ, làm rõ yêu cầu hệ thống để không ngừng mở rộng kiến thức và thích nghi với nhiều lĩnh vực khác nhau. Tôi có khả năng làm việc hiệu quả với các bên liên quan, chủ động trao đổi và làm rõ yêu cầu để đảm bảo sự thống nhất trong quá trình triển khai, hướng đến những giải pháp phù hợp và mang lại giá trị cho tổ chức. 
+Trong 1–2 năm tới, tôi định hướng phát triển chuyên sâu, từng bước nâng cao năng lực chuyên môn để trở thành Middle Business Analyst."
+
+2. Tìm phần hiển thị danh sách các lĩnh vực và cập nhật lại thành 5 lĩnh vực chính xác như sau (giữ nguyên định dạng chữ in hoa nếu có):
+- SẢN XUẤT B2B
+- SẢN XUẤT B2C
+- THỰC PHẨM & ĐỒ UỐNG
+- QUẢN LÝ KHO VẬN
+- AI AGENT & TỰ ĐỘNG HÓA
+
+Hãy đảm bảo giữ nguyên cấu trúc thẻ HTML/React và các class CSS/Tailwind để không làm thay đổi bố cục giao diện. Sau khi sửa xong, hãy thông báo cho tôi biết bạn đã chỉnh sửa ở file nào nhé!
+
+# Làm cho ô giới thiệu rổng ra
+Hãy tìm đến tệp mã nguồn quản lý phần "Giới thiệu bản thân" (About section) và điều chỉnh lại độ rộng của khối nội dung văn bản (bao gồm các đoạn văn giới thiệu và nút "Tải xuống CV") theo yêu cầu sau:
+
+1. Tăng độ rộng tối đa (max-width) của khung chứa phần văn bản này lên mức 500px (hoặc sử dụng class tương đương như max-w-[500px] / max-w-lg nếu dự án dùng Tailwind CSS).
+2. Giữ nguyên căn lề trái (text-align: left) và đảm bảo khoảng cách dòng (line-height) của văn bản vẫn hiển thị thông thoáng, dễ đọc.
+3. Đảm bảo nút "Tải xuống CV" bên dưới tự động co giãn hoặc dịch chuyển theo đúng bố cục mới của khối văn bản.
+4. Không làm thay đổi kích thước hay hiệu ứng gạch chân của tiêu đề chính "GIỚI THIỆU BẢN THÂN".
+
+Sau khi hoàn thành, hãy chỉ ra đoạn mã bạn đã chỉnh sửa để tôi kiểm tra nhé!
+
+# Sửa độ cao
+Hãy tìm tệp mã nguồn quản lý bố cục chung của hai phần "GIỚI THIỆU BẢN THÂN" và "LĨNH VỰC" (đang nằm song song hai cột) và điều chỉnh lại mã CSS/Tailwind để độ cao nội dung của cột bên trái bằng với cột bên phải:
+
+1. Thiết lập cho khung cha chứa cả 2 cột sử dụng Flexbox hoặc Grid với thuộc tính kéo giãn chiều cao bằng nhau (ví dụ: grid items-stretch).
+2. Chuyển khối chứa nội dung "GIỚI THIỆU BẢN THÂN" bên trái thành một flex container theo chiều dọc (flex flex-col h-full).
+3. Đặt thuộc tính tự động đẩy (margin-top: auto hoặc class mt-auto trong Tailwind) cho nút "Tải xuống CV" để nút này luôn được đẩy xuống dưới cùng, nằm ngang hàng một cách hoàn hảo với cạnh dưới của mục thứ 05 "AI AGENT & TỰ ĐỘNG HÓA" bên cột Lĩnh vực.
+4. Đảm bảo khoảng cách dòng và kích thước các phần tử văn bản khác được giữ nguyên.
+
+Sau khi cập nhật mã nguồn xong, hãy thông báo cho tôi biết bạn đã sửa đổi như thế nào nhé!
+
+# chỉnh độ rộng của các ô chứa lĩnh vực
+Hãy tìm đến đoạn mã quản lý danh sách các ô "LĨNH VỰC" (cột bên phải, các mục từ 01 đến 05) và thực hiện điều chỉnh sau:
+
+1. Tăng độ rộng (width) của các ô chứa lĩnh vực này lên mức 520px (hoặc sử dụng class tương đương như w-[520px] hoặc max-w-[520px] nếu dự án dùng Tailwind CSS).
+2. Đảm bảo cả 5 ô đều có độ rộng bằng nhau và tự động căn hàng đều đặn.
+3. Giữ nguyên cấu trúc bên trong ô: Icon check xanh ở bên trái, văn bản ở giữa và số thứ tự (01-05) ở rìa phải phải luôn được căn đều sang hai bên (sử dụng thuộc tính tương đương justify-between).
+4. Các hiệu ứng bo góc, màu nền, viền và đổ bóng nhẹ của ô phải được giữ nguyên.
+
+Sau khi chỉnh sửa xong mã nguồn, hãy thông báo cho tôi biết bạn đã sửa đổi ở tệp tin nào nhé!
+
+# sửa tiếp
+Hãy tìm chính xác thẻ thẻ div của các ô "LĨNH VỰC" dựa trên danh sách class sau:
+"flex items-center justify-between border border-gray-100 shadow-sm rounded-lg"
+
+Hãy thực hiện cập nhật thuộc tính độ rộng (width) cho các ô này:
+- Nếu dự án đang để độ rộng tự động, hãy thêm class cố định độ rộng là w-[520px] để đảm bảo các ô luôn rộng 520px trên màn hình máy tính.
+- Đảm bảo thuộc tính "justify-between" vẫn hoạt động tốt để icon check nằm sát rìa trái và số thứ tự (01, 02...) nằm sát rìa phải của ô sau khi tăng kích thước.
+
+Sau khi sửa xong, hãy cho tôi xem đoạn mã (code diff) đã thay đổi nhé!
+
+
+# thêm kỹ năng vibe code
+Hãy tìm đến tệp mã nguồn quản lý danh sách các thẻ kỹ năng trên trang chính (nơi chứa thẻ THIẾT KẾ HỆ THỐNG và THIẾT KẾ UX/UI) và thêm một thẻ kỹ năng mới mang tên "VIBE CODING" nằm ngay phía dưới (liền sau) thẻ "THIẾT KẾ UX/UI" theo đúng nguyên mẫu của hình portfolio_ngocanh/vibe.png:
+
+1. Cấu trúc và Giao diện của thẻ mới:
+- Container: Thẻ có nền trắng, bo góc rounded-xl, đổ bóng shadow nhẹ giống hệt các thẻ khác.
+- Điểm nhấn mép trái: Có một đường viền màu xanh lá/mint (Sử dụng border-l-[6px] border-[#22c55e] hoặc dùng div tuyệt đối bg-[#24bfa1] tùy theo cách viết của các thẻ trước) chạy dọc ở cạnh trái giống hệt hình mẫu vibe.png.
+- Khối chứa Icon bên trái: Có nền xanh dương nhạt (bg-blue-50) bo góc mềm mại, bên trong chứa icon Bootstrap theo đúng yêu cầu: <i class="bi bi-code text-2xl text-blue-600"></i>.
+
+2. Nội dung hiển thị bên phải:
+- Tiêu đề (In hoa, chữ đậm): VIBE CODING
+- Đoạn văn mô tả chính xác theo hình: "Ứng dụng AI để chuyển đổi các tài liệu phân tích và thiết kế hệ thống thành prototype, demo chức năng có thể tương tác. Hỗ trợ trực quan hóa giải pháp, xác nhận yêu cầu với stakeholder và giúp người dùng hình dung rõ hơn về sản phẩm trước khi phát triển."
+- Nút bấm bên dưới: Có màu xanh dương, chữ trắng "Xem chi tiết →" và liên kết với logic mở Modal xem chi tiết của Vibe Coding.
+
+3. Lưu ý: Hãy giữ nguyên các class layout chung (Flex/Grid, spacing, margin-bottom) của danh sách để thẻ mới này thẳng hàng và đều tăm tắp với thẻ THIẾT KẾ UX/UI ở trên.
+
+Sau khi thêm xong, hãy hiển thị đoạn mã thay đổi (code diff) để tôi xác nhận nhé!
+
+# thêm dự án vào trang xem chi tiết
+Hãy cập nhật trang xem chi tiết (Modal/Component chi tiết) của kỹ năng "VIBE CODING" để bổ sung phần danh sách dự án giống hệt với các trang kỹ năng khác (như Thiết kế hệ thống hay UX/UI) dựa trên mẫu portfolio_ngocanh/vibe go.png:
+
+1. Cấu trúc phần Header của danh sách dự án:
+- Thêm tiêu đề khu vực: "DỰ ÁN ĐÃ THỰC HIỆN (1)" (chữ đậm, phần "(1)" có màu xanh giống mẫu).
+- Thêm Dropdown bộ lọc ở góc phải: "Mới nhất".
+
+2. Tạo thẻ dự án Wonderwood:
+Hãy tái sử dụng (reuse) chính xác cấu trúc HTML và các class Tailwind CSS của thẻ dự án Wonderwood bên trang "Thiết kế UX/UI" hoặc "Thiết kế hệ thống" mang sang đây, sau đó cập nhật dữ liệu như sau:
+- Logo: Sử dụng lại ảnh logo của Wonderwood.
+- Tiêu đề chính: "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD"
+- Nhãn lĩnh vực (Sub-title): "Sản xuất B2B"
+- Phạm vi: Thêm icon thư mục kèm chữ "Phạm vi: Quản lý sản xuất" (chữ "Quản lý sản xuất" có màu xanh blue).
+- Đường kẻ ngang (Divider) phân cách phần header của thẻ và phần mô tả.
+- Nội dung mô tả: "Xây dựng demo một số chức năng của phân hệ quản lý sản xuất bằng AI dựa trên các tài liệu phân tích và thiết kế đã hoàn thiện. Giúp trực quan hóa quy trình nghiệp vụ, hỗ trợ stakeholder đánh giá giải pháp và hình dung rõ hơn về hệ thống trước khi phát triển chính thức."
+- Nút hành động: "Xem chi tiết →" nằm ở góc dưới cùng bên phải của thẻ (màu xanh blue, có hiệu ứng hover).
+
+Chú ý: Đảm bảo layout Responsive, lưới grid và các class bo góc (rounded), đổ bóng (shadow) giống 100% với giao diện danh sách dự án của các kỹ năng trước đó.
+
+Sau khi code xong, hãy hiển thị đoạn mã thay đổi (code diff) để tôi xác nhận nhé!
+# bỏ video
+Hãy cập nhật phần "Xem chi tiết" (Detailed Modal/Popup) của dự án "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD" trong kỹ năng "VIBE CODING" để bổ sung nội dung giới thiệu chi tiết và phần video demo theo đúng thiết kế mẫu portfolio_ngocanh/gt vibe.png:
+
+1. Bổ sung nội dung giới thiệu (Cấu trúc 2 cột hoặc Flexbox đồng bộ với các dự án khác):
+- Khối bên trái - Thông tin tổng quan:
+  * VAI TRÒ: Business Analyst / Prompt Engineer
+  * PHẠM VI: Phân hệ Quản lý sản xuất B2B (Lập lịch sản xuất, theo dõi tiến độ, quản lý nguyên vật liệu Định mức BOM).
+  * CÔNG NGHỆ (Tags): Node.js, React, Tailwind CSS, Cursor AI, v0, Claude Code, Local Environment.
+- Khối bên phải - Mô tả chi tiết:
+  * Tiêu đề nhỏ: Bối cảnh dự án
+  * Nội dung bối cảnh: Quy trình sản xuất đồ gỗ nội thất tại Wonderwood có nhiều công đoạn phức tạp (xẻ gỗ, sấy, chà nhám, sơn, lắp ráp). Việc trao đổi yêu cầu phân hệ sản xuất giữa BA, Stakeholder và đội Dev bằng tài liệu tĩnh thường gặp khó khăn và dễ hiểu sai lệch.
+  * Tiêu đề nhỏ: Giải pháp Vibe Coding
+  * Nội dung giải pháp: Sử dụng Agentic AI để đọc trực tiếp các tài liệu BPMN, Use Case Specification (UCS) và sinh mã nguồn, dựng nhanh một bản demo chức năng chạy trên môi trường local. Giúp Stakeholder tương tác trực tiếp, duyệt luồng nghiệp vụ trước khi bàn giao tài liệu chuẩn cho đội Dev phát triển chính thức.
+
+2. Bổ sung phần Video Demo ở phía dưới cùng:
+- Vị trí: Đặt ngay phía dưới phần nội dung mô tả chi tiết ở trên.
+- Tiêu đề khối video (In hoa, chữ đậm): DEMO VIBE CODING
+- Khung hiển thị Video: Sử dụng một thẻ chứa ảnh làm mockup giả lập trình phát video (hoặc thẻ <video> nếu hệ thống hỗ trợ), nguồn ảnh hiển thị là "portfolio_ngocanh/vibe demo.png". Hãy bo góc (rounded-lg), thêm border mảnh và hiệu ứng đổ bóng nhẹ để giao diện đẹp mắt.
+- Dòng chú thích nằm ngay dưới ảnh/video (Định dạng chữ nghiêng, màu xám mờ đồng bộ): "VIDEO DEMO CHỨC NĂNG TRÊN WEB (VIBE CODING)"
+
+Hãy đảm bảo toàn bộ font chữ, khoảng cách (padding/margin), màu sắc của các tiêu đề và thẻ tags tuân thủ 100% theo Design System hiện tại của Portfolio. Sau khi hoàn thành, hãy hiển thị đoạn mã thay đổi (code diff) để tôi xác nhận nhé!

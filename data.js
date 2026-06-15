@@ -123,7 +123,7 @@ var _TEXT = {
       tagline:     "XIN CHÀO, TÔI LÀ",
       name:        "Đoàn Thị Ngọc Ánh",
       title:       "Business Analyst",
-      description: "Tôi là một Business Analyst yêu thích phân tích nghiệp vụ, làm rõ yêu cầu hệ thống và kết nối các bên liên quan để tạo ra giá trị cho tổ chức. Với tinh thần chủ động và học hỏi liên tục, tôi đang từng bước phát triển năng lực để trở thành Middle Business Analyst trong 1–2 năm tới.",
+      description: "Business Analyst với tư duy phân tích và tinh thần học hỏi cao. Có kinh nghiệm tìm hiểu nghiệp vụ, thu thập và làm rõ yêu cầu hệ thống, đồng thời phối hợp hiệu quả với các bên liên quan để xây dựng giải pháp phù hợp. Định hướng phát triển trở thành Middle Business Analyst trong 1–2 năm tới.",
       cvLink:      "./ngocanh_tv.pdf",
       btnCV:       "Tải xuống CV",
       btnContact:  "Liên hệ"
@@ -167,10 +167,10 @@ var _TEXT = {
               tags:        ["UC"]
             },
             {
-              name:        "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",
-              system:      "Lĩnh vực: Quản lý kho vận",
+              name:        "HỆ THỐNG ERP - CÔNG TY TNHH THE SHEA",
+              system:      "Lĩnh vực: Quản lý kho",
               scope:       "Phạm vi: Quản lý kho & hàng hóa",
-              description: "Phân tích và mô tả các chức năng cho hệ thống quản lý vị trí hàng hóa thông qua các công cụ nhằm làm rõ luồng nghiệp vụ và tương tác giữa người dùng với hệ thống.",
+              description: "Tham gia xây dựng hệ thống ERP, phụ trách phân tích và mô tả các chức năng quản lý vị trí lưu kho và trưng bày hàng hóa cho doanh nghiệp thông qua các công cụ.",
               tags:        ["UC", "UCS", "AD"]
             },
             {
@@ -251,7 +251,7 @@ var _TEXT = {
         {
           title:       "KIỂM THỬ",
           tags:        ["Functional Testing", "UAT"],
-          description: "Có kiến thức và kinh nghiệm trong việc xây dựng kịch bản kiểm thử, thực hiện kiểm thử chức năng (Functional Testing) và kiểm thử chấp nhận người dùng (UAT) nhằm đảm bảo hệ thống đáp ứng đầy đủ yêu cầu nghiệp vụ. Thành thạo trong việc xác minh kết quả, phát hiện lỗi, theo dõi quá trình khắc phục và phối hợp với đội ngũ phát triển để đảm bảo chất lượng sản phẩm trước khi triển khai.",
+          description: "Có kiến thức về Functional Testing và UAT, hiểu quy trình xây dựng test case, thực hiện kiểm thử, ghi nhận lỗi và theo dõi kết quả kiểm thử. Nắm được vai trò của hoạt động kiểm thử trong việc đảm bảo chất lượng phần mềm và đáp ứng yêu cầu nghiệp vụ.",
           projects:    []
         }
       ]
@@ -276,7 +276,7 @@ var _TEXT = {
       tagline:     "HELLO, I AM",
       name:        "Doan Thi Ngoc Anh",
       title:       "Business Analyst",
-      description: "I am a Business Analyst passionate about understanding business needs, clarifying system requirements, and delivering value-driven solutions. With a proactive mindset and continuous learning, I am working toward becoming a Middle Business Analyst within the next 1–2 years.",
+      description: "Business Analyst with strong analytical thinking and a proactive learning mindset. Experienced in business analysis, requirements gathering, and clarification. Skilled in collaborating with stakeholders to identify business needs and propose effective solutions. Aspiring to develop into a Middle Business Analyst within the next 1–2 years.",
       cvLink:      "./ngocanh_ta.pdf",
       btnCV:       "Download CV",
       btnContact:  "Contact"
@@ -319,14 +319,14 @@ var _TEXT = {
               tags:        ["UC"]
             },
             {
-              name:        "INVENTORY LOCATION MGMT SYSTEM — THE SHEA",
+              name:        "ERP SYSTEM — THE SHEA CO., LTD.",
               system:      "Domain: Warehouse Management",
               scope:       "Scope: Warehouse & Goods Management",
-              description: "Analyzed and described system functions for the inventory location management system using modeling tools to clarify business flows and user-system interactions.",
+              description: "Participated in the development of an ERP system, responsible for analyzing and documenting warehouse location and product display management features using business analysis artifacts.",
               tags:        ["UC", "UCS", "AD"]
             },
             {
-              name:        "AUTOMATED FINANCIAL INVESTMENT AGENTIC AI SYSTEM",
+              name:        "AGENTIC AI INVESTMENT ADVISORY SYSTEM",
               system:      "Domain: AI Agent",
               scope:       "Scope: Full System",
               description: "Analyzed and modeled the system to clarify market data management workflows, investor-system interactions, and the processing pipeline from data analysis to automated investment execution.",
@@ -403,7 +403,7 @@ var _TEXT = {
         {
           title:       "TESTING",
           tags:        ["Functional Testing", "UAT"],
-          description: "Possess knowledge and experience in building test scenarios, executing functional testing, and User Acceptance Testing (UAT) to ensure the system fully meets business requirements. Proficient in verifying results, defect tracking, monitoring the fixing process, and collaborating with the development team to ensure product quality before deployment.",
+          description: "Possess knowledge of Functional Testing and UAT, understand the process of developing test cases, executing tests, logging bugs, and tracking test results. Understand the role of testing activities in ensuring software quality and meeting business requirements.",
           projects:    []
         }
       ]
@@ -471,7 +471,7 @@ var _DETAIL_TEXT = {
         ]
       },
       theShea: {
-        bannerTitle: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",
+        bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH THE SHEA",
         bannerScope: "LĨNH VỰC: QUẢN LÝ KHO",
         descParts:   ["Hệ thống được xây dựng nhằm hỗ trợ theo dõi, ", "quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho", " theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea."],
         scopeItems:  [
@@ -511,10 +511,10 @@ var _DETAIL_TEXT = {
         }
       },
       theShea: {
-        bannerTitle: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",
+        bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH THE SHEA",
         bannerScope: "LĨNH VỰC: QUẢN LÝ KHO",
         descParts:   ["Hệ thống được xây dựng nhằm hỗ trợ theo dõi, ", "quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho", " theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea."],
-        scopeItem:   "Phân tích và mô tả các chức năng cho hệ thống quản lý vị trí hàng hóa thông qua các công cụ.",
+        scopeItem:   "Tham gia xây dựng hệ thống ERP, phụ trách phân tích và mô tả các chức năng quản lý vị trí lưu kho và trưng bày hàng hóa cho doanh nghiệp thông qua các công cụ.",
         captions: {
           uc:  "Hình ảnh: Sơ đồ Use Case",
           ucs: "Hình ảnh: Bảng đặc tả UCS - Tính năng thêm mới giá kệ",
@@ -555,7 +555,7 @@ var _DETAIL_TEXT = {
         { name: "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD",               system: "Lĩnh vực: Sản xuất B2B",       scope: "Phạm vi: Quản lý sản xuất",           description: "Thiết kế prototype giao diện bằng Figma cho phân hệ quản lý sản xuất trong hệ thống ERP nhằm mô phỏng quy trình thao tác, trực quan hóa luồng nghiệp vụ và tối ưu trải nghiệm người dùng trong quá trình vận hành hệ thống." },
         { name: "HỆ THỐNG ERP - CÔNG TY TNHH NAM VIỆT PHƯƠNG",          system: "Lĩnh vực: Sản xuất B2C",       scope: "Phạm vi: Quản lý bán hàng & nhân sự", description: "Thiết kế prototype giao diện bằng Figma cho phân hệ quản lý bán hàng và nhân sự trong hệ thống ERP nhằm mô phỏng quy trình thao tác, trực quan hóa luồng nghiệp vụ và tối ưu trải nghiệm người dùng trong quá trình vận hành hệ thống." },
         { name: "HỆ THỐNG ERP - THƯƠNG HIỆU TÀU HỦ SINGAPORE YUMMY",   system: "Thực phẩm & Đồ uống",          scope: "Phạm vi: Quản lý tài chính",          description: "Thiết kế prototype giao diện cho phân hệ quản lý tài chính bằng Figma nhằm trực quan hóa quy trình thao tác và tối ưu trải nghiệm người dùng trong hệ thống ERP." },
-        { name: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",         system: "Lĩnh vực: Quản lý kho vận",    scope: "Phạm vi: Quản lý kho & hàng hóa",    description: "Thiết kế prototype bằng Figma cho hệ thống quản lý vị trí hàng hóa của The Shea nhằm mô phỏng giao diện và luồng thao tác quản lý kho, hàng hóa." }
+        { name: "HỆ THỐNG ERP - CÔNG TY TNHH THE SHEA",         system: "Lĩnh vực: Quản lý kho",         scope: "Phạm vi: Quản lý kho & hàng hóa",    description: "Thiết kế prototype bằng Figma cho các chức năng quản lý vị trí lưu kho và trưng bày hàng hóa, nhằm mô phỏng giao diện và luồng thao tác của người dùng trên hệ thống." }
       ],
       wonderwood: {
         bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD",
@@ -579,10 +579,10 @@ var _DETAIL_TEXT = {
         captions:    ["Hình ảnh: Giao diện trang xem dashboard", "Hình ảnh: Giao diện trang xem danh sách - Tính năng quản lý nguồn quỹ", "Hình ảnh: Giao diện trang danh sách - Tính năng quản lý công nợ nhà cung cấp", "Hình ảnh: Giao diện trang thêm mới - Tính năng quản lý phiếu thu"]
       },
       theShea: {
-        bannerTitle: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",
+        bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH THE SHEA",
         bannerScope: "LĨNH VỰC: QUẢN LÝ KHO",
         descParts:   ["Hệ thống được xây dựng nhằm hỗ trợ theo dõi, ", "quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho", " theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea."],
-        scopeItem:   "Thiết kế UX/UI cho hệ thống quản lý vị trí hàng hóa của The Shea thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.",
+        scopeItem:   "Thiết kế prototype bằng Figma cho các chức năng quản lý vị trí lưu kho và trưng bày hàng hóa, nhằm mô phỏng giao diện và luồng thao tác của người dùng trên hệ thống.",
         caption:     "Hình ảnh: Giao diện hệ thống quản lý vị trí hàng hóa"
       }
     }
@@ -632,7 +632,7 @@ var _DETAIL_TEXT = {
         ]
       },
       theShea: {
-        bannerTitle: "INVENTORY LOCATION MANAGEMENT SYSTEM — THE SHEA",
+        bannerTitle: "ERP SYSTEM — THE SHEA CO., LTD.",
         bannerScope: "DOMAIN: WAREHOUSE MANAGEMENT",
         descParts:   ["The system was built to support real-time tracking and ", "management of product locations on display shelves and storage racks", ", optimizing inventory and arrangement workflows while improving goods management efficiency at The Shea fashion brand's store."],
         scopeItems:  [
@@ -672,10 +672,10 @@ var _DETAIL_TEXT = {
         }
       },
       theShea: {
-        bannerTitle: "INVENTORY LOCATION MANAGEMENT SYSTEM — THE SHEA",
+        bannerTitle: "ERP SYSTEM — THE SHEA CO., LTD.",
         bannerScope: "DOMAIN: WAREHOUSE MANAGEMENT",
         descParts:   ["The system was built to support real-time tracking and ", "management of product locations on display shelves and storage racks", ", optimizing inventory and arrangement workflows while improving goods management efficiency at The Shea fashion brand's store."],
-        scopeItem:   "Analyzed and described system functions for the inventory location management system using modeling tools.",
+        scopeItem:   "Participated in the development of an ERP system, responsible for analyzing and documenting warehouse location and product display management features using business analysis artifacts.",
         captions: {
           uc:  "Figure: Use Case Diagram",
           ucs: "Figure: UCS Specification Table — Add New Shelf Feature",
@@ -683,7 +683,7 @@ var _DETAIL_TEXT = {
         }
       },
       ai: {
-        bannerTitle: "AUTOMATED FINANCIAL INVESTMENT AGENTIC AI SYSTEM",
+        bannerTitle: "AGENTIC AI INVESTMENT ADVISORY SYSTEM",
         bannerScope: "DOMAIN: AI AGENT",
         descParts:   ["The system was built to support ", "automated management of financial investment activities", " through market data monitoring, investment opportunity analysis, and automated trade execution based on selected strategies — enhancing portfolio management efficiency and optimizing the investment workflow."],
         scopeItem:   "Analyzed and modeled the system to clarify market data management workflows, investor-system interaction flows, and the processing pipeline from data analysis to automated trade execution.",
@@ -715,7 +715,7 @@ var _DETAIL_TEXT = {
         { name: "ERP SYSTEM — WONDERWOOD CO., LTD.",               system: "Domain: B2B Manufacturing",      scope: "Scope: Manufacturing Management",    description: "Designed Figma UI/UX prototypes for the manufacturing management module in the ERP system to simulate operational workflows, visualize business processes, and optimize user experience." },
         { name: "ERP SYSTEM — NAM VIET PHUONG CO., LTD.",          system: "Domain: B2C Manufacturing",      scope: "Scope: Sales & HR Management",       description: "Designed Figma UI/UX prototypes for the sales and HR management modules in the ERP system to simulate operational workflows, visualize business processes, and optimize user experience." },
         { name: "ERP SYSTEM — YUMMY SINGAPORE TOFU BRAND",         system: "Food & Beverage (F&B)",  scope: "Scope: Finance Management",          description: "Designed Figma UI/UX prototypes for the finance management module to visualize operational workflows and optimize user experience within the ERP system." },
-        { name: "INVENTORY LOCATION MGMT SYSTEM — THE SHEA",       system: "Domain: Warehouse Management",   scope: "Scope: Warehouse & Goods Management",description: "Designed Figma prototypes for The Shea's inventory location management system to simulate the interface and operational flows for warehouse and goods management." }
+        { name: "ERP SYSTEM — THE SHEA CO., LTD.",                  system: "Domain: Warehouse Management",   scope: "Scope: Warehouse & Goods Management",description: "Designed Figma prototypes for warehouse location and product display management features to simulate user interfaces and workflows within the system." }
       ],
       wonderwood: {
         bannerTitle: "ERP SYSTEM — WONDERWOOD CO., LTD.",
@@ -739,10 +739,10 @@ var _DETAIL_TEXT = {
         captions:    ["Figure: Dashboard Page Interface", "Figure: List Page — Fund Management Feature", "Figure: List Page — Supplier Debt Management Feature", "Figure: Add New Page — Receipt Voucher Management Feature"]
       },
       theShea: {
-        bannerTitle: "INVENTORY LOCATION MANAGEMENT SYSTEM — THE SHEA",
+        bannerTitle: "ERP SYSTEM — THE SHEA CO., LTD.",
         bannerScope: "DOMAIN: WAREHOUSE MANAGEMENT",
         descParts:   ["The system was built to support real-time tracking and ", "management of product locations on display shelves and storage racks", ", optimizing inventory and arrangement workflows while improving goods management efficiency at The Shea fashion brand's store."],
-        scopeItem:   "Designed UX/UI for The Shea's inventory location management system through wireframing, user flow mapping, and interactive prototyping in Figma.",
+        scopeItem:   "Designed Figma prototypes for warehouse location and product display management features to simulate user interfaces and workflows within the system.",
         caption:     "Figure: Inventory Location Management System Interface"
       }
     }
