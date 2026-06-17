@@ -51,6 +51,13 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    /* Ép Babel dùng Classic runtime (React.createElement) thay vì
+       Automatic runtime (sẽ sinh ra câu lệnh import không hợp lệ). */
+    Babel.registerPreset('react-classic', {
+      presets: [[Babel.availablePresets['react'], { runtime: 'classic' }]]
+    });
+  </script>
 
   <style>
     /* --- Font mặc định toàn trang --- */
@@ -118,7 +125,7 @@
 
   <script src="./data.js"></script>
 
-  <script type="text/babel" data-presets="react">
+  <script type="text/babel" data-presets="react-classic">
     // Lấy trực tiếp State từ biến React toàn cục đã nạp ở mục ③
     const { useState } = React;
 
@@ -293,7 +300,7 @@
             <p className="text-[20px] sm:text-[24px] md:text-[32px] lg:text-[42px] font-bold text-[#2563eb] mb-4 md:mb-6">{data.title}</p>
             <p className="max-w-[680px] text-[15px] sm:text-base md:text-[18px] text-[#475569] leading-relaxed mb-8 md:mb-12 text-center lg:text-justify">{data.description}</p>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a href={data.cvLink} target="_blank" rel="noopener noreferrer" download className="flex items-center justify-center gap-2 bg-[#2563eb] hover:bg-blue-700 text-white text-[16px] md:text-[18px] font-medium w-full sm:w-auto px-8 py-3 md:py-2.5 rounded-[0.3rem] transition-all duration-300">
+              <a href={data.cvLink} download className="flex items-center justify-center gap-2 bg-[#2563eb] hover:bg-blue-700 text-white text-[16px] md:text-[18px] font-medium w-full sm:w-auto px-8 py-3 md:py-2.5 rounded-[0.3rem] transition-all duration-300">
                 <i className="bi bi-download"></i> {data.btnCV}
               </a>
               <button onClick={onContactClick} className="flex items-center justify-center gap-2 bg-transparent text-[#2563eb] border border-[#2563eb] hover:bg-blue-50 text-[16px] md:text-[18px] font-medium w-full sm:w-auto px-8 py-3 md:py-2.5 rounded-[0.3rem] transition-all duration-300">
@@ -333,7 +340,7 @@
                 </div>
               </div>
               <div className="mt-8 md:mt-auto md:pt-6">
-                <a href={data.cvLink} target="_blank" rel="noopener noreferrer" download className="flex items-center justify-center md:justify-start gap-2 w-full md:w-fit bg-[#2563EB] hover:bg-blue-700 text-white text-base md:text-sm font-medium px-5 py-3 md:py-2 rounded-[0.3rem] transition-colors duration-200">
+                <a href={data.cvLink} download className="flex items-center justify-center md:justify-start gap-2 w-full md:w-fit bg-[#2563EB] hover:bg-blue-700 text-white text-base md:text-sm font-medium px-5 py-3 md:py-2 rounded-[0.3rem] transition-colors duration-200">
                   <i className="bi bi-download"></i> {data.btnCV}
                 </a>
               </div>
@@ -363,7 +370,7 @@
     ============================================================ */
     const SkillCard = ({ skill, onDetail, lang }) => {
       const IconComponent = SKILL_ICON_MAP[skill.iconType];
-      const ui = window.DETAIL_CONTENT[lang].ui;
+      const ui = window.DETAIL_CONTENT?.[lang]?.ui ?? window.DETAIL_CONTENT?.vi?.ui ?? {};
 
       const renderIcon = () => {
         if (!skill.icon) return IconComponent ? <IconComponent /> : null;
@@ -422,7 +429,7 @@
        BƯỚC 6B — ProjectCard + SkillDetail
     ============================================================ */
     const SortDropdown = ({ lang }) => {
-      const opts = window.DETAIL_CONTENT[lang].ui.sortOptions;
+      const opts = window.DETAIL_CONTENT?.[lang]?.ui?.sortOptions ?? window.DETAIL_CONTENT?.vi?.ui?.sortOptions ?? ["Newest", "Oldest"];
       const [open, setOpen] = useState(false);
       const [selectedIdx, setSelectedIdx] = useState(0);
       const ref = React.useRef(null);
@@ -451,7 +458,7 @@
     };
 
     const ProjectCard = ({ project, lang }) => {
-      const ui = window.DETAIL_CONTENT[lang].ui;
+      const ui = window.DETAIL_CONTENT?.[lang]?.ui ?? window.DETAIL_CONTENT?.vi?.ui ?? {};
       return (
         <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6 flex flex-col gap-3 hover:shadow-lg transition-shadow duration-300">
           <div className="flex items-center gap-4">
@@ -516,8 +523,8 @@
       const projects = skill.projects || [];
       const homeLabel   = navItems ? navItems[0] : 'Trang chủ';
       const skillsLabel = navItems ? navItems[2] : 'Kỹ năng';
-      const ui = window.DETAIL_CONTENT[lang].ui;
-      const dc = window.DETAIL_CONTENT[lang];
+      const dc = window.DETAIL_CONTENT?.[lang]?.ui ? window.DETAIL_CONTENT[lang] : (window.DETAIL_CONTENT?.vi ?? {});
+      const ui = dc?.ui ?? {};
       return (
         <div className="min-h-screen bg-[#F6F8FD]">
           <div className="max-w-[1400px] mx-auto w-full px-6 py-10">
@@ -982,8 +989,8 @@
        BƯỚC 6C — FigmaDetail
     ============================================================ */
     const FigmaDetail = ({ skill, onBack, navItems, lang }) => {
-      const ui       = window.DETAIL_CONTENT[lang].ui;
-      const dc       = window.DETAIL_CONTENT[lang];
+      const dc       = window.DETAIL_CONTENT?.[lang]?.ui ? window.DETAIL_CONTENT[lang] : (window.DETAIL_CONTENT?.vi ?? {});
+      const ui       = dc?.ui ?? {};
       const homeLabel   = navItems ? navItems[0] : (lang === 'vi' ? 'Trang chủ' : 'Home');
       const skillsLabel = navItems ? navItems[2] : (lang === 'vi' ? 'Kỹ năng' : 'Skills');
       const projects = dc.figma.projects;
