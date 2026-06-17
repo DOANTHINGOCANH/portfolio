@@ -468,12 +468,8 @@
             <div className="flex flex-col gap-1 min-w-0">
               <h3 className="font-bold text-[#14213D] text-base leading-tight">{project.name}</h3>
               <p className="text-sm">
-                {(() => {
-                  const parts = project.system ? project.system.split(': ') : [];
-                  return parts.length >= 2
-                    ? <><span className="text-slate-500">{parts[0]}:</span>{' '}<span className="text-blue-500 font-medium">{parts.slice(1).join(': ')}</span></>
-                    : <span className="text-blue-500 font-medium">{project.system}</span>;
-                })()}
+                <span className="text-slate-500">{ui.fieldPrefix}</span>
+                <span className="text-blue-500 font-medium">{project.system}</span>
               </p>
             </div>
           </div>
@@ -570,7 +566,7 @@
           <div key={id} id={id} className="w-full mt-16 scroll-mt-24">
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{d.bannerTitle}</h2>
-              <p className="text-lg tracking-wider uppercase">{d.bannerScope}</p>
+              <p className="text-lg tracking-wider uppercase">{d.bannerField}</p>
             </div>
             <div className="max-w-[1400px] mx-auto px-4 py-16">
               <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -602,7 +598,7 @@
           <div id="wonderwood-vibe" className="w-full mt-16 scroll-mt-24">
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{v.bannerTitle}</h2>
-              <p className="text-lg tracking-wider uppercase">{v.bannerScope}</p>
+              <p className="text-lg tracking-wider uppercase">{v.bannerField}</p>
             </div>
             <div className="max-w-[1400px] mx-auto px-4 py-16">
               <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -640,7 +636,7 @@
             <div id="wonderwood-detail" className="w-full mt-16 scroll-mt-24">
               <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
                 <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
-                <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
+                <p className="text-lg tracking-wider uppercase">{m.bannerField}</p>
               </div>
               <div className="max-w-[1400px] mx-auto px-4 py-16">
                 <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -757,7 +753,7 @@
             <div id="namvietphuong-detail" className="w-full mt-24 scroll-mt-24">
               <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
                 <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
-                <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
+                <p className="text-lg tracking-wider uppercase">{m.bannerField}</p>
               </div>
               <div className="max-w-[1400px] mx-auto px-4 py-16">
                 <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -816,7 +812,7 @@
             <div id="theshea-detail" className="w-full mt-24 scroll-mt-24">
               <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
                 <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
-                <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
+                <p className="text-lg tracking-wider uppercase">{m.bannerField}</p>
               </div>
               <div className="max-w-[1400px] mx-auto px-4 py-16">
                 <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -880,7 +876,7 @@
             <div id="ai-detail" className="w-full mt-24 scroll-mt-24">
               <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
                 <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
-                <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
+                <p className="text-lg tracking-wider uppercase">{m.bannerField}</p>
               </div>
               <div className="max-w-[1400px] mx-auto px-4 py-16">
                 <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -1034,7 +1030,7 @@
           <div id="wonderwood-figma" className="w-full mt-16 scroll-mt-24">
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
-              <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
+              <p className="text-lg tracking-wider uppercase">{f.bannerField}</p>
             </div>
             <div className="max-w-[1400px] mx-auto px-4 py-16">
               <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -1097,7 +1093,7 @@
           <div id="namvietphuong-figma" className="w-full mt-16 scroll-mt-24">
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
-              <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
+              <p className="text-lg tracking-wider uppercase">{f.bannerField}</p>
             </div>
             <div className="max-w-[1400px] mx-auto px-4 py-16">
               <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -1160,7 +1156,7 @@
           <div id="yummy-figma" className="w-full mt-16 scroll-mt-24">
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
-              <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
+              <p className="text-lg tracking-wider uppercase">{f.bannerField}</p>
             </div>
             <div className="max-w-[1400px] mx-auto px-4 py-16">
               <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>
@@ -1223,7 +1219,7 @@
           <div id="theshea-figma" className="w-full mt-16 scroll-mt-24">
             <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
-              <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
+              <p className="text-lg tracking-wider uppercase">{f.bannerField}</p>
             </div>
             <div className="max-w-[1400px] mx-auto px-4 py-16">
               <h2 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.projectOverview}</h2>

@@ -22,7 +22,7 @@ window.PORTFOLIO_DATA = {
         "Trong 1–2 năm tới, tôi định hướng phát triển chuyên sâu, từng bước nâng cao năng lực chuyên môn để trở thành Middle Business Analyst."
       ],
       fieldTitle: "LĨNH VỰC",
-      fields:     ["SẢN XUẤT B2B", "SẢN XUẤT B2C", "THỰC PHẨM & ĐỒ UỐNG", "QUẢN LÝ KHO VẬN", "AI AGENT & TỰ ĐỘNG HÓA"],
+      fields:     ["SẢN XUẤT B2B", "SẢN XUẤT B2C", "THỰC PHẨM & ĐỒ UỐNG", "QUẢN LÝ KHO", "AI AGENT"],
       cvLink:     "./ngocanh_tv.pdf",
       btnCV:      "Tải xuống CV"
     },
@@ -60,7 +60,7 @@ window.PORTFOLIO_DATA = {
             },
             {
               name:        "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",
-              system:      "Quản lý kho vận",
+              system:      "Quản lý kho",
               scope:       "Phạm vi: Quản lý kho & hàng hóa",
               description: "Phân tích và mô tả các chức năng cho hệ thống quản lý vị trí hàng hóa thông qua các công cụ nhằm làm rõ luồng nghiệp vụ và tương tác giữa người dùng với hệ thống.",
               tags:        ["UC", "UCS", "AD"],
@@ -69,7 +69,7 @@ window.PORTFOLIO_DATA = {
             },
             {
               name:        "HỆ THỐNG AGENTIC AI ĐẦU TƯ TÀI CHÍNH TỰ ĐỘNG",
-              system:      "AI Agent & Tự động hóa",
+              system:      "AI Agent",
               scope:       "Phạm vi: Toàn bộ hệ thống",
               description: "Phân tích và mô tả hệ thống nhằm làm rõ quy trình quản lý dữ liệu thị trường, tương tác giữa nhà đầu tư và hệ thống, cùng luồng xử lý từ phân tích dữ liệu đến thực hiện giao dịch đầu tư tự động.",
               tags:        ["BPMN", "UC", "UCS", "AD", "DFD"],
@@ -166,7 +166,7 @@ window.PORTFOLIO_DATA = {
         {
           id: 5,
           iconType:    "soft",
-          icon:        "portfolio_ngocanh/testing.png",
+          icon:        '<i class="bi bi-list-check"></i>',
           title:       "KIỂM THỬ",
           tags:        [],
           description: "Có kiến thức và kinh nghiệm trong việc xây dựng kịch bản kiểm thử, thực hiện kiểm thử chức năng (Functional Testing) và kiểm thử chấp nhận người dùng (UAT) nhằm đảm bảo hệ thống đáp ứng đầy đủ yêu cầu nghiệp vụ. Thành thạo trong việc xác minh kết quả, phát hiện lỗi, theo dõi quá trình khắc phục và phối hợp với đội ngũ phát triển để đảm bảo chất lượng sản phẩm trước khi triển khai.",
@@ -209,7 +209,7 @@ window.PORTFOLIO_DATA = {
         "Over the next 1–2 years, I aim to deepen my expertise and gradually enhance my professional capabilities to become a Middle Business Analyst."
       ],
       fieldTitle: "DOMAINS",
-      fields:     ["B2B Manufacturing", "B2C Manufacturing", "Food & Beverage (F&B)", "Warehouse Management", "AI Agents & Automation"],
+      fields:     ["B2B Manufacturing", "B2C Manufacturing", "Food & Beverage (F&B)", "Warehouse Management", "AI Agent"],
       cvLink:     "./ngocanh_ta.pdf",
       btnCV:      "Download CV"
     },
@@ -256,7 +256,7 @@ window.PORTFOLIO_DATA = {
             },
             {
               name:        "AUTOMATED FINANCIAL INVESTMENT AGENTIC AI SYSTEM",
-              system:      "AI Agent & Automation",
+              system:      "AI Agent",
               scope:       "Scope: Full System",
               description: "Analyzed and modeled the system to clarify market data management workflows, investor-system interactions, and the processing pipeline from data analysis to automated investment execution.",
               tags:        ["BPMN", "UC", "UCS", "AD", "DFD"],
@@ -397,12 +397,13 @@ window.DETAIL_CONTENT = {
       bpmnToBe:       "BPMN QUY TRÌNH ĐỀ XUẤT (TO-BE)",
       demoVibe:       "DEMO VIBE CODING",
       figurePrefix:   "Hình ảnh:",
+      fieldPrefix:    "Lĩnh vực: ",
     },
 
     analysis: {
       wonderwood: {
         bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD",
-        bannerScope: "PHẠM VI: TOÀN BỘ HỆ THỐNG",
+        bannerField: "LĨNH VỰC: SẢN XUẤT B2B",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItems:  [
           { text: "Khơi gợi và làm rõ yêu cầu với chủ doanh nghiệp." },
@@ -411,7 +412,7 @@ window.DETAIL_CONTENT = {
       },
       namVietPhuong: {
         bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH NAM VIỆT PHƯƠNG",
-        bannerScope: "PHẠM VI: QUẢN LÝ BÁN HÀNG & NHÂN SỰ",
+        bannerField: "LĨNH VỰC: SẢN XUẤT B2C",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItems:  [
           { pre: "Chuẩn bị danh sách câu hỏi khảo sát nhằm khơi gợi, thu thập và làm rõ yêu cầu nghiệp vụ cho ", highlight: "phân hệ bán hàng và nhân sự", post: " với chủ doanh nghiệp." }
@@ -419,7 +420,7 @@ window.DETAIL_CONTENT = {
       },
       yummy: {
         bannerTitle: "HỆ THỐNG ERP - THƯƠNG HIỆU TÀU HỦ SINGAPORE YUMMY",
-        bannerScope: "PHẠM VI: QUẢN LÝ TÀI CHÍNH",
+        bannerField: "LĨNH VỰC: THỰC PHẨM & ĐỒ UỐNG",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItems:  [
           { pre: "Chuẩn bị danh sách câu hỏi khảo sát nhằm khơi gợi, thu thập và làm rõ yêu cầu nghiệp vụ cho ", highlight: "phân hệ tài chính", post: " với chủ doanh nghiệp." }
@@ -427,7 +428,7 @@ window.DETAIL_CONTENT = {
       },
       theShea: {
         bannerTitle: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",
-        bannerScope: "PHẠM VI: QUẢN LÝ KHO VÀ HÀNG HÓA",
+        bannerField: "LĨNH VỰC: QUẢN LÝ KHO",
         descParts:   ["Hệ thống được xây dựng nhằm hỗ trợ theo dõi, ", "quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho", " theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea."],
         scopeItems:  [
           { text: "Khơi gợi và làm rõ yêu cầu nghiệp vụ quản lý kho và hàng hóa với chủ cửa hàng thời trang." }
@@ -438,7 +439,7 @@ window.DETAIL_CONTENT = {
     modeling: {
       wonderwood: {
         bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD",
-        bannerScope: "PHẠM VI: TOÀN BỘ HỆ THỐNG",
+        bannerField: "LĨNH VỰC: SẢN XUẤT B2B",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItem:   "Thiết kế hệ thống ERP thông qua việc phân tích yêu cầu và sử dụng các công cụ mô hình hóa",
         captions: {
@@ -457,7 +458,7 @@ window.DETAIL_CONTENT = {
       },
       namVietPhuong: {
         bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH NAM VIỆT PHƯƠNG",
-        bannerScope: "PHẠM VI: QUẢN LÝ BÁN HÀNG & NHÂN SỰ",
+        bannerField: "LĨNH VỰC: SẢN XUẤT B2C",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItem:   "Phân tích và mô tả các chức năng của phân hệ quản lý bán hàng và nhân sự trong hệ thống ERP thông qua sơ đồ Use Case (UC).",
         captions: {
@@ -467,7 +468,7 @@ window.DETAIL_CONTENT = {
       },
       theShea: {
         bannerTitle: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",
-        bannerScope: "PHẠM VI: QUẢN LÝ KHO VÀ HÀNG HÓA",
+        bannerField: "LĨNH VỰC: QUẢN LÝ KHO",
         descParts:   ["Hệ thống được xây dựng nhằm hỗ trợ theo dõi, ", "quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho", " theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea."],
         scopeItem:   "Phân tích và mô tả các chức năng cho hệ thống quản lý vị trí hàng hóa thông qua các công cụ.",
         captions: {
@@ -478,7 +479,7 @@ window.DETAIL_CONTENT = {
       },
       ai: {
         bannerTitle: "HỆ THỐNG AGENTIC AI ĐẦU TƯ TÀI CHÍNH TỰ ĐỘNG",
-        bannerScope: "PHẠM VI: TOÀN BỘ HỆ THỐNG",
+        bannerField: "LĨNH VỰC: AI AGENT",
         descParts:   ["Hệ thống được xây dựng nhằm hỗ trợ ", "quản lý và tự động hóa hoạt động đầu tư tài chính", " thông qua việc theo dõi dữ liệu thị trường, phân tích cơ hội đầu tư và thực hiện giao dịch tự động theo chiến lược được lựa chọn, giúp nâng cao hiệu quả quản lý danh mục và tối ưu hóa quy trình đầu tư."],
         scopeItem:   "Phân tích và mô tả hệ thống nhằm làm rõ quy trình quản lý dữ liệu thị trường, tương tác giữa nhà đầu tư và hệ thống, cùng luồng xử lý từ phân tích dữ liệu đến thực hiện giao dịch đầu tư tự động.",
         captions: {
@@ -496,7 +497,7 @@ window.DETAIL_CONTENT = {
     vibe: {
       wonderwood: {
         bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD",
-        bannerScope: "PHẠM VI: QUẢN LÝ SẢN XUẤT",
+        bannerField: "LĨNH VỰC: SẢN XUẤT B2B",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItem:   "Xây dựng demo một số chức năng của phân hệ quản lý sản xuất bằng AI dựa trên các tài liệu phân tích và thiết kế đã hoàn thiện, bao gồm: quản lý nhóm nguyên vật liệu, quản lý nguyên vật liệu, quản lý nhà cung cấp, quản lý kế hoạch sản xuất.",
         videoCaption:"Video: Demo chức năng trên web (Vibe Coding)"
@@ -509,32 +510,32 @@ window.DETAIL_CONTENT = {
         { name: "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD",               system: "Sản xuất B2B",       scope: "Phạm vi: Quản lý sản xuất",           description: "Thiết kế prototype giao diện bằng Figma cho phân hệ quản lý sản xuất trong hệ thống ERP nhằm mô phỏng quy trình thao tác, trực quan hóa luồng nghiệp vụ và tối ưu trải nghiệm người dùng trong quá trình vận hành hệ thống.",   tags: ["Figma"], logo: "./go_logo.png",    href: "#wonderwood-figma" },
         { name: "HỆ THỐNG ERP - CÔNG TY TNHH NAM VIỆT PHƯƠNG",          system: "Sản xuất B2C",       scope: "Phạm vi: Quản lý bán hàng & nhân sự", description: "Thiết kế prototype giao diện bằng Figma cho phân hệ quản lý bán hàng và nhân sự trong hệ thống ERP nhằm mô phỏng quy trình thao tác, trực quan hóa luồng nghiệp vụ và tối ưu trải nghiệm người dùng trong quá trình vận hành hệ thống.", tags: ["Figma"], logo: "./yen_logo.png",   href: "#namvietphuong-figma" },
         { name: "HỆ THỐNG ERP - THƯƠNG HIỆU TÀU HỦ SINGAPORE YUMMY",   system: "Thực phẩm & Đồ uống", scope: "Phạm vi: Quản lý tài chính",          description: "Thiết kế prototype giao diện cho phân hệ quản lý tài chính bằng Figma nhằm trực quan hóa quy trình thao tác và tối ưu trải nghiệm người dùng trong hệ thống ERP.",                                                                          tags: ["Figma"], logo: "./yummy_logo.jpg", href: "#yummy-figma" },
-        { name: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",         system: "Quản lý kho vận",    scope: "Phạm vi: Quản lý kho & hàng hóa",    description: "Thiết kế prototype bằng Figma cho hệ thống quản lý vị trí hàng hóa của The Shea nhằm mô phỏng giao diện và luồng thao tác quản lý kho, hàng hóa.",                                                                                           tags: ["Figma"], logo: "./shea_logo.jpg",  href: "#theshea-figma" }
+        { name: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",         system: "Quản lý kho",        scope: "Phạm vi: Quản lý kho & hàng hóa",    description: "Thiết kế prototype bằng Figma cho hệ thống quản lý vị trí hàng hóa của The Shea nhằm mô phỏng giao diện và luồng thao tác quản lý kho, hàng hóa.",                                                                                           tags: ["Figma"], logo: "./shea_logo.jpg",  href: "#theshea-figma" }
       ],
       wonderwood: {
         bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH WONDERWOOD",
-        bannerScope: "PHẠM VI: QUẢN LÝ SẢN XUẤT",
+        bannerField: "LĨNH VỰC: SẢN XUẤT B2B",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItem:   "Thiết kế UX/UI cho phân hệ quản lý sản xuất thuộc hệ thống ERP thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.",
         captions:    ["Hình ảnh: Giao diện trang đăng nhập", "Hình ảnh: Giao diện trang xem dashboard", "Hình ảnh: Giao diện trang danh sách - Tính năng quản lý kế hoạch sản xuất", "Hình ảnh: Giao diện trang thêm mới - Tính năng quản lý kế hoạch sản xuất"]
       },
       namVietPhuong: {
         bannerTitle: "HỆ THỐNG ERP - CÔNG TY TNHH NAM VIỆT PHƯƠNG",
-        bannerScope: "PHẠM VI: QUẢN LÝ BÁN HÀNG & NHÂN SỰ",
+        bannerField: "LĨNH VỰC: SẢN XUẤT B2C",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItem:   "Thiết kế UX/UI cho phân hệ quản lý bán hàng và nhân sự thuộc hệ thống ERP thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.",
         captions:    ["Hình ảnh: Giao diện trang danh sách - Tính năng quản lý chấm công", "Hình ảnh: Giao diện trang chỉnh sửa thông tin - Tính năng quản lý chấm công", "Hình ảnh: Giao diện trang thêm mới - Tính năng quản lý đơn hàng", "Hình ảnh: Giao diện trang thêm mới - Tính năng quản lý dữ liệu bán sỉ"]
       },
       yummy: {
         bannerTitle: "HỆ THỐNG ERP - THƯƠNG HIỆU TÀU HỦ SINGAPORE YUMMY",
-        bannerScope: "PHẠM VI: QUẢN LÝ TÀI CHÍNH",
+        bannerField: "LĨNH VỰC: THỰC PHẨM & ĐỒ UỐNG",
         descParts:   ["Hệ thống được xây dựng nhằm ", "quản lý tập trung các hoạt động sản xuất, bán hàng, nhân sự và tài chính trên cùng một nền tảng", ", hỗ trợ đồng bộ dữ liệu theo thời gian thực, tối ưu quy trình vận hành và nâng cao hiệu quả quản lý trong doanh nghiệp."],
         scopeItem:   "Thiết kế UX/UI cho phân hệ quản lý tài chính thuộc hệ thống ERP thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.",
         captions:    ["Hình ảnh: Giao diện trang xem dashboard", "Hình ảnh: Giao diện trang xem danh sách - Tính năng quản lý nguồn quỹ", "Hình ảnh: Giao diện trang danh sách - Tính năng quản lý công nợ nhà cung cấp", "Hình ảnh: Giao diện trang thêm mới - Tính năng quản lý phiếu thu"]
       },
       theShea: {
         bannerTitle: "HỆ THỐNG QUẢN LÝ VỊ TRÍ HÀNG HÓA - THE SHEA",
-        bannerScope: "PHẠM VI: QUẢN LÝ KHO VÀ HÀNG HÓA",
+        bannerField: "LĨNH VỰC: QUẢN LÝ KHO",
         descParts:   ["Hệ thống được xây dựng nhằm hỗ trợ theo dõi, ", "quản lý vị trí sản phẩm trên kệ trưng bày và kệ kho", " theo thời gian thực, tối ưu quy trình kiểm kê, sắp xếp và nâng cao hiệu quả quản lý hàng hóa trong cửa hàng cho thương hiệu thời trang The Shea."],
         scopeItem:   "Thiết kế UX/UI cho hệ thống quản lý vị trí hàng hóa của The Shea thông qua việc xây dựng wireframe, luồng người dùng và prototype tương tác bằng Figma.",
         caption:     "Hình ảnh: Giao diện hệ thống quản lý vị trí hàng hóa"
@@ -557,12 +558,13 @@ window.DETAIL_CONTENT = {
       bpmnToBe:       "PROPOSED PROCESS BPMN (TO-BE)",
       demoVibe:       "VIBE CODING DEMO",
       figurePrefix:   "Figure:",
+      fieldPrefix:    "Domain: ",
     },
 
     analysis: {
       wonderwood: {
         bannerTitle: "ERP SYSTEM — WONDERWOOD CO., LTD.",
-        bannerScope: "SCOPE: FULL SYSTEM",
+        bannerField: "DOMAIN: B2B MANUFACTURING",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItems:  [
           { text: "Elicited and clarified requirements with the business owner." },
@@ -571,7 +573,7 @@ window.DETAIL_CONTENT = {
       },
       namVietPhuong: {
         bannerTitle: "ERP SYSTEM — NAM VIET PHUONG CO., LTD.",
-        bannerScope: "SCOPE: SALES & HR MANAGEMENT",
+        bannerField: "DOMAIN: B2C MANUFACTURING",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItems:  [
           { pre: "Prepared a survey questionnaire to elicit, gather, and clarify business requirements for the ", highlight: "sales and HR modules", post: " with the business owner." }
@@ -579,7 +581,7 @@ window.DETAIL_CONTENT = {
       },
       yummy: {
         bannerTitle: "ERP SYSTEM — YUMMY SINGAPORE TOFU BRAND",
-        bannerScope: "SCOPE: FINANCE MANAGEMENT",
+        bannerField: "DOMAIN: FOOD & BEVERAGE (F&B)",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItems:  [
           { pre: "Prepared a survey questionnaire to elicit, gather, and clarify business requirements for the ", highlight: "finance module", post: " with the business owner." }
@@ -587,7 +589,7 @@ window.DETAIL_CONTENT = {
       },
       theShea: {
         bannerTitle: "INVENTORY LOCATION MGMT SYSTEM — THE SHEA",
-        bannerScope: "SCOPE: WAREHOUSE & GOODS MANAGEMENT",
+        bannerField: "DOMAIN: WAREHOUSE MANAGEMENT",
         descParts:   ["The system was built to support ", "real-time tracking and management of product locations on display shelves and storage racks", ", optimizing inventory and arrangement processes, and enhancing goods management efficiency in-store for The Shea fashion brand."],
         scopeItems:  [
           { text: "Elicited and clarified warehouse and inventory management requirements with the fashion store owner." }
@@ -598,7 +600,7 @@ window.DETAIL_CONTENT = {
     modeling: {
       wonderwood: {
         bannerTitle: "ERP SYSTEM — WONDERWOOD CO., LTD.",
-        bannerScope: "SCOPE: FULL SYSTEM",
+        bannerField: "DOMAIN: B2B MANUFACTURING",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItem:   "Designed the ERP system through requirements analysis and the application of modeling tools",
         captions: {
@@ -617,7 +619,7 @@ window.DETAIL_CONTENT = {
       },
       namVietPhuong: {
         bannerTitle: "ERP SYSTEM — NAM VIET PHUONG CO., LTD.",
-        bannerScope: "SCOPE: SALES & HR MANAGEMENT",
+        bannerField: "DOMAIN: B2C MANUFACTURING",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItem:   "Analyzed and described the functions of the sales and HR management modules in the ERP system through Use Case (UC) diagrams.",
         captions: {
@@ -627,7 +629,7 @@ window.DETAIL_CONTENT = {
       },
       theShea: {
         bannerTitle: "INVENTORY LOCATION MGMT SYSTEM — THE SHEA",
-        bannerScope: "SCOPE: WAREHOUSE & GOODS MANAGEMENT",
+        bannerField: "DOMAIN: WAREHOUSE MANAGEMENT",
         descParts:   ["The system was built to support ", "real-time tracking and management of product locations on display shelves and storage racks", ", optimizing inventory and arrangement processes, and enhancing goods management efficiency in-store for The Shea fashion brand."],
         scopeItem:   "Analyzed and described system functions for the inventory location management system using modeling tools.",
         captions: {
@@ -638,7 +640,7 @@ window.DETAIL_CONTENT = {
       },
       ai: {
         bannerTitle: "AUTOMATED FINANCIAL INVESTMENT AGENTIC AI SYSTEM",
-        bannerScope: "SCOPE: FULL SYSTEM",
+        bannerField: "DOMAIN: AI AGENT",
         descParts:   ["The system was built to support ", "management and automation of financial investment activities", " through market data monitoring, investment opportunity analysis, and automated trade execution based on selected strategies, enhancing portfolio management efficiency and optimizing the investment process."],
         scopeItem:   "Analyzed and modeled the system to clarify market data management workflows, investor-system interactions, and the processing pipeline from data analysis to automated investment execution.",
         captions: {
@@ -656,7 +658,7 @@ window.DETAIL_CONTENT = {
     vibe: {
       wonderwood: {
         bannerTitle: "ERP SYSTEM — WONDERWOOD CO., LTD.",
-        bannerScope: "SCOPE: MANUFACTURING MANAGEMENT",
+        bannerField: "DOMAIN: B2B MANUFACTURING",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItem:   "Built AI-powered demos for key functions of the manufacturing management module based on completed analysis and design documents, including: material group management, material management, supplier management, production plan management.",
         videoCaption:"Video: Web feature demo (Vibe Coding)"
@@ -673,28 +675,28 @@ window.DETAIL_CONTENT = {
       ],
       wonderwood: {
         bannerTitle: "ERP SYSTEM — WONDERWOOD CO., LTD.",
-        bannerScope: "SCOPE: MANUFACTURING MANAGEMENT",
+        bannerField: "DOMAIN: B2B MANUFACTURING",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItem:   "Designed UX/UI for the manufacturing management module in the ERP system by building wireframes, user flows, and interactive prototypes using Figma.",
         captions:    ["Figure: Login page interface", "Figure: Dashboard page interface", "Figure: List page — Manufacturing plan management feature", "Figure: Add new page — Manufacturing plan management feature"]
       },
       namVietPhuong: {
         bannerTitle: "ERP SYSTEM — NAM VIET PHUONG CO., LTD.",
-        bannerScope: "SCOPE: SALES & HR MANAGEMENT",
+        bannerField: "DOMAIN: B2C MANUFACTURING",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItem:   "Designed UX/UI for the sales and HR management modules in the ERP system by building wireframes, user flows, and interactive prototypes using Figma.",
         captions:    ["Figure: List page — Attendance management feature", "Figure: Edit info page — Attendance management feature", "Figure: Add new page — Order management feature", "Figure: Add new page — Wholesale data management feature"]
       },
       yummy: {
         bannerTitle: "ERP SYSTEM — YUMMY SINGAPORE TOFU BRAND",
-        bannerScope: "SCOPE: FINANCE MANAGEMENT",
+        bannerField: "DOMAIN: FOOD & BEVERAGE (F&B)",
         descParts:   ["The system was built to ", "centrally manage manufacturing, sales, HR, and financial operations on a unified platform", ", supporting real-time data synchronization, streamlining operational processes, and enhancing management efficiency within the enterprise."],
         scopeItem:   "Designed UX/UI for the finance management module in the ERP system by building wireframes, user flows, and interactive prototypes using Figma.",
         captions:    ["Figure: Dashboard page interface", "Figure: List page — Fund management feature", "Figure: List page — Supplier debt management feature", "Figure: Add new page — Receipt management feature"]
       },
       theShea: {
         bannerTitle: "INVENTORY LOCATION MGMT SYSTEM — THE SHEA",
-        bannerScope: "SCOPE: WAREHOUSE & GOODS MANAGEMENT",
+        bannerField: "DOMAIN: WAREHOUSE MANAGEMENT",
         descParts:   ["The system was built to support ", "real-time tracking and management of product locations on display shelves and storage racks", ", optimizing inventory and arrangement processes, and enhancing goods management efficiency in-store for The Shea fashion brand."],
         scopeItem:   "Designed UX/UI for The Shea's inventory location management system by building wireframes, user flows, and interactive prototypes using Figma.",
         caption:     "Figure: Inventory location management system interface"
