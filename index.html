@@ -7,18 +7,14 @@
   <title>Đoàn Thị Ngọc Ánh — Business Analyst Portfolio</title>
   <meta name="description" content="Portfolio cá nhân của Đoàn Thị Ngọc Ánh — Business Analyst chuyên phân tích nghiệp vụ và triển khai hệ thống ERP." />
 
-  <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
-  <!-- ① Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- ② Tailwind CSS CDN (Play CDN — hỗ trợ config tùy chỉnh) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind custom config: màu sắc và animation theo plan.md -->
   <script>
     tailwind.config = {
       theme: {
@@ -51,20 +47,11 @@
     };
   </script>
 
-  <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@18.3.1",
-        "react-dom": "https://esm.sh/react-dom@18.3.1",
-        "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime"
-      }
-    }
-  </script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 
-  <!-- ④ Babel Standalone (biên dịch JSX trực tiếp trên trình duyệt) -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- ⑤ CSS tùy chỉnh: fade-in class, custom scrollbar, reset nhỏ -->
   <style>
     /* --- Font mặc định toàn trang --- */
     * {
@@ -72,9 +59,7 @@
       box-sizing: border-box;
     }
 
-    /* --- Fade-in animation khi chuyển tab ---
-       Dùng kết hợp với key={activeTab} trên <main> để React
-       unmount/mount lại, kích hoạt animation từ đầu mỗi lần đổi tab. */
+    /* --- Fade-in animation khi chuyển tab --- */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -120,7 +105,6 @@
       background: #64748b;
     }
 
-    /* --- Loại bỏ margin mặc định của body --- */
     body {
       margin: 0;
       background-color: #ffffff;
@@ -130,16 +114,13 @@
 
 <body>
 
-  <!-- Điểm mount của React -->
   <div id="root"></div>
 
-  <!-- ⑥ Dữ liệu tĩnh: nạp trước khi Babel compile JSX -->
   <script src="./data.js"></script>
 
-  <!-- ⑦ React App — Babel compile JSX -->
-  <script type="text/babel" data-type="module">
-    import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+  <script type="text/babel" data-presets="react">
+    // Lấy trực tiếp State từ biến React toàn cục đã nạp ở mục ③
+    const { useState } = React;
 
     /* ============================================================
        SKILL ICONS — SVG component cho từng loại kỹ năng
@@ -225,25 +206,20 @@ import ReactDOM from 'react-dom';
     };
 
     /* ============================================================
-       BƯỚC 3 — Navigation (Đã thêm Menu Mobile Hamburger)
+       BƯỚC 3 — Navigation (Menu Mobile Hamburger)
     ============================================================ */
     const Navigation = ({ activeTab, onTabChange, navItems, lang, toggleLanguage }) => {
       const TAB_KEYS = ['home', 'about', 'skills', 'contact'];
-      // Khai báo state để quản lý việc đóng/mở menu trên điện thoại
-      const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+      const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
       return (
         <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 h-[80px]">
           <div className="max-w-[1300px] h-full w-full px-4 md:px-6 mx-auto flex items-center justify-between">
-
-            {/* Logo — Left */}
             <div className="flex justify-start">
               <span className="text-[20px] md:text-[22px] font-bold text-[#14213D] tracking-tight select-none">
                 ANH DOAN
               </span>
             </div>
-
-            {/* Tabs (Máy tính) — Ẩn trên mobile, hiện từ màn hình md */}
             <div className="hidden md:flex justify-center gap-x-10">
               {TAB_KEYS.map((key, i) => (
                 <a
@@ -262,34 +238,19 @@ import ReactDOM from 'react-dom';
                 </a>
               ))}
             </div>
-
-            {/* Right Group: Ngôn ngữ + Nút Hamburger */}
             <div className="flex justify-end items-center gap-4 md:gap-0">
-              {/* Nút Ngôn ngữ */}
-              <div
-                onClick={toggleLanguage}
-                className="flex items-center gap-x-2 md:gap-x-4 cursor-pointer"
-                title="Switch language"
-              >
+              <div onClick={toggleLanguage} className="flex items-center gap-x-2 md:gap-x-4 cursor-pointer" title="Switch language">
                 <span className="text-[15px] md:text-[17px] font-semibold flex items-center gap-x-1">
                   <span className={lang === 'vi' ? 'text-[#14213D]' : 'text-gray-400'}>VI</span>
                   <span className="text-gray-300">|</span>
                   <span className={lang === 'en' ? 'text-[#14213D]' : 'text-gray-400'}>EN</span>
                 </span>
               </div>
-
-              {/* Nút Hamburger (Chỉ hiện trên Mobile) */}
-              <button 
-                className="md:hidden text-[#14213D] text-[28px] leading-none ml-2 focus:outline-none"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
+              <button className="md:hidden text-[#14213D] text-[28px] leading-none ml-2 focus:outline-none" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                 <i className={isMobileMenuOpen ? "bi bi-x" : "bi bi-list"}></i>
               </button>
             </div>
-
           </div>
-
-          {/* Menu thả xuống cho Điện thoại (Chỉ render khi isMobileMenuOpen là true) */}
           {isMobileMenuOpen && (
             <div className="md:hidden absolute top-[80px] left-0 w-full bg-white border-b border-gray-200 shadow-lg flex flex-col py-2 px-4 z-40">
               {TAB_KEYS.map((key, i) => (
@@ -297,8 +258,8 @@ import ReactDOM from 'react-dom';
                   key={key}
                   href={'#' + key}
                   onClick={() => {
-                    onTabChange(key); // Chuyển trang
-                    setIsMobileMenuOpen(false); // Tự động đóng menu sau khi bấm
+                    onTabChange(key);
+                    setIsMobileMenuOpen(false);
                   }}
                   className={
                     'text-[16px] font-semibold py-3 px-4 rounded-lg my-1 transition-colors ' +
@@ -315,84 +276,49 @@ import ReactDOM from 'react-dom';
     };
 
     /* ============================================================
-       BƯỚC 4 — HomeSection (Đã sửa tương thích Mobile)
+       BƯỚC 4 — HomeSection (Tương thích Mobile)
     ============================================================ */
     const HomeSection = ({ data, onContactClick }) => (
       <section id="home" className="relative z-10 min-h-[calc(100vh-80px)] py-10 md:py-20 flex items-center scroll-mt-[80px] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)]"
         style={{ backgroundImage: "url('./home_nen.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
         <div className="max-w-[1300px] w-full px-4 md:px-6 mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center text-center lg:text-left">
-
-          {/* Cột trái: Text */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start mt-4 lg:mt-0">
             <div className="inline-flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-full pl-5 pr-1.5 py-1.5 mb-4">
-              <span className="text-xs md:text-sm font-semibold text-[#2563eb] tracking-widest uppercase">
-                {data.tagline}
-              </span>
+              <span className="text-xs md:text-sm font-semibold text-[#2563eb] tracking-widest uppercase">{data.tagline}</span>
               <span className="flex items-center justify-center w-6 h-6 md:w-8 md:h-8 bg-white rounded-full shadow-sm text-sm md:text-base leading-none">
                 <span className="wave-emoji">👋</span>
               </span>
             </div>
-            
-            {/* Chữ Tên thu nhỏ trên Mobile để không rớt dòng */}
-            <h1 className="text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] font-bold text-[#14213D] leading-[1.1] mb-2">
-              {data.name}
-            </h1>
-            
-            <p className="text-[20px] sm:text-[24px] md:text-[32px] lg:text-[42px] font-bold text-[#2563eb] mb-4 md:mb-6">
-              {data.title}
-            </p>
-            
-            <p className="max-w-[680px] text-[15px] sm:text-base md:text-[18px] text-[#475569] leading-relaxed mb-8 md:mb-12 text-center lg:text-justify">
-              {data.description}
-            </p>
-            
-            {/* Nút bấm xếp dọc trên Mobile, ngang trên Desktop */}
+            <h1 className="text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] font-bold text-[#14213D] leading-[1.1] mb-2">{data.name}</h1>
+            <p className="text-[20px] sm:text-[24px] md:text-[32px] lg:text-[42px] font-bold text-[#2563eb] mb-4 md:mb-6">{data.title}</p>
+            <p className="max-w-[680px] text-[15px] sm:text-base md:text-[18px] text-[#475569] leading-relaxed mb-8 md:mb-12 text-center lg:text-justify">{data.description}</p>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a href={data.cvLink}
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 download
-                 className="flex items-center justify-center gap-2 bg-[#2563eb] hover:bg-blue-700 text-white text-[16px] md:text-[18px] font-medium w-full sm:w-auto px-8 py-3 md:py-2.5 rounded-[0.3rem] transition-all duration-300">
-                <i className="bi bi-download"></i>
-                {data.btnCV}
+              <a href={data.cvLink} target="_blank" rel="noopener noreferrer" download className="flex items-center justify-center gap-2 bg-[#2563eb] hover:bg-blue-700 text-white text-[16px] md:text-[18px] font-medium w-full sm:w-auto px-8 py-3 md:py-2.5 rounded-[0.3rem] transition-all duration-300">
+                <i className="bi bi-download"></i> {data.btnCV}
               </a>
-              <button
-                onClick={onContactClick}
-                className="flex items-center justify-center gap-2 bg-transparent text-[#2563eb] border border-[#2563eb] hover:bg-blue-50 text-[16px] md:text-[18px] font-medium w-full sm:w-auto px-8 py-3 md:py-2.5 rounded-[0.3rem] transition-all duration-300">
-                <i className="bi bi-send"></i>
-                {data.btnContact}
+              <button onClick={onContactClick} className="flex items-center justify-center gap-2 bg-transparent text-[#2563eb] border border-[#2563eb] hover:bg-blue-50 text-[16px] md:text-[18px] font-medium w-full sm:w-auto px-8 py-3 md:py-2.5 rounded-[0.3rem] transition-all duration-300">
+                <i className="bi bi-send"></i> {data.btnContact}
               </button>
             </div>
           </div>
-
-          {/* Cột phải: Hình ảnh căn giữa và thu nhỏ vừa màn hình */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end order-first lg:order-last">
-            <div className="w-[160px] sm:w-[340px] md:w-[400px] aspect-[4/5] bg-white rounded-3xl border-4 border-white mx-auto lg:mx-0 p-[4px]"
-                 style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.12), 0 6px 18px rgba(0,0,0,0.06)' }}>
-                <div className="w-full h-full rounded-[20px] overflow-hidden bg-white p-2 md:p-3">
-                  <img
-                    src="./anhthe.png"
-                    alt="Đoàn Thị Ngọc Ánh - Business Analyst"
-                    className="w-full h-full object-cover rounded-[12px]"
-                  />
-                </div>
+            <div className="w-[160px] sm:w-[340px] md:w-[400px] aspect-[4/5] bg-white rounded-3xl border-4 border-white mx-auto lg:mx-0 p-[4px]" style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.12), 0 6px 18px rgba(0,0,0,0.06)' }}>
+              <div className="w-full h-full rounded-[20px] overflow-hidden bg-white p-2 md:p-3">
+                <img src="./anhthe.png" alt="Đoàn Thị Ngọc Ánh - Business Analyst" className="w-full h-full object-cover rounded-[12px]" />
+              </div>
             </div>
           </div>
-
         </div>
       </section>
     );
 
     /* ============================================================
-       BƯỚC 5 — AboutSection (Đã sửa tương thích Mobile)
+       BƯỚC 5 — AboutSection (Tương thích Mobile)
     ============================================================ */
     const AboutSection = ({ data }) => (
       <section id="about" className="min-h-[calc(100vh-80px)] bg-white flex items-center scroll-mt-[80px]">
-        {/* RESPONSIVE: px-4 cho mobile, md:px-6 cho PC */}
         <div className="max-w-[1300px] w-full px-4 md:px-6 mx-auto py-12 md:py-20">
           <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8 lg:items-stretch">
-
-            {/* Cột trái: Giới thiệu bản thân (Chiếm full màn hình mobile, 45% trên PC) */}
             <div className="w-full lg:w-[45%] flex flex-col">
               <div>
                 <h2 className="text-[28px] md:text-3xl font-semibold uppercase tracking-wider">
@@ -402,47 +328,31 @@ import ReactDOM from 'react-dom';
                 <div className="w-12 h-[3px] bg-[#2563EB] mt-2 mb-6 md:mb-8"></div>
                 <div className="space-y-4">
                   {data.intro.map((para, i) => (
-                    <p key={i} className="text-[15px] md:text-base text-[#475569] leading-relaxed text-justify w-full">
-                      {para}
-                    </p>
+                    <p key={i} className="text-[15px] md:text-base text-[#475569] leading-relaxed text-justify w-full">{para}</p>
                   ))}
                 </div>
               </div>
               <div className="mt-8 md:mt-auto md:pt-6">
-                <a href={data.cvLink}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   download
-                   className="flex items-center justify-center md:justify-start gap-2 w-full md:w-fit bg-[#2563EB] hover:bg-blue-700 text-white text-base md:text-sm font-medium px-5 py-3 md:py-2 rounded-[0.3rem] transition-colors duration-200">
-                  <i className="bi bi-download"></i>
-                  {data.btnCV}
+                <a href={data.cvLink} target="_blank" rel="noopener noreferrer" download className="flex items-center justify-center md:justify-start gap-2 w-full md:w-fit bg-[#2563EB] hover:bg-blue-700 text-white text-base md:text-sm font-medium px-5 py-3 md:py-2 rounded-[0.3rem] transition-colors duration-200">
+                  <i className="bi bi-download"></i> {data.btnCV}
                 </a>
               </div>
             </div>
-
-            {/* Cột phải: Lĩnh vực (Chiếm full màn hình mobile, 45% trên PC) */}
             <div className="w-full lg:w-[45%] h-full">
-              <h2 className="text-[28px] md:text-3xl font-semibold text-[#2563EB] uppercase tracking-wider mt-2 lg:mt-0">
-                {data.fieldTitle}
-              </h2>
+              <h2 className="text-[28px] md:text-3xl font-semibold text-[#2563EB] uppercase tracking-wider mt-2 lg:mt-0">{data.fieldTitle}</h2>
               <div className="w-12 h-[3px] bg-[#2563EB] mt-2 mb-6"></div>
               <div className="w-full">
                 {data.fields.map((field, i) => (
                   <div key={i} className={`w-full h-auto min-h-[52px] flex items-center justify-between border border-gray-100 shadow-sm rounded-lg px-4 py-3 ${i < data.fields.length - 1 ? 'mb-[15px]' : ''}`}>
                     <div className="flex items-center flex-1">
                       <i className="bi bi-check-circle-fill text-[#2563EB] mr-3 text-sm shrink-0"></i>
-                      <span className="text-[14px] md:text-base font-semibold uppercase tracking-wide break-words" style={{ color: '#475569' }}>
-                        {field}
-                      </span>
+                      <span className="text-[14px] md:text-base font-semibold uppercase tracking-wide break-words" style={{ color: '#475569' }}>{field}</span>
                     </div>
-                    <span className="text-base text-blue-300 font-bold shrink-0 ml-2">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
+                    <span className="text-base text-blue-300 font-bold shrink-0 ml-2">{String(i + 1).padStart(2, '0')}</span>
                   </div>
                 ))}
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -460,37 +370,29 @@ import ReactDOM from 'react-dom';
         if (skill.icon.endsWith('.png') || skill.icon.endsWith('.svg')) {
           return <img src={skill.icon} className="w-12 h-12 object-contain" alt={skill.title} />;
         }
-        return <span className="text-[#2563EB] text-[40px] leading-none"
-                     dangerouslySetInnerHTML={{ __html: skill.icon }} />;
+        return <span className="text-[#2563EB] text-[40px] leading-none" dangerouslySetInnerHTML={{ __html: skill.icon }} />;
       };
 
       return (
-        <div className="bg-white rounded-xl shadow-lg border-l-8 flex items-center"
-             style={{ borderLeftColor: skill.borderColor }}>
-          {/* Phần trái: Icon */}
+        <div className="bg-white rounded-xl shadow-lg border-l-8 flex items-center" style={{ borderLeftColor: skill.borderColor }}>
           <div className="bg-[#E7EFFD] border-4 border-white shadow-[0_8px_24px_rgba(37,99,235,0.15)] flex items-center justify-center shrink-0 w-24 h-24 rounded-2xl mx-6">
             {renderIcon()}
           </div>
-          {/* Đường line dọc ngăn cách */}
           <div className="border-r border-gray-200 h-[80%] my-auto shrink-0"></div>
-          {/* Phần phải: Nội dung */}
           <div className="flex flex-col gap-6 p-6 flex-1">
             <div className="flex flex-col gap-2">
               <h3 className="text-xl font-bold uppercase text-gray-900">{skill.title}</h3>
               {skill.tags && skill.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {skill.tags.map(tag => (
-                    <span key={tag} className="bg-blue-100 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">
-                      {tag}
-                    </span>
+                    <span key={tag} className="bg-blue-100 text-blue-600 px-3 py-1 rounded-md text-sm font-medium">{tag}</span>
                   ))}
                 </div>
               )}
             </div>
             <p className="text-gray-500 leading-relaxed text-justify">{skill.description}</p>
             {skill.hasButton && (
-              <button onClick={() => onDetail && onDetail(skill)}
-                className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-[0.3rem] w-fit hover:bg-blue-700 font-medium transition-colors duration-200">
+              <button onClick={() => onDetail && onDetail(skill)} className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-[0.3rem] w-fit hover:bg-blue-700 font-medium transition-colors duration-200">
                 {ui.viewDetail} <i className="bi bi-arrow-right"></i>
               </button>
             )}
@@ -500,10 +402,8 @@ import ReactDOM from 'react-dom';
     };
 
     const SkillsSection = ({ data, onDetail, lang }) => (
-      <section id="skills" className="py-20 scroll-mt-[80px]"
-        style={{ backgroundImage: "url('./skill_nen.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      <section id="skills" className="py-20 scroll-mt-[80px]" style={{ backgroundImage: "url('./skill_nen.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
         <div className="max-w-[1440px] w-full px-4 xl:px-[100px] mx-auto">
-          {/* Tiêu đề */}
           <div className="flex items-center justify-center gap-8 mb-16">
             <div className="flex-1 border-t border-gray-600 max-w-[200px]"></div>
             <h2 className="text-[40px] font-bold text-white uppercase">{data.title}</h2>
@@ -523,8 +423,8 @@ import ReactDOM from 'react-dom';
     ============================================================ */
     const SortDropdown = ({ lang }) => {
       const opts = window.DETAIL_CONTENT[lang].ui.sortOptions;
-      const [open, setOpen] = React.useState(false);
-      const [selectedIdx, setSelectedIdx] = React.useState(0);
+      const [open, setOpen] = useState(false);
+      const [selectedIdx, setSelectedIdx] = useState(0);
       const ref = React.useRef(null);
       React.useEffect(() => {
         const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
@@ -533,19 +433,14 @@ import ReactDOM from 'react-dom';
       }, []);
       return (
         <div className="relative" ref={ref}>
-          <button
-            onClick={() => setOpen(o => !o)}
-            className="flex items-center gap-2 border border-[#2563eb] rounded-lg px-4 py-2 text-sm text-[#2563eb] bg-white cursor-pointer hover:bg-blue-50 transition-colors duration-150 focus:outline-none">
+          <button onClick={() => setOpen(o => !o)} className="flex items-center gap-2 border border-[#2563eb] rounded-lg px-4 py-2 text-sm text-[#2563eb] bg-white cursor-pointer hover:bg-blue-50 transition-colors duration-150 focus:outline-none">
             {opts[selectedIdx]}
             <i className={`bi bi-chevron-down text-xs transition-transform duration-200 ${open ? 'rotate-180' : ''}`}></i>
           </button>
           {open && (
             <div className="absolute right-0 mt-1.5 bg-white rounded-xl shadow-xl z-50 min-w-[130px] overflow-hidden">
               {opts.map((opt, i) => (
-                <div key={opt} onClick={() => { setSelectedIdx(i); setOpen(false); }}
-                  className={`px-4 py-2.5 text-sm cursor-pointer transition-colors duration-150 ${
-                    selectedIdx === i ? 'bg-blue-50 text-[#2563eb] font-medium' : 'text-gray-600 hover:bg-blue-50 hover:text-[#2563eb]'
-                  }`}>
+                <div key={opt} onClick={() => { setSelectedIdx(i); setOpen(false); }} className={`px-4 py-2.5 text-sm cursor-pointer transition-colors duration-150 ${selectedIdx === i ? 'bg-blue-50 text-[#2563eb] font-medium' : 'text-gray-600 hover:bg-blue-50 hover:text-[#2563eb]'}`}>
                   {opt}
                 </div>
               ))}
@@ -559,12 +454,9 @@ import ReactDOM from 'react-dom';
       const ui = window.DETAIL_CONTENT[lang].ui;
       return (
         <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6 flex flex-col gap-3 hover:shadow-lg transition-shadow duration-300">
-          {/* Header: logo + meta */}
           <div className="flex items-center gap-4">
             <div className="w-20 h-20 shrink-0 border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center">
-              <img src={project.logo} alt={project.name}
-                   className="w-full h-full object-contain p-2"
-                   onError={e => { e.target.style.display='none'; }} />
+              <img src={project.logo} alt={project.name} className="w-full h-full object-contain p-2" onError={e => { e.target.style.display='none'; }} />
             </div>
             <div className="flex flex-col gap-1 min-w-0">
               <h3 className="font-bold text-[#14213D] text-base leading-tight">{project.name}</h3>
@@ -579,28 +471,21 @@ import ReactDOM from 'react-dom';
             </div>
           </div>
           <hr className="w-full border-gray-200" />
-          {/* Description */}
           <p className="text-gray-500 text-sm leading-relaxed text-justify">{project.description}</p>
-          {/* Tags */}
           {project.tags && project.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {project.tags.map(tag => (
-                <span key={tag} className="bg-blue-50 text-[#2563EB] px-3 py-1 rounded-md text-xs font-medium">
-                  {tag}
-                </span>
+                <span key={tag} className="bg-blue-50 text-[#2563EB] px-3 py-1 rounded-md text-xs font-medium">{tag}</span>
               ))}
             </div>
           )}
-          {/* Footer */}
           <div className="flex justify-end mt-auto pt-2 border-t border-gray-100">
-            <button
-              onClick={() => {
+            <button onClick={() => {
                 const id = project.href ? project.href.replace('#', '') : null;
                 if (!id) return;
                 const el = document.getElementById(id);
                 if (el) el.scrollIntoView({ behavior: 'instant' });
-              }}
-              className="text-[#2563EB] text-sm font-medium hover:underline flex items-center gap-1">
+              }} className="text-[#2563EB] text-sm font-medium hover:underline flex items-center gap-1">
               {ui.viewDetail} <i className="bi bi-arrow-right"></i>
             </button>
           </div>
@@ -608,7 +493,6 @@ import ReactDOM from 'react-dom';
       );
     };
 
-    /* Helper: render text node có thể có highlight */
     const renderScopeItem = (item) => {
       if (item.text !== undefined) return item.text;
       return (
@@ -620,7 +504,6 @@ import ReactDOM from 'react-dom';
       );
     };
 
-    /* Helper: render description 3-part (trước, highlight, sau) */
     const DescCard = ({ parts }) => (
       <p className="text-gray-700 leading-relaxed text-justify">
         {parts[0]}
@@ -638,12 +521,9 @@ import ReactDOM from 'react-dom';
       return (
         <div className="min-h-screen bg-[#F6F8FD]">
           <div className="max-w-[1400px] mx-auto w-full px-6 py-10">
-            {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm mb-8 flex-wrap">
-              <button onClick={onBack}
-                className="flex items-center gap-2 text-[#2563EB] hover:text-blue-800 font-medium transition-colors">
-                <i className="bi bi-arrow-left"></i>
-                <span>{ui.backBtn}</span>
+              <button onClick={onBack} className="flex items-center gap-2 text-[#2563EB] hover:text-blue-800 font-medium transition-colors">
+                <i className="bi bi-arrow-left"></i> <span>{ui.backBtn}</span>
               </button>
               <span className="text-gray-300 mx-1">/</span>
               <span onClick={onBack} className="text-gray-500 hover:text-[#2563EB] cursor-pointer">{homeLabel}</span>
@@ -652,8 +532,6 @@ import ReactDOM from 'react-dom';
               <span className="text-gray-300">›</span>
               <span className="text-gray-900 font-medium">{skill.title}</span>
             </div>
-
-            {/* Tiêu đề */}
             <div className="mb-10 text-center">
               <div className="flex items-center justify-center gap-4 mb-3">
                 <div className="h-px bg-[#2563EB]/30 w-20"></div>
@@ -662,16 +540,12 @@ import ReactDOM from 'react-dom';
               </div>
               <h1 className="text-4xl font-bold text-[#14213D] uppercase tracking-tight">{skill.title}</h1>
             </div>
-
-            {/* Toolbar */}
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-base font-bold text-[#14213D] uppercase tracking-wide">
                 {ui.projectsDone} <span className="text-[#2563EB]">({projects.length})</span>
               </h2>
               <SortDropdown lang={lang} />
             </div>
-
-            {/* Grid dự án */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {projects.map((project, i) => (
                 <ProjectCard key={i} project={project} lang={lang} />
@@ -687,8 +561,7 @@ import ReactDOM from 'react-dom';
             { id: 'theshea-detail', d: dc.analysis.theShea },
           ].map(({ id, d }) => (
           <div key={id} id={id} className="w-full mt-16 scroll-mt-24">
-            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                 style={{ backgroundImage: "url('./nen.png')" }}>
+            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{d.bannerTitle}</h2>
               <p className="text-lg tracking-wider uppercase">{d.bannerScope}</p>
             </div>
@@ -717,12 +590,10 @@ import ReactDOM from 'react-dom';
           ))}
           </>)}
 
-          {/* ── Chi tiết kỹ năng: Vibe Coding ── */}
           {skill.iconType === 'vibe' && (<>
           {(() => { const v = dc.vibe.wonderwood; return (
           <div id="wonderwood-vibe" className="w-full mt-16 scroll-mt-24">
-            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                 style={{ backgroundImage: "url('./nen.png')" }}>
+            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{v.bannerTitle}</h2>
               <p className="text-lg tracking-wider uppercase">{v.bannerScope}</p>
             </div>
@@ -750,22 +621,17 @@ import ReactDOM from 'react-dom';
                 <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">{ui.demoVibe}</h3>
                 <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
               </div>
-              <video src="./vibe demo.mp4" controls
-                     className="w-full rounded-lg border border-gray-200 shadow-sm bg-black" />
+              <video src="./vibe demo.mp4" controls className="w-full rounded-lg border border-gray-200 shadow-sm bg-black" />
               <p className="text-center italic text-[#14213D] text-sm mt-6">{v.videoCaption}</p>
             </div>
           </div>
           ); })()}
           </>)}
 
-          {/* ── Chi tiết kỹ năng: Mô hình hóa hệ thống ── */}
           {skill.iconType === 'modeling' && (<>
-
-            {/* ── Section chi tiết: WONDERWOOD ── */}
             {(() => { const m = dc.modeling.wonderwood; return (
             <div id="wonderwood-detail" className="w-full mt-16 scroll-mt-24">
-              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                   style={{ backgroundImage: "url('./nen.png')" }}>
+              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
                 <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
                 <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
               </div>
@@ -818,15 +684,13 @@ import ReactDOM from 'react-dom';
                 <div>
                   <h3 className="text-2xl font-bold uppercase text-gray-900 mb-4">USE CASE</h3>
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
-                  <img src="./uc tổng quan.png" alt="UC overview"
-                       className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  <img src="./uc tổng quan.png" alt="UC overview" className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
                   <p className="text-center italic text-[#14213D] mt-6">{m.captions.ucOverview}</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
                   {["./uc cấp 1.png","./uc cấp 2.png","./uc cấp 3.png"].map((src, i) => (
                     <div key={i} className="flex flex-col h-full">
-                      <img src={src} alt={m.captions.ucAlt[i]}
-                           className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                      <img src={src} alt={m.captions.ucAlt[i]} className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                       <p className="text-center italic text-[#14213D] mt-4">{m.captions.ucDetails[i]}</p>
                     </div>
                   ))}
@@ -848,8 +712,7 @@ import ReactDOM from 'react-dom';
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {["./sd 1.png","./sd 2.png"].map((src, i) => (
                     <div key={i} className="flex flex-col h-full">
-                      <img src={src} alt={`SD ${i+1}`}
-                           className="w-[60%] h-full mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                      <img src={src} alt={`SD ${i+1}`} className="w-[60%] h-full mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                       <p className="text-center italic text-[#14213D] mt-6">{m.captions.sd[i]}</p>
                     </div>
                   ))}
@@ -861,13 +724,11 @@ import ReactDOM from 'react-dom';
                   <div className="w-16 h-1 bg-blue-600 mt-1 mb-8"></div>
                 </div>
                 <div className="flex flex-col">
-                  <img src="./dfd ngữ cảnh.png" alt="DFD context"
-                       className="w-[50%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                  <img src="./dfd ngữ cảnh.png" alt="DFD context" className="w-[50%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   <p className="text-center italic text-[#14213D] mt-6">{m.captions.dfdContext}</p>
                 </div>
                 <div className="flex flex-col">
-                  <img src="./dfd cấp 0.png" alt="DFD level 0"
-                       className="w-[70%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                  <img src="./dfd cấp 0.png" alt="DFD level 0" className="w-[70%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   <p className="text-center italic text-[#14213D] mt-6">{m.captions.dfdLevel0}</p>
                 </div>
               </div>
@@ -877,8 +738,7 @@ import ReactDOM from 'react-dom';
                   <div className="w-16 h-1 bg-blue-600 mt-1 mb-8"></div>
                 </div>
                 <div className="flex flex-col">
-                  <img src="./erd.png" alt="ERD"
-                       className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                  <img src="./erd.png" alt="ERD" className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   <p className="text-center italic text-[#14213D] mt-6">{m.captions.erd}</p>
                 </div>
               </div>
@@ -888,8 +748,7 @@ import ReactDOM from 'react-dom';
             {/* ===== Nam Việt Phương - Modeling Detail ===== */}
             {(() => { const m = dc.modeling.namVietPhuong; return (
             <div id="namvietphuong-detail" className="w-full mt-24 scroll-mt-24">
-              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                   style={{ backgroundImage: "url('./nen.png')" }}>
+              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
                 <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
                 <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
               </div>
@@ -925,24 +784,19 @@ import ReactDOM from 'react-dom';
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                   {["./yến uc sale 1.png","./yến uc sale 2.png","./yến uc sale 3.png"].map((src,i) => (
                     <div key={i} className="flex flex-col h-full">
-                      <img src={src} alt={`UC Sale ${i+1}`}
-                           className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                      <img src={src} alt={`UC Sale ${i+1}`} className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                     </div>
                   ))}
                 </div>
                 <p className="text-center italic text-[#14213D] mt-6">{m.captions.ucSales}</p>
-                <img src="./yến uc ns 1.png" alt="UC NS overview"
-                     className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl mt-16" />
+                <img src="./yến uc ns 1.png" alt="UC NS overview" className="w-[60%] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl mt-16" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-[1000px] mx-auto">
                   <div className="flex flex-col h-full">
-                    <img src="./yến uc ns 2.png" alt="UC NS 2"
-                         className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./yến uc ns 2.png" alt="UC NS 2" className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   </div>
                   <div className="flex flex-col gap-6 h-full">
-                    <img src="./yến uc ns 3.png" alt="UC NS 3"
-                         className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
-                    <img src="./yến uc ns 4.png" alt="UC NS 4"
-                         className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./yến uc ns 3.png" alt="UC NS 3" className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./yến uc ns 4.png" alt="UC NS 4" className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                   </div>
                 </div>
                 <p className="text-center italic text-[#14213D] mt-6">{m.captions.ucHR}</p>
@@ -953,8 +807,7 @@ import ReactDOM from 'react-dom';
             {/* ===== The Shea - Modeling Detail ===== */}
             {(() => { const m = dc.modeling.theShea; return (
             <div id="theshea-detail" className="w-full mt-24 scroll-mt-24">
-              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                   style={{ backgroundImage: "url('./nen.png')" }}>
+              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
                 <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
                 <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
               </div>
@@ -1018,8 +871,7 @@ import ReactDOM from 'react-dom';
             {/* ── Section chi tiết: AI ── */}
             {(() => { const m = dc.modeling.ai; return (
             <div id="ai-detail" className="w-full mt-24 scroll-mt-24">
-              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                   style={{ backgroundImage: "url('./nen.png')" }}>
+              <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
                 <h2 className="text-3xl font-bold mb-6 text-center px-4">{m.bannerTitle}</h2>
                 <p className="text-lg tracking-wider uppercase">{m.bannerScope}</p>
               </div>
@@ -1053,8 +905,7 @@ import ReactDOM from 'react-dom';
                 {["./bpmn_ai 1.png","./bpmn_ai 2.png","./bpmn_ai 3.png"].map((src,i) => (
                   <div key={i}>
                     <a href={src} target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
-                      <img src={src} alt={`BPMN AI ${i+1}`}
-                           className="w-full object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                      <img src={src} alt={`BPMN AI ${i+1}`} className="w-full object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
                     </a>
                     <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.bpmn[i]}</p>
                   </div>
@@ -1067,8 +918,7 @@ import ReactDOM from 'react-dom';
                 </div>
                 <div>
                   <a href="./uc ai 1.png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
-                    <img src="./uc ai 1.png" alt="UC AI overview"
-                         className="w-[55%] max-h-[400px] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                    <img src="./uc ai 1.png" alt="UC AI overview" className="w-[55%] max-h-[400px] mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.ucOverview}</p>
                 </div>
@@ -1076,8 +926,7 @@ import ReactDOM from 'react-dom';
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {["./uc ai 2.png","./uc ai 3.png","./uc ai 4.png"].map((src,i) => (
                       <a key={i} href={src} target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
-                        <img src={src} alt={`UC AI level 2 - ${i+1}`}
-                             className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
+                        <img src={src} alt={`UC AI level 2 - ${i+1}`} className="w-full h-full object-contain border border-gray-200 shadow-md bg-white rounded-xl p-2 transition-all duration-300 hover:shadow-xl" />
                       </a>
                     ))}
                   </div>
@@ -1090,8 +939,7 @@ import ReactDOM from 'react-dom';
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
                 </div>
                 <a href="./ucs_ai.png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
-                  <img src="./ucs_ai.png" alt="UCS AI"
-                       className="w-full max-w-5xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  <img src="./ucs_ai.png" alt="UCS AI" className="w-full max-w-5xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
                 </a>
                 <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.ucs}</p>
               </div>
@@ -1101,8 +949,7 @@ import ReactDOM from 'react-dom';
                   <div className="w-16 h-1 bg-blue-600 mt-3 mb-8"></div>
                 </div>
                 <a href="./ad 1.png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
-                  <img src="./ad 1.png" alt="AD AI"
-                       className="max-w-[420px] w-full mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                  <img src="./ad 1.png" alt="AD AI" className="max-w-[420px] w-full mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
                 </a>
                 <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.ad}</p>
               </div>
@@ -1113,15 +960,13 @@ import ReactDOM from 'react-dom';
                 </div>
                 <div className="flex flex-col">
                   <a href="./dfd ai (2).png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
-                    <img src="./dfd ai (2).png" alt="DFD context AI"
-                         className="w-full max-w-2xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                    <img src="./dfd ai (2).png" alt="DFD context AI" className="w-full max-w-2xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.dfdContext}</p>
                 </div>
                 <div className="flex flex-col">
                   <a href="./dfd ai (1).png" target="_blank" rel="noopener noreferrer" className="block cursor-zoom-in">
-                    <img src="./dfd ai (1).png" alt="DFD level 0 AI"
-                         className="w-full max-w-2xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
+                    <img src="./dfd ai (1).png" alt="DFD level 0 AI" className="w-full max-w-2xl mx-auto block object-contain border border-gray-200 shadow-md bg-white rounded-xl transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-center italic text-[#14213D] text-sm mt-6">{m.captions.dfdLevel0}</p>
                 </div>
@@ -1146,10 +991,8 @@ import ReactDOM from 'react-dom';
         <div className="min-h-screen bg-[#F6F8FD]">
           <div className="max-w-[1400px] mx-auto w-full px-6 py-10">
             <div className="flex items-center gap-2 text-sm mb-8 flex-wrap">
-              <button onClick={onBack}
-                className="flex items-center gap-2 text-[#2563EB] hover:text-blue-800 font-medium transition-colors">
-                <i className="bi bi-arrow-left"></i>
-                <span>{ui.backBtn}</span>
+              <button onClick={onBack} className="flex items-center gap-2 text-[#2563EB] hover:text-blue-800 font-medium transition-colors">
+                <i className="bi bi-arrow-left"></i> <span>{ui.backBtn}</span>
               </button>
               <span className="text-gray-300 mx-1">/</span>
               <span onClick={onBack} className="text-gray-500 hover:text-[#2563EB] cursor-pointer">{homeLabel}</span>
@@ -1179,11 +1022,10 @@ import ReactDOM from 'react-dom';
             </div>
           </div>
 
-          {/* ── Wonderwood Figma ── */}
+          {/* Wonderwood Figma */}
           {(() => { const f = dc.figma.wonderwood; return (
           <div id="wonderwood-figma" className="w-full mt-16 scroll-mt-24">
-            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                 style={{ backgroundImage: "url('./nen.png')" }}>
+            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
               <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
             </div>
@@ -1215,15 +1057,13 @@ import ReactDOM from 'react-dom';
               <div className="grid grid-cols-2 gap-6 mt-8">
                 <div className="flex flex-col items-center w-full">
                   <a href="./figma go dn (1).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
-                    <img src="./figma go dn (1).png" alt={f.captions[0]}
-                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./figma go dn (1).png" alt={f.captions[0]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[0]}</p>
                 </div>
                 <div className="flex flex-col items-center w-full">
                   <a href="./figma go dn (2).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
-                    <img src="./figma go dn (2).png" alt={f.captions[1]}
-                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./figma go dn (2).png" alt={f.captions[1]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[1]}</p>
                 </div>
@@ -1238,20 +1078,17 @@ import ReactDOM from 'react-dom';
                   <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[3]}</p>
                 </div>
               </div>
-              <a href="https://www.figma.com/proto/2HehjZbfGb7sVbxCL5WLJI/-WonderWood--H%E1%BB%87-Th%E1%BB%91ng-ERP_2025-12-27?node-id=2162-80395&p=f&t=5OYpheNrcjsWPzs5-1&scaling=contain&content-scaling=fixed&page-id=828%3A25683&starting-point-node-id=2162%3A80395&show-proto-sidebar=1"
-                 target="_blank" rel="noopener noreferrer"
-                 className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
+              <a href="https://www.figma.com/proto/2HehjZbfGb7sVbxCL5WLJI/-WonderWood--H%E1%BB%87-Th%E1%BB%91ng-ERP_2025-12-27?node-id=2162-80395&p=f&t=5OYpheNrcjsWPzs5-1&scaling=contain&content-scaling=fixed&page-id=828%3A25683&starting-point-node-id=2162%3A80395&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer" className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
                 <i className="bi bi-figma mr-2"></i> {ui.viewPrototype} <i className="bi bi-arrow-right ml-2"></i>
               </a>
             </div>
           </div>
           ); })()}
 
-          {/* ── NamVietPhuong Figma ── */}
+          {/* NamVietPhuong Figma */}
           {(() => { const f = dc.figma.namVietPhuong; return (
           <div id="namvietphuong-figma" className="w-full mt-16 scroll-mt-24">
-            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                 style={{ backgroundImage: "url('./nen.png')" }}>
+            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
               <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
             </div>
@@ -1293,33 +1130,28 @@ import ReactDOM from 'react-dom';
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col items-center w-full">
                   <a href="./fig yen (2).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
-                    <img src="./fig yen (2).png" alt={f.captions[2]}
-                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./fig yen (2).png" alt={f.captions[2]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[2]}</p>
                 </div>
                 <div className="flex flex-col items-center w-full">
                   <a href="./fig yen (1).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
-                    <img src="./fig yen (1).png" alt={f.captions[3]}
-                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./fig yen (1).png" alt={f.captions[3]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[3]}</p>
                 </div>
               </div>
-              <a href="https://www.figma.com/proto/R44g7BLQorQI2ONqhzb08X/-Nam-An---Figma---Nh%C3%A2n-s%E1%BB%B1---B%C3%A1n-h%C3%A0ng-?node-id=750-63391&p=f&t=RzmRllZCzO1GJfLq-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=750%3A63391&show-proto-sidebar=1"
-                 target="_blank" rel="noopener noreferrer"
-                 className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
+              <a href="https://www.figma.com/proto/R44g7BLQorQI2ONqhzb08X/-Nam-An---Figma---Nh%C3%A2n-s%E1%BB%B1---B%C3%A1n-h%C3%A0ng-?node-id=750-63391&p=f&t=RzmRllZCzO1GJfLq-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=750%3A63391&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer" className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
                 <i className="bi bi-figma mr-2"></i> {ui.viewPrototype} <i className="bi bi-arrow-right ml-2"></i>
               </a>
             </div>
           </div>
           ); })()}
 
-          {/* ── Yummy Figma ── */}
+          {/* Yummy Figma */}
           {(() => { const f = dc.figma.yummy; return (
           <div id="yummy-figma" className="w-full mt-16 scroll-mt-24">
-            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                 style={{ backgroundImage: "url('./nen.png')" }}>
+            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
               <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
             </div>
@@ -1351,15 +1183,13 @@ import ReactDOM from 'react-dom';
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col items-center w-full">
                   <a href="./yummy fig (1).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
-                    <img src="./yummy fig (1).png" alt={f.captions[0]}
-                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./yummy fig (1).png" alt={f.captions[0]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[0]}</p>
                 </div>
                 <div className="flex flex-col items-center w-full">
                   <a href="./yummy fig (2).png" target="_blank" rel="noopener noreferrer" className="block w-full cursor-zoom-in">
-                    <img src="./yummy fig (2).png" alt={f.captions[1]}
-                         className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src="./yummy fig (2).png" alt={f.captions[1]} className="w-full border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
                   </a>
                   <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[1]}</p>
                 </div>
@@ -1374,20 +1204,17 @@ import ReactDOM from 'react-dom';
                   <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.captions[3]}</p>
                 </div>
               </div>
-              <a href="https://www.figma.com/proto/ODufypUl7HYHOFZy93iOJW/YUMMY?node-id=2-158&p=f&t=WSuQG9GCg7y8x4qg-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&show-proto-sidebar=1&starting-point-node-id=2%3A158"
-                 target="_blank" rel="noopener noreferrer"
-                 className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
+              <a href="https://www.figma.com/proto/ODufypUl7HYHOFZy93iOJW/YUMMY?node-id=2-158&p=f&t=WSuQG9GCg7y8x4qg-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&show-proto-sidebar=1&starting-point-node-id=2%3A158" target="_blank" rel="noopener noreferrer" className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
                 <i className="bi bi-figma mr-2"></i> {ui.viewPrototype} <i className="bi bi-arrow-right ml-2"></i>
               </a>
             </div>
           </div>
           ); })()}
 
-          {/* ── The Shea Figma ── */}
+          {/* The Shea Figma */}
           {(() => { const f = dc.figma.theShea; return (
           <div id="theshea-figma" className="w-full mt-16 scroll-mt-24">
-            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white"
-                 style={{ backgroundImage: "url('./nen.png')" }}>
+            <div className="w-full bg-cover bg-center py-16 flex flex-col items-center justify-center text-white" style={{ backgroundImage: "url('./nen.png')" }}>
               <h2 className="text-3xl font-bold mb-6 text-center px-4">{f.bannerTitle}</h2>
               <p className="text-lg tracking-wider uppercase">{f.bannerScope}</p>
             </div>
@@ -1419,21 +1246,17 @@ import ReactDOM from 'react-dom';
               <div className="grid grid-cols-4 gap-4 mt-8">
                 {["./shea figma 1.png","./shea figma 2.png","./shea figma 3.png","./shea figma 4.png"].map((src,i) => (
                   <div key={i} className="flex flex-col items-center w-full">
-                    <img src={src} alt={`The Shea Figma ${i+1}`}
-                         className="w-full aspect-[9/16] object-cover border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
+                    <img src={src} alt={`The Shea Figma ${i+1}`} className="w-full aspect-[9/16] object-cover border border-gray-200 rounded-xl shadow-md p-2 transition-all duration-300 hover:shadow-xl" />
                   </div>
                 ))}
               </div>
               <p className="text-[16px] text-[#14213D] italic mt-6 text-center w-full">{f.caption}</p>
-              <a href="https://www.figma.com/proto/LajTE5MnoIi5j5aii8qaSg/-NgocAnh---ViTriSanPham--figma_2025-02-14?node-id=1-2&p=f&t=zlTWGFxbOd852qWG-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2&show-proto-sidebar=1"
-                 target="_blank" rel="noopener noreferrer"
-                 className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
+              <a href="https://www.figma.com/proto/LajTE5MnoIi5j5aii8qaSg/-NgocAnh---ViTriSanPham--figma_2025-02-14?node-id=1-2&p=f&t=zlTWGFxbOd852qWG-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer" className="mt-8 bg-blue-600 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-blue-700 transition flex justify-start items-center w-fit">
                 <i className="bi bi-figma mr-2"></i> {ui.viewPrototype} <i className="bi bi-arrow-right ml-2"></i>
               </a>
             </div>
           </div>
           ); })()}
-
         </div>
       );
     };
@@ -1442,13 +1265,9 @@ import ReactDOM from 'react-dom';
        BƯỚC 7 — ContactCard + ContactSection
     ============================================================ */
     const ContactCard = ({ contact }) => (
-      <a href={contact.href}
-         target={contact.iconType === 'linkedin' ? '_blank' : undefined}
-         rel="noopener noreferrer"
-         className="bg-white rounded-2xl shadow-sm p-10 flex flex-col items-center hover:shadow-md hover:-translate-y-1 transition-all duration-200 text-center no-underline">
+      <a href={contact.href} target={contact.iconType === 'linkedin' ? '_blank' : undefined} rel="noopener noreferrer" className="bg-white rounded-2xl shadow-sm p-10 flex flex-col items-center hover:shadow-md hover:-translate-y-1 transition-all duration-200 text-center no-underline">
         <div className="w-24 h-24 rounded-full bg-[#F2F5FE] border-2 border-[#E2EAFB] flex items-center justify-center mb-6">
-          <span className="text-[#2563EB] text-3xl leading-none"
-                dangerouslySetInnerHTML={{ __html: contact.icon }} />
+          <span className="text-[#2563EB] text-3xl leading-none" dangerouslySetInnerHTML={{ __html: contact.icon }} />
         </div>
         <p className="text-lg font-bold text-[#2563EB] uppercase">{contact.label}</p>
         <hr className="w-full border-gray-200 my-4" />
@@ -1475,10 +1294,10 @@ import ReactDOM from 'react-dom';
     );
 
     /* ============================================================
-       BƯỚC 8 — App hoàn chỉnh (tất cả 4 tabs)
+       BƯỚC 8 — App hoàn chỉnh
     ============================================================ */
     const BackToTop = () => {
-      const [visible, setVisible] = React.useState(false);
+      const [visible, setVisible] = useState(false);
       React.useEffect(() => {
         const onScroll = () => setVisible(window.scrollY > 300);
         window.addEventListener('scroll', onScroll);
@@ -1486,16 +1305,12 @@ import ReactDOM from 'react-dom';
       }, []);
       if (!visible) return null;
       return (
-        <button
-          onClick={() => window.scrollTo(0, 0)}
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-[#2563eb] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
-          aria-label="Trở lại đầu trang">
+        <button onClick={() => window.scrollTo(0, 0)} className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-[#2563eb] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300" aria-label="Trở lại đầu trang">
           <i className="bi bi-arrow-up text-lg"></i>
         </button>
       );
     };
 
-    /* Fallback helper: nếu giá trị EN bị thiếu hoặc rỗng, tự động lấy giá trị VI tương ứng */
     const deepFallback = (en, vi) => {
       if (en == null || en === '') return vi;
       if (typeof vi !== 'object' || vi == null) return en;
@@ -1516,15 +1331,8 @@ import ReactDOM from 'react-dom';
       const [selectedSkillId, setSelectedSkillId] = useState(null);
 
       const viBase      = window.PORTFOLIO_DATA.vi;
-      const currentData = lang === 'vi'
-        ? viBase
-        : deepFallback(window.PORTFOLIO_DATA.en, viBase);
-
-      /* Re-derive skill từ currentData mỗi khi lang thay đổi — luôn đúng ngôn ngữ */
-      const selectedSkill = selectedSkillId != null
-        ? (currentData.skills.items.find(s => s.id === selectedSkillId) ?? null)
-        : null;
-
+      const currentData = lang === 'vi' ? viBase : deepFallback(window.PORTFOLIO_DATA.en, viBase);
+      const selectedSkill = selectedSkillId != null ? (currentData.skills.items.find(s => s.id === selectedSkillId) ?? null) : null;
       const toggleLanguage = () => setLang(l => l === 'vi' ? 'en' : 'vi');
 
       const scrollToSection = (sectionId) => {
@@ -1547,13 +1355,7 @@ import ReactDOM from 'react-dom';
       return (
         <div>
           <BackToTop />
-          <Navigation
-            activeTab={activeTab}
-            onTabChange={(key) => { setSelectedSkillId(null); scrollToSection(key); }}
-            navItems={currentData.nav}
-            lang={lang}
-            toggleLanguage={toggleLanguage}
-          />
+          <Navigation activeTab={activeTab} onTabChange={(key) => { setSelectedSkillId(null); scrollToSection(key); }} navItems={currentData.nav} lang={lang} toggleLanguage={toggleLanguage} />
           <main>
             {selectedSkill ? (
               selectedSkill.iconType === 'design'
