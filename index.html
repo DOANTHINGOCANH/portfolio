@@ -51,9 +51,15 @@
     };
   </script>
 
-  <!-- ③ React 18 + ReactDOM 18 -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.3.1",
+        "react-dom": "https://esm.sh/react-dom@18.3.1",
+        "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime"
+      }
+    }
+  </script>
 
   <!-- ④ Babel Standalone (biên dịch JSX trực tiếp trên trình duyệt) -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -131,8 +137,9 @@
   <script src="./data.js"></script>
 
   <!-- ⑦ React App — Babel compile JSX -->
-  <script type="text/babel" data-presets="react" data-plugins="">
-    const { useState } = React;
+  <script type="text/babel" data-type="module">
+    import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
     /* ============================================================
        SKILL ICONS — SVG component cho từng loại kỹ năng
